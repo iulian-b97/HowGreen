@@ -5,11 +5,9 @@ using System.Threading.Tasks;
 
 namespace ContactAPI.Models
 {
-    public class ContactSuppliers
+    public class Contact
     {
-        public string MessageId { get; set; }
-        public string SenderId { get; set; }
-        public string ReceiverId { get; set; }
+        public string Id { get; set; }
         public string MessageContent { get; set; }
     }
 }

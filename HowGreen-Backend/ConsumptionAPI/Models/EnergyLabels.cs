@@ -7,7 +7,8 @@ namespace ConsumptionAPI.Models
 {
     public class EnergyLabels
     {
-        public string Id { get; set; }
+        public string UserId { get; set; }
+        public string ConsumptionId { get; set; }
         public string EnergyClass { get; set; }
         public int EfficientIndex { get; set; }
     }

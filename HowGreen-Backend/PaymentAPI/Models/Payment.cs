@@ -12,6 +12,5 @@ namespace PaymentAPI.Models
         public string CardNumber { get; set; }
         public string ExpirationDate { get; set; }
         public string SecurityCode { get; set; }
-        public int SumDonated { get; set; }
     }
 }

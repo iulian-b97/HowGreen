@@ -7,7 +7,8 @@ namespace ConsumptionAPI.Models
 {
     public class Appliance
     {
-        public string Id { get; set; }
+        public string UserId { get; set; }
+        public string ConsumptionId { get; set; }
         public string ApplianceType { get; set; }
         public int nrWatts { get; set; }
         public int hoursDay { get; set; }
