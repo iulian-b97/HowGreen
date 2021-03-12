@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'HowGreen-Frontend'`, () => {
+  it(`should have as title 'HowGree-Frontend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('HowGreen-Frontend');
+    expect(app.title).toEqual('HowGree-Frontend');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('HowGreen-Frontend app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('HowGree-Frontend app is running!');
   });
 });

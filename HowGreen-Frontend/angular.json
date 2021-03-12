@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "HowGreen-Frontend": {
+    "HowGree-Frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/HowGreen-Frontend",
+            "outputPath": "dist/HowGree-Frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,7 +28,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },
@@ -65,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "HowGreen-Frontend:build"
+            "browserTarget": "HowGree-Frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "HowGreen-Frontend:build:production"
+              "browserTarget": "HowGree-Frontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "HowGreen-Frontend:build"
+            "browserTarget": "HowGree-Frontend:build"
           }
         },
         "test": {
@@ -113,16 +114,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "HowGreen-Frontend:serve"
+            "devServerTarget": "HowGree-Frontend:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "HowGreen-Frontend:serve:production"
+              "devServerTarget": "HowGree-Frontend:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "HowGreen-Frontend"
+  "defaultProject": "HowGree-Frontend"
 }
