@@ -16,7 +16,6 @@ C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\IdentityServer\obj\De
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\IdentityServer\obj\Debug\net5.0\IdentityServer.AssemblyInfoInputs.cache
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\IdentityServer\obj\Debug\net5.0\IdentityServer.AssemblyInfo.cs
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\IdentityServer\obj\Debug\net5.0\IdentityServer.csproj.CoreCompileInputs.cache
-C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\IdentityServer\obj\Debug\net5.0\IdentityServer.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\IdentityServer\obj\Debug\net5.0\IdentityServer.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\IdentityServer\obj\Debug\net5.0\staticwebassets\IdentityServer.StaticWebAssets.Manifest.cache
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\IdentityServer\obj\Debug\net5.0\staticwebassets\IdentityServer.StaticWebAssets.xml
@@ -68,3 +67,4 @@ C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\IdentityServer\bin\De
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\IdentityServer\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\IdentityServer\bin\Debug\net5.0\Microsoft.Extensions.FileProviders.Embedded.dll
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\IdentityServer\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\IdentityServer\obj\Debug\net5.0\IdentityServer.MvcApplicationPartsAssemblyInfo.cs
