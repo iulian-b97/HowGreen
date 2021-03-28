@@ -6,19 +6,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
-import { RegistrationComponent } from './user/registration/registration.component';
 import { AppRoutingModule } from './app-routing.module'
 import { UserService } from './shared/user.service';
-import { LoginComponent } from './user/login/login.component';
 import { HomeComponent } from './home/home.component';
+import { ConsumptionModule } from './consumption/consumption.module';
+import { UserModule } from './user/user.module';
+import { ContactModule } from './contact/contact.module';
+import { PaymentModule } from './payment/payment.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
-    RegistrationComponent,
-    LoginComponent,
     HomeComponent
   ],
   imports: [
@@ -30,7 +28,11 @@ import { HomeComponent } from './home/home.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       progressBar: true
-    })
+    }),
+    ConsumptionModule,
+    UserModule,
+    ContactModule,
+    PaymentModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
