@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Server.Models.Consumption;
-using Server.Models.User;
+using Server.Entities.Consumption;
+using Server.Entities.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;

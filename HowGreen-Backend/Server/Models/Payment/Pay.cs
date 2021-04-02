@@ -13,8 +13,5 @@ namespace Server.Models.Payment
         public string CardNumber { get; set; }
         public string ExpirationDate { get; set; }
         public string SecurityCode { get; set; }
-
-        public Donation Donation { get; set; }
-        public StatusPayment StatusPayment { get; set; }
     }
 }

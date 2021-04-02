@@ -19,7 +19,7 @@ namespace Server.Migrations.UserMigrations
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Server.Models.Consumption.Appliance", b =>
+            modelBuilder.Entity("Server.Entities.Consumption.Appliance", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -51,7 +51,7 @@ namespace Server.Migrations.UserMigrations
                     b.ToTable("Appliance");
                 });
 
-            modelBuilder.Entity("Server.Models.Consumption.EnergyLabel", b =>
+            modelBuilder.Entity("Server.Entities.Consumption.EnergyLabel", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -79,7 +79,7 @@ namespace Server.Migrations.UserMigrations
                     b.ToTable("EnergyLabel");
                 });
 
-            modelBuilder.Entity("Server.Models.Consumption.FinalConsumption", b =>
+            modelBuilder.Entity("Server.Entities.Consumption.FinalConsumption", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -103,7 +103,7 @@ namespace Server.Migrations.UserMigrations
                     b.ToTable("FinalConsumption");
                 });
 
-            modelBuilder.Entity("Server.Models.Contact.Address", b =>
+            modelBuilder.Entity("Server.Entities.Contact.Address", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -132,7 +132,7 @@ namespace Server.Migrations.UserMigrations
                     b.ToTable("Address");
                 });
 
-            modelBuilder.Entity("Server.Models.Contact.Admin", b =>
+            modelBuilder.Entity("Server.Entities.Contact.Admin", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -145,7 +145,7 @@ namespace Server.Migrations.UserMigrations
                     b.ToTable("Admin");
                 });
 
-            modelBuilder.Entity("Server.Models.Contact.AnswerAdmin", b =>
+            modelBuilder.Entity("Server.Entities.Contact.AnswerAdmin", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -170,7 +170,7 @@ namespace Server.Migrations.UserMigrations
                     b.ToTable("AnswerAdmin");
                 });
 
-            modelBuilder.Entity("Server.Models.Contact.AnswerProvider", b =>
+            modelBuilder.Entity("Server.Entities.Contact.AnswerProvider", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -195,7 +195,7 @@ namespace Server.Migrations.UserMigrations
                     b.ToTable("AnswerProvider");
                 });
 
-            modelBuilder.Entity("Server.Models.Contact.Message", b =>
+            modelBuilder.Entity("Server.Entities.Contact.Message", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -213,7 +213,7 @@ namespace Server.Migrations.UserMigrations
                     b.ToTable("Message");
                 });
 
-            modelBuilder.Entity("Server.Models.Contact.Provider", b =>
+            modelBuilder.Entity("Server.Entities.Contact.Provider", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -232,7 +232,7 @@ namespace Server.Migrations.UserMigrations
                     b.ToTable("Provider");
                 });
 
-            modelBuilder.Entity("Server.Models.Payment.Donation", b =>
+            modelBuilder.Entity("Server.Entities.Payment.Donation", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -253,7 +253,7 @@ namespace Server.Migrations.UserMigrations
                     b.ToTable("Donation");
                 });
 
-            modelBuilder.Entity("Server.Models.Payment.Pay", b =>
+            modelBuilder.Entity("Server.Entities.Payment.Pay", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -282,7 +282,7 @@ namespace Server.Migrations.UserMigrations
                     b.ToTable("Pay");
                 });
 
-            modelBuilder.Entity("Server.Models.Payment.StatusPayment", b =>
+            modelBuilder.Entity("Server.Entities.Payment.StatusPayment", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -302,12 +302,15 @@ namespace Server.Migrations.UserMigrations
                     b.ToTable("StatusPayment");
                 });
 
-            modelBuilder.Entity("Server.Models.User.SmallUser", b =>
+            modelBuilder.Entity("Server.Entities.User.SmallUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -315,13 +318,13 @@ namespace Server.Migrations.UserMigrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Server.Models.Consumption.Appliance", b =>
+            modelBuilder.Entity("Server.Entities.Consumption.Appliance", b =>
                 {
-                    b.HasOne("Server.Models.Consumption.FinalConsumption", "FinalConsumption")
+                    b.HasOne("Server.Entities.Consumption.FinalConsumption", "FinalConsumption")
                         .WithMany("Appliances")
                         .HasForeignKey("FinalConsumptionId");
 
-                    b.HasOne("Server.Models.User.SmallUser", "SmallUser")
+                    b.HasOne("Server.Entities.User.SmallUser", "SmallUser")
                         .WithMany("Appliances")
                         .HasForeignKey("SmallUserId");
 
@@ -330,13 +333,13 @@ namespace Server.Migrations.UserMigrations
                     b.Navigation("SmallUser");
                 });
 
-            modelBuilder.Entity("Server.Models.Consumption.EnergyLabel", b =>
+            modelBuilder.Entity("Server.Entities.Consumption.EnergyLabel", b =>
                 {
-                    b.HasOne("Server.Models.Consumption.FinalConsumption", "FinalConsumption")
+                    b.HasOne("Server.Entities.Consumption.FinalConsumption", "FinalConsumption")
                         .WithOne("EnergyLabel")
-                        .HasForeignKey("Server.Models.Consumption.EnergyLabel", "FinalConsumptionId");
+                        .HasForeignKey("Server.Entities.Consumption.EnergyLabel", "FinalConsumptionId");
 
-                    b.HasOne("Server.Models.User.SmallUser", "SmallUser")
+                    b.HasOne("Server.Entities.User.SmallUser", "SmallUser")
                         .WithMany("EnergyLabels")
                         .HasForeignKey("SmallUserId");
 
@@ -345,46 +348,46 @@ namespace Server.Migrations.UserMigrations
                     b.Navigation("SmallUser");
                 });
 
-            modelBuilder.Entity("Server.Models.Consumption.FinalConsumption", b =>
+            modelBuilder.Entity("Server.Entities.Consumption.FinalConsumption", b =>
                 {
-                    b.HasOne("Server.Models.User.SmallUser", "SmallUser")
+                    b.HasOne("Server.Entities.User.SmallUser", "SmallUser")
                         .WithMany("FinalConsumptions")
                         .HasForeignKey("SmallUserId");
 
                     b.Navigation("SmallUser");
                 });
 
-            modelBuilder.Entity("Server.Models.Contact.Address", b =>
+            modelBuilder.Entity("Server.Entities.Contact.Address", b =>
                 {
-                    b.HasOne("Server.Models.Contact.Provider", "Provider")
+                    b.HasOne("Server.Entities.Contact.Provider", "Provider")
                         .WithOne("Address")
-                        .HasForeignKey("Server.Models.Contact.Address", "ProviderId");
+                        .HasForeignKey("Server.Entities.Contact.Address", "ProviderId");
 
                     b.Navigation("Provider");
                 });
 
-            modelBuilder.Entity("Server.Models.Contact.AnswerAdmin", b =>
+            modelBuilder.Entity("Server.Entities.Contact.AnswerAdmin", b =>
                 {
-                    b.HasOne("Server.Models.Contact.Admin", "Admin")
+                    b.HasOne("Server.Entities.Contact.Admin", "Admin")
                         .WithMany("AnswerAdmins")
                         .HasForeignKey("AdminId");
 
-                    b.HasOne("Server.Models.Contact.Message", "Message")
+                    b.HasOne("Server.Entities.Contact.Message", "Message")
                         .WithOne("AnswerAdmin")
-                        .HasForeignKey("Server.Models.Contact.AnswerAdmin", "MessageId");
+                        .HasForeignKey("Server.Entities.Contact.AnswerAdmin", "MessageId");
 
                     b.Navigation("Admin");
 
                     b.Navigation("Message");
                 });
 
-            modelBuilder.Entity("Server.Models.Contact.AnswerProvider", b =>
+            modelBuilder.Entity("Server.Entities.Contact.AnswerProvider", b =>
                 {
-                    b.HasOne("Server.Models.Contact.Message", "Message")
+                    b.HasOne("Server.Entities.Contact.Message", "Message")
                         .WithOne("AnswerProvider")
-                        .HasForeignKey("Server.Models.Contact.AnswerProvider", "MessageId");
+                        .HasForeignKey("Server.Entities.Contact.AnswerProvider", "MessageId");
 
-                    b.HasOne("Server.Models.Contact.Provider", "Provider")
+                    b.HasOne("Server.Entities.Contact.Provider", "Provider")
                         .WithMany("AnswerProviders")
                         .HasForeignKey("ProviderId");
 
@@ -393,79 +396,79 @@ namespace Server.Migrations.UserMigrations
                     b.Navigation("Provider");
                 });
 
-            modelBuilder.Entity("Server.Models.Contact.Message", b =>
+            modelBuilder.Entity("Server.Entities.Contact.Message", b =>
                 {
-                    b.HasOne("Server.Models.User.SmallUser", "SmallUser")
+                    b.HasOne("Server.Entities.User.SmallUser", "SmallUser")
                         .WithMany("Messages")
                         .HasForeignKey("SmallUserId");
 
                     b.Navigation("SmallUser");
                 });
 
-            modelBuilder.Entity("Server.Models.Payment.Donation", b =>
+            modelBuilder.Entity("Server.Entities.Payment.Donation", b =>
                 {
-                    b.HasOne("Server.Models.User.SmallUser", "SmallUser")
+                    b.HasOne("Server.Entities.User.SmallUser", "SmallUser")
                         .WithMany("Donations")
                         .HasForeignKey("SmallUserId");
 
                     b.Navigation("SmallUser");
                 });
 
-            modelBuilder.Entity("Server.Models.Payment.Pay", b =>
+            modelBuilder.Entity("Server.Entities.Payment.Pay", b =>
                 {
-                    b.HasOne("Server.Models.Payment.Donation", "Donation")
+                    b.HasOne("Server.Entities.Payment.Donation", "Donation")
                         .WithOne("Pay")
-                        .HasForeignKey("Server.Models.Payment.Pay", "DonationId");
+                        .HasForeignKey("Server.Entities.Payment.Pay", "DonationId");
 
                     b.Navigation("Donation");
                 });
 
-            modelBuilder.Entity("Server.Models.Payment.StatusPayment", b =>
+            modelBuilder.Entity("Server.Entities.Payment.StatusPayment", b =>
                 {
-                    b.HasOne("Server.Models.Payment.Pay", "Pay")
+                    b.HasOne("Server.Entities.Payment.Pay", "Pay")
                         .WithOne("StatusPayment")
-                        .HasForeignKey("Server.Models.Payment.StatusPayment", "PayId");
+                        .HasForeignKey("Server.Entities.Payment.StatusPayment", "PayId");
 
                     b.Navigation("Pay");
                 });
 
-            modelBuilder.Entity("Server.Models.Consumption.FinalConsumption", b =>
+            modelBuilder.Entity("Server.Entities.Consumption.FinalConsumption", b =>
                 {
                     b.Navigation("Appliances");
 
                     b.Navigation("EnergyLabel");
                 });
 
-            modelBuilder.Entity("Server.Models.Contact.Admin", b =>
+            modelBuilder.Entity("Server.Entities.Contact.Admin", b =>
                 {
                     b.Navigation("AnswerAdmins");
                 });
 
-            modelBuilder.Entity("Server.Models.Contact.Message", b =>
+            modelBuilder.Entity("Server.Entities.Contact.Message", b =>
                 {
                     b.Navigation("AnswerAdmin");
 
                     b.Navigation("AnswerProvider");
                 });
 
-            modelBuilder.Entity("Server.Models.Contact.Provider", b =>
+            modelBuilder.Entity("Server.Entities.Contact.Provider", b =>
                 {
                     b.Navigation("Address");
 
                     b.Navigation("AnswerProviders");
                 });
 
-            modelBuilder.Entity("Server.Models.Payment.Donation", b =>
+            modelBuilder.Entity("Server.Entities.Payment.Donation", b =>
                 {
                     b.Navigation("Pay");
                 });
 
-            modelBuilder.Entity("Server.Models.Payment.Pay", b =>
+            modelBuilder.Entity("Server.Entities.Payment.Pay", b =>
                 {
                     b.Navigation("StatusPayment");
                 });
 
-            modelBuilder.Entity("Server.Models.User.SmallUser", b =>
+            modelBuilder.Entity("Server.Entities.User.SmallUser", b =>
                 {
                     b.Navigation("Appliances");
 

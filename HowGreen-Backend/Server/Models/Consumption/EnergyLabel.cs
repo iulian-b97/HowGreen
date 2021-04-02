@@ -13,8 +13,5 @@ namespace Server.Models.Consumption
         public string FinalConsumptionId { get; set; }
         public string EnergyClass { get; set; }
         public int EfficientIndex { get; set; }
-
-        public SmallUser SmallUser { get; set; }
-        public FinalConsumption FinalConsumption { get; set; }
     }
 }

@@ -22,7 +22,6 @@ C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Microsoft.OpenApi.dll
-C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -59,3 +58,16 @@ C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\obj\Debug\net5
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\obj\Debug\net5.0\ref\Server.dll
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\obj\Debug\net5.0\Server.pdb
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache
+C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\IdentityServer.exe
+C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Server.StaticWebAssets.xml
+C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
+C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\IdentityServer.dll
+C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\IdentityServer.pdb

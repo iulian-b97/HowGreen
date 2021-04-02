@@ -10,7 +10,5 @@ namespace Server.Models.Contact
     {
         public string Id { get; set; }
         public string Email { get; set; }
-
-        public ICollection<AnswerAdmin> AnswerAdmins { get; set; }
     }
 }

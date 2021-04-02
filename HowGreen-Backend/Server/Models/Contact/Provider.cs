@@ -11,8 +11,5 @@ namespace Server.Models.Contact
         public string CompanyName { get; set; }
         public string Telephone { get; set; }
         public string Email { get; set; }
-
-        public ICollection<AnswerProvider> AnswerProviders { get; set; }
-        public Address Address { get; set; }
     }
 }

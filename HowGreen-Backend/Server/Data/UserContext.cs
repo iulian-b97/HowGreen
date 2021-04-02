@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Server.Models.User;
+using Server.Entities.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +15,5 @@ namespace Server.Data
         }
 
         public DbSet<SmallUser> Users { get; set; }
-
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-
-        }
     }
 }

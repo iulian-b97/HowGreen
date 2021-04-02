@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Server.Models.Payment;
-using Server.Models.User;
+using Server.Entities.Payment;
+using Server.Entities.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;

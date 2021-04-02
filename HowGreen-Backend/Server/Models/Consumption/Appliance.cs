@@ -15,8 +15,5 @@ namespace Server.Models.Consumption
         public int nrWatts { get; set; }
         public int hoursDay { get; set; }
         public int priceKw { get; set; }
-
-        public SmallUser SmallUser { get; set; }
-        public FinalConsumption FinalConsumption { get; set; }
     }
 }

@@ -13,9 +13,5 @@ namespace Server.Models.Consumption
         public DateTime Data { get; set; }
         public float nrKw { get; set; }
         public float Price { get; set; }
-
-        public SmallUser SmallUser { get; set; }
-        public ICollection<Appliance> Appliances { get; set; }
-        public EnergyLabel EnergyLabel { get; set; }
     }
 }

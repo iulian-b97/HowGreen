@@ -11,8 +11,5 @@ namespace Server.Models.Contact
         public string MessageId { get; set; }
         public string ProviderId { get; set; }
         public string Answer { get; set; }
-
-        public Message Message { get; set; }
-        public Provider Provider { get; set; }
     }
 }
