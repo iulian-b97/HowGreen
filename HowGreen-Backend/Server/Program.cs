@@ -18,11 +18,17 @@ namespace Server
             string DestinationCs = "server=.;database=HowGreenDB;Trusted_Connection=true;MultipleActiveResultSets=True;";
             string SourceCs = "server=.;database=UserDB;Trusted_Connection=true;MultipleActiveResultSets=True;";
 
+            DeleteAllRowsTable(DestinationCs);
+            BulkCopyTable(DestinationCs, SourceCs);
 
+            CreateHostBuilder(args).Build().Run();
+        }
 
+        private static void BulkCopyTable(string DestinationCs, string SourceCs)
+        {
             using (SqlConnection SourceCon = new SqlConnection(SourceCs))
             {
-                SqlCommand cmd = new SqlCommand("Select * From AspNetUsers", SourceCon);
+                SqlCommand cmd = new SqlCommand("SELECT DISTINCT * FROM AspNetUsers", SourceCon);
                 SourceCon.Open();
 
                 using (SqlDataReader rdr = cmd.ExecuteReader())
@@ -52,8 +58,20 @@ namespace Server
                     }
                 }
             }
+        }
 
-        CreateHostBuilder(args).Build().Run();
+        private static void DeleteAllRowsTable(string DestinationCs)
+        {
+            using (SqlConnection DestinationCon = new SqlConnection(DestinationCs))
+            {
+                SqlCommand cmd = new SqlCommand("DELETE FROM Users", DestinationCon);
+                DestinationCon.Open();
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+    
+                }
+            }
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -62,5 +80,7 @@ namespace Server
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+
     }
 }

@@ -20,7 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <Folder Include="Services\Consumption\" />
+    <Folder Include="Services\Contact\" />
+    <Folder Include="Services\User\" />
+    <Folder Include="Services\Payment\" />
   </ItemGroup>
 
 </Project>
