@@ -14,6 +14,7 @@ namespace Server.Data
 
         }
 
-        public DbSet<SmallUser> Users { get; set; }
+        public DbSet<SmallUser> SmallUser { get; set; }
+
     }
 }

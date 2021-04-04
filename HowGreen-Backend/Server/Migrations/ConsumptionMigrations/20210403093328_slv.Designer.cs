@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Server.Data;
 
 namespace Server.Migrations.ConsumptionMigrations
 {
     [DbContext(typeof(ConsumptionContext))]
-    partial class ConsumptionContextModelSnapshot : ModelSnapshot
+    [Migration("20210403093328_slv")]
+    partial class slv
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,7 +102,7 @@ namespace Server.Migrations.ConsumptionMigrations
 
                     b.HasIndex("SmallUserId");
 
-                    b.ToTable("FinalConsumption");
+                    b.ToTable("Consumption");
                 });
 
             modelBuilder.Entity("Server.Entities.Contact.Address", b =>
@@ -322,13 +324,11 @@ namespace Server.Migrations.ConsumptionMigrations
                 {
                     b.HasOne("Server.Entities.Consumption.FinalConsumption", "FinalConsumption")
                         .WithMany("Appliances")
-                        .HasForeignKey("FinalConsumptionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("FinalConsumptionId");
 
                     b.HasOne("Server.Entities.User.SmallUser", "SmallUser")
                         .WithMany("Appliances")
-                        .HasForeignKey("SmallUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("SmallUserId");
 
                     b.Navigation("FinalConsumption");
 
@@ -339,13 +339,11 @@ namespace Server.Migrations.ConsumptionMigrations
                 {
                     b.HasOne("Server.Entities.Consumption.FinalConsumption", "FinalConsumption")
                         .WithOne("EnergyLabel")
-                        .HasForeignKey("Server.Entities.Consumption.EnergyLabel", "FinalConsumptionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("Server.Entities.Consumption.EnergyLabel", "FinalConsumptionId");
 
                     b.HasOne("Server.Entities.User.SmallUser", "SmallUser")
                         .WithMany("EnergyLabels")
-                        .HasForeignKey("SmallUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("SmallUserId");
 
                     b.Navigation("FinalConsumption");
 
@@ -356,8 +354,7 @@ namespace Server.Migrations.ConsumptionMigrations
                 {
                     b.HasOne("Server.Entities.User.SmallUser", "SmallUser")
                         .WithMany("FinalConsumptions")
-                        .HasForeignKey("SmallUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("SmallUserId");
 
                     b.Navigation("SmallUser");
                 });

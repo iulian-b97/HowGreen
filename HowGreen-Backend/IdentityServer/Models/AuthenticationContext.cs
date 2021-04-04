@@ -15,5 +15,7 @@ namespace IdentityServer.Models
         }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+        
     }
 }

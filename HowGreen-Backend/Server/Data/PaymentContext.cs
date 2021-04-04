@@ -15,9 +15,9 @@ namespace Server.Data
 
         }
 
-        public DbSet<Pay> Payments { get; set; }
-        public DbSet<Donation> Donations { get; set; }
-        public DbSet<StatusPayment> StatusPayments { get; set; }
+        public DbSet<Pay> Pay { get; set; }
+        public DbSet<Donation> Donation { get; set; }
+        public DbSet<StatusPayment> StatusPayment { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,8 @@ namespace Server.Data
             modelBuilder.Entity<SmallUser>()
                 .HasMany(x => x.Donations)
                 .WithOne(y => y.SmallUser)
-                .HasForeignKey(y => y.SmallUserId);
+                .HasForeignKey(y => y.SmallUserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             //Donation - Pay (one to one)
             modelBuilder.Entity<Pay>()
@@ -37,7 +38,8 @@ namespace Server.Data
             modelBuilder.Entity<Donation>()
                 .HasOne(x => x.Pay)
                 .WithOne(y => y.Donation)
-                .HasForeignKey<Pay>(y => y.DonationId);
+                .HasForeignKey<Pay>(y => y.DonationId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             //Pay - StatusPayment (one to one)
             modelBuilder.Entity<StatusPayment>()
@@ -46,7 +48,8 @@ namespace Server.Data
             modelBuilder.Entity<Pay>()
                 .HasOne(x => x.StatusPayment)
                 .WithOne(y => y.Pay)
-                .HasForeignKey<StatusPayment>(y => y.PayId);
+                .HasForeignKey<StatusPayment>(y => y.PayId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

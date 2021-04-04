@@ -15,12 +15,12 @@ namespace Server.Data
 
         }
 
-        public DbSet<Admin> Admins { get; set; }
-        public DbSet<AnswerAdmin> AnswerAdmins { get; set; }
-        public DbSet<AnswerProvider> AnswerProviders { get; set; }
-        public DbSet<Provider> Providers { get; set; }
-        public DbSet<Message> Contacts { get; set; }
-        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Admin> Admin { get; set; }
+        public DbSet<AnswerAdmin> AnswerAdmin { get; set; }
+        public DbSet<AnswerProvider> AnswerProvider { get; set; }
+        public DbSet<Provider> Provider { get; set; }
+        public DbSet<Message> Contact { get; set; }
+        public DbSet<Address> Address { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,7 +32,8 @@ namespace Server.Data
             modelBuilder.Entity<SmallUser>()
                 .HasMany(x => x.Messages)
                 .WithOne(y => y.SmallUser)
-                .HasForeignKey(y => y.SmallUserId);
+                .HasForeignKey(y => y.SmallUserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             //Message - AnswerAdmin (one to one)
             modelBuilder.Entity<AnswerAdmin>()
@@ -41,7 +42,8 @@ namespace Server.Data
             modelBuilder.Entity<Message>()
                 .HasOne(x => x.AnswerAdmin)
                 .WithOne(y => y.Message)
-                .HasForeignKey<AnswerAdmin>(y => y.MessageId);
+                .HasForeignKey<AnswerAdmin>(y => y.MessageId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             //Message - AnswerProvider (one to one)
             modelBuilder.Entity<AnswerProvider>()
@@ -50,7 +52,8 @@ namespace Server.Data
             modelBuilder.Entity<Message>()
                 .HasOne(x => x.AnswerProvider)
                 .WithOne(y => y.Message)
-                .HasForeignKey<AnswerProvider>(y => y.MessageId);
+                .HasForeignKey<AnswerProvider>(y => y.MessageId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             //Admin - AnswerAdmin (one to many)
             modelBuilder.Entity<Admin>()
@@ -59,7 +62,8 @@ namespace Server.Data
             modelBuilder.Entity<Admin>()
                 .HasMany(x => x.AnswerAdmins)
                 .WithOne(y => y.Admin)
-                .HasForeignKey(y => y.AdminId);
+                .HasForeignKey(y => y.AdminId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             //Provider - AnswerProvider (one to many)
             modelBuilder.Entity<Provider>()
@@ -68,7 +72,8 @@ namespace Server.Data
             modelBuilder.Entity<Provider>()
                 .HasMany(x => x.AnswerProviders)
                 .WithOne(y => y.Provider)
-                .HasForeignKey(y => y.ProviderId);
+                .HasForeignKey(y => y.ProviderId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             //Provider - Address (one to one)
             modelBuilder.Entity<Address>()
@@ -77,7 +82,8 @@ namespace Server.Data
             modelBuilder.Entity<Provider>()
                 .HasOne(x => x.Address)
                 .WithOne(y => y.Provider)
-                .HasForeignKey<Address>(y => y.ProviderId);
+                .HasForeignKey<Address>(y => y.ProviderId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

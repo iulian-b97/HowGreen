@@ -315,7 +315,7 @@ namespace Server.Migrations.UserMigrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("SmallUser");
                 });
 
             modelBuilder.Entity("Server.Entities.Consumption.Appliance", b =>

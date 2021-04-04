@@ -1,8 +1,13 @@
+using IdentityServer.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Server.Data;
+using Server.Entities.User;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,22 +18,59 @@ namespace Server
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
+            /*
             string DestinationCs = "server=.;database=HowGreenDB;Trusted_Connection=true;MultipleActiveResultSets=True;";
             string SourceCs = "server=.;database=UserDB;Trusted_Connection=true;MultipleActiveResultSets=True;";
 
             DeleteAllRowsTable(DestinationCs);
             BulkCopyTable(DestinationCs, SourceCs);
+            */
+
+            IHost webHost = CreateHostBuilder(args).Build();
+
+            using (var scope = webHost.Services.CreateScope())
+            {
+                IConfiguration configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
+
+                AuthenticationContext authenticationContext = scope.ServiceProvider.GetRequiredService<AuthenticationContext>();
+                UserContext userContext = scope.ServiceProvider.GetRequiredService<UserContext>();
+
+                var users = new List<SmallUser>();
+                foreach (var user in authenticationContext.Users) 
+                {
+                    users.Add(new SmallUser
+                    {
+                        Id = user.Id,
+                        UserName = user.UserName,
+                        Email = user.Email
+                    });
+                }
+
+                var smallUsers = userContext.SmallUser.AsNoTracking().ToList();
+
+                var results = users.Where(u => !smallUsers.Any(s => u.Id.Equals(s.Id) && u.UserName.Equals(s.UserName)));
+
+                foreach(var user in results)
+                {
+                    userContext.SmallUser.Add(user);
+                }
+
+                await userContext.SaveChangesAsync();
+            }
+
+            await webHost.RunAsync();
+
 
             CreateHostBuilder(args).Build().Run();
         }
 
-        private static void BulkCopyTable(string DestinationCs, string SourceCs)
+        /*private static void BulkCopyTable(string DestinationCs, string SourceCs)
         {
             using (SqlConnection SourceCon = new SqlConnection(SourceCs))
             {
-                SqlCommand cmd = new SqlCommand("SELECT DISTINCT * FROM AspNetUsers", SourceCon);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM AspNetUsers", SourceCon);
                 SourceCon.Open();
 
                 using (SqlDataReader rdr = cmd.ExecuteReader())
@@ -72,7 +114,7 @@ namespace Server
     
                 }
             }
-        }
+        }*/
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)

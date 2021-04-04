@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Server.Data;
 using Server.Entities.Consumption;
+using Server.Services.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +15,17 @@ namespace Server.Controllers
     public class ConsumptionController : ControllerBase
     {
         private readonly ConsumptionContext _consumptionContext;
+        private readonly IUserRepository _userRepository;
 
-        public ConsumptionController(ConsumptionContext consumptionContext)
+        public ConsumptionController(ConsumptionContext consumptionContext, IUserRepository userRepository)
         {
             _consumptionContext = consumptionContext;
+            _userRepository = userRepository;
         }
 
         [HttpPost]
         [Route("AddAppliance")]
-        public async Task<ActionResult> AddAppliance(Appliance model)
+        public async Task<ActionResult> AddAppliance(Appliance model, string UserName)
         {
             var appliance = new Appliance
             {
@@ -32,10 +35,34 @@ namespace Server.Controllers
                 priceKw = model.priceKw
             };
 
-            await _consumptionContext.Appliances.AddAsync(appliance);
+            appliance.Id = Guid.NewGuid().ToString();
+            appliance.SmallUserId = _userRepository.GetIdByName(UserName);
+            appliance.FinalConsumptionId = _userRepository.GetIdConsumptionByName(UserName);
+
+            await _consumptionContext.Appliance.AddAsync(appliance);
             await _consumptionContext.SaveChangesAsync();
 
             return Ok(appliance);
+        }
+
+        [HttpPost]
+        [Route("AddConsumption")]
+        public async Task<ActionResult> AddConsumption(FinalConsumption model, string UserName)
+        {
+            var consumption = new FinalConsumption
+            {
+                Data = model.Data,
+                nrKw = model.nrKw,
+                Price = model.Price
+            };
+
+            consumption.Id = Guid.NewGuid().ToString();
+            consumption.SmallUserId = _userRepository.GetIdByName(UserName);
+
+            await _consumptionContext.FinalConsumption.AddAsync(consumption);
+            await _consumptionContext.SaveChangesAsync();
+
+            return Ok(consumption);
         }
     }
 }
