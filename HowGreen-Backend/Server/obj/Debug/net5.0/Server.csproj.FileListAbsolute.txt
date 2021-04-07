@@ -75,3 +75,4 @@ C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\Iulian\Projects ASP.NET\HowGreen\HowGreen-Backend\Server\bin\Debug\net5.0\IdentityServer.StaticWebAssets.xml

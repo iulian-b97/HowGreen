@@ -4,11 +4,15 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
+    <mat-nav-list *ngIf="(isLog())">
       <a mat-list-item [routerLink]="['user/login']">Authentication</a>
       <a mat-list-item [routerLink]="['consumption']">Consumption</a>
       <a mat-list-item [routerLink]="['consumption/appliance-registration']">Appliance Registration</a>
     </mat-nav-list>
+    <mat-nav-list *ngIf="(!isLog())">
+      <a mat-list-item [routerLink]="['user/login']">Authentication</a>
+    </mat-nav-list>
+
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
@@ -20,7 +24,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>HowGree-Frontend</span>
+      <span>How Green</span>
     </mat-toolbar>
     <ng-content></ng-content>
     <!-- Add Content Here -->

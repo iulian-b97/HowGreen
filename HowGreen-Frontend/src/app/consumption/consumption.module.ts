@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ConsumptionRoutingModule } from './consumption-routing.module';
 
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from "@angular/forms";
+import { SharedModule } from '../shared/shared.module'; 
+import { ConsumptionRoutingModule } from './consumption-routing.module';
 import { ApplianceRegistrationComponent } from './appliance-registration/appliance-registration.component';
 import { ConsumptionComponent } from './consumption.component';
 
@@ -13,8 +16,11 @@ import { ConsumptionComponent } from './consumption.component';
     ConsumptionComponent
   ],
   imports: [
+    ConsumptionRoutingModule,
+    SharedModule,
     CommonModule,
-    ConsumptionRoutingModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ConsumptionModule { }

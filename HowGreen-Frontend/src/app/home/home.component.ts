@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
 
   onLogout()
   {
-    localStorage.removeItem('token');
+    this.service.logout();
     this.router.navigate(['/user/login']);
   }
 }

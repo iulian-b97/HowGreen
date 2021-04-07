@@ -1,13 +1,23 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { BehaviorSubject, from } from 'rxjs';
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private fb:FormBuilder,private http:HttpClient) { }
+  public isLoggedIn$: BehaviorSubject<boolean>; 
+
+  constructor(private fb:FormBuilder,private http:HttpClient, private router:Router) 
+  {
+    const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+    this.isLoggedIn$ = new BehaviorSubject(isLoggedIn);
+  }
+
   readonly BaseURI = 'http://localhost:55928/api';
 
 
@@ -49,12 +59,29 @@ export class UserService {
 
   login(formData)
   {
+    localStorage.setItem('loggedIn', 'true');
+    this.isLoggedIn$.next(true);
+
     return this.http.post(this.BaseURI+'/ApplicationUser/Login',formData);
+  }
+
+  logout()
+  {
+    localStorage.setItem('loggedIn', 'false');
+    this.isLoggedIn$.next(false);
+
+    localStorage.removeItem('token');
+    return this.router.navigate(['/user/login']);
   }
 
   getUserProfile()
   {
     var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+localStorage.getItem('token')})
     return this.http.get(this.BaseURI+'/UserProfile',{headers : tokenHeader});
+  }
+
+  isLogged(): boolean
+  {
+    return this.isLoggedIn$.value;
   }
 }
