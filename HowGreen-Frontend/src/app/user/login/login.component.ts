@@ -30,10 +30,16 @@ export class LoginComponent implements OnInit {
       (res:any)=>{
         localStorage.setItem('token',res.token);
         this.router.navigateByUrl('/home');
+        localStorage.setItem('loggedIn', 'true');
+        this.service.isLoggedIn$.next(true);
       },
       err=>{
         if(err.status == 400)
+        {
           this.toastr.error('Incorrect username or password.','Authentication failed.');
+          localStorage.setItem('loggedIn', 'false');
+          this.service.isLoggedIn$.next(false);
+        }
         else
           console.log(err);
       }

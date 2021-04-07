@@ -59,9 +59,6 @@ export class UserService {
 
   login(formData)
   {
-    localStorage.setItem('loggedIn', 'true');
-    this.isLoggedIn$.next(true);
-
     return this.http.post(this.BaseURI+'/ApplicationUser/Login',formData);
   }
 
@@ -71,7 +68,6 @@ export class UserService {
     this.isLoggedIn$.next(false);
 
     localStorage.removeItem('token');
-    return this.router.navigate(['/user/login']);
   }
 
   getUserProfile()
