@@ -3,15 +3,128 @@
 }
 
 .sidenav {
-  width: 200px;
+  width: 300px;
 }
 
 .sidenav .mat-toolbar {
-  background: inherit;
+  background: dimgray;
+  border-bottom: 3px ridge #bacdb0;
+  border-left: 2px ridge #bacdb0;
+  border-right: 2px ridge #bacdb0;
 }
+
+.sidenav .mat-toolbar > p {
+  margin-left: 5%;
+  margin-top: 5%;
+  color: greenyellow;
+  font-size: 30px;
+  font-weight: bolder;
+}
+
 
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
   z-index: 1;
+  background-color: #729B79;
+  border-bottom: 3px ridge #bacdb0;
 }
+
+.mat-toolbar > a {
+  color: white;
+  text-decoration: none;
+}
+
+.mat-toolbar > a:hover {
+  color: greenyellow;
+  text-decoration: none;
+}
+
+.example {
+  background-color: transparent;
+  width: 290px;
+  height: 680px;
+  /*border: 1px dotted black;*/
+  overflow-y: scroll; /* Add the ability to scroll */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.example::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.example {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.btn-login {
+  width: auto;
+  background-color: greenyellow;
+  margin-left: 58%;
+  font-weight: bolder;
+  color: dimgray;
+  border: 3px solid #bacdb0;
+  border-radius: 20%;
+}
+
+.btn-login:hover {
+  width: auto;
+  background-color: dimgray;
+  margin-left: 58%;
+  font-weight: bolder;
+  color: greenyellow;
+  border: 3px solid #bacdb0;
+  border-radius: 20%;
+}
+
+.btn-logout {
+  width: auto;
+  background-color: greenyellow;
+  margin-left: 58%;
+  font-weight: bolder;
+  color: dimgray;
+  border: 3px solid #bacdb0;
+  border-radius: 20%;
+}
+
+.btn-logout:hover {
+  width: auto;
+  background-color: dimgray;
+  margin-left: 58%;
+  font-weight: bolder;
+  color: greenyellow;
+  border: 3px solid #bacdb0;
+  border-radius: 20%;
+}
+
+.title-logo {
+  font-weight: initial;
+  font-size: 50px;
+  font-family: cursive;
+}
+
+.example > a {
+  color: white;
+  font-size: 22px;
+}
+
+.example > ul {
+  list-style-type: none;
+}
+
+.example > a:hover{
+  color: greenyellow;
+  background-color: dimgray;
+}
+
+.example > ul li a {
+  color: white;
+}
+
+.example > ul li a:hover{
+  color: greenyellow;
+  background-color: dimgray;
+}
+
