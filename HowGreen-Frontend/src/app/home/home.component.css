@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;  
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+}
+
+.presentation-card {
+    background-color: #eedfcc;
+    color: #555555;
+    font-size: 14px;
+}
+
+.presentation-card > img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.wrapper {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.wrapper .cards_wrap {
+    display: flex;
+    flex-wrap: wrap;
+}

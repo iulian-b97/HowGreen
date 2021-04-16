@@ -8,19 +8,9 @@ import { UserService } from '../shared/user.service';
   styles: [
   ]
 })
-export class HomeComponent implements OnInit {
-  userDetails;
-
+export class HomeComponent{
+  
   constructor(private router:Router,private service:UserService) { }
 
-  ngOnInit(): void {
-    this.service.getUserProfile().subscribe(
-      res => {
-        this.userDetails = res;
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+  images = ['./assets/images/slide2.jpg', './assets/images/slide1.png', './assets/images/slide3.jpeg'];
 }

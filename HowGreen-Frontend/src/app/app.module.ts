@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule} from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module'
@@ -20,6 +21,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+ 
 
 @NgModule({
   declarations: [
@@ -37,6 +41,8 @@ import { MatListModule } from '@angular/material/list';
     ToastrModule.forRoot({
       progressBar: true
     }),
+    NgbPaginationModule,
+    NgbAlertModule,
     ConsumptionModule,
     UserModule,
     ContactModule,
@@ -46,7 +52,8 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    NgbModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
