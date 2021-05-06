@@ -4,14 +4,24 @@
     </a>
     <div class="nav-links">
         <!--<i class="fas fa-times" id='close-times' (click)="hide()"></i>-->
-        <ul>
+        <ul *ngIf="(isLog())">
             <li><a routerLink='/home' routerLinkActive='active'>ACASA</a></li>
             <li><a routerLink='/consumption' routerLinkActive='active'>CONSUM</a></li>
             <li><a routerLink='/prosumator' routerLinkActive='active'>PROSUMATOR</a></li>
             <li><a routerLink='/media' routerLinkActive='active'>STIRI</a></li>
             <li><a routerLink='/contact' routerLinkActive='active'>CONTACT</a></li>
-            <li><a routerLink='/user' routerLinkActive='active'>CONT</a></li>
+            <li><a style="cursor: pointer;" (click)="onLogout()" routerLinkActive='active'>DECONECTARE</a></li>
         </ul>
+
+        <ul *ngIf="(!isLog())">
+            <li><a routerLink='/home' routerLinkActive='active'>ACASA</a></li>
+            <li><a routerLink='/user/login' routerLinkActive='active'>CONSUM</a></li>
+            <li><a routerLink='/user/login' routerLinkActive='active'>PROSUMATOR</a></li>
+            <li><a routerLink='/media' routerLinkActive='active'>STIRI</a></li>
+            <li><a routerLink='/user/login' routerLinkActive='active'>CONTACT</a></li>
+            <li><a routerLink='/user/login' routerLinkActive='active'>CONECTARE</a></li>
+        </ul>
+
     </div>
     <!--<i class="fas fa-bars" id='menu-bars' (click)="show()" ></i>-->
 </nav>

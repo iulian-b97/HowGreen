@@ -121,7 +121,7 @@ nav #menu-bars {
     .nav-links {
         flex: 1;
         text-align: right;   
-        margin-top: 3.5%;  
+        margin-top: 4%;  
     }
 
     .nav-links ul li {
@@ -134,7 +134,7 @@ nav #menu-bars {
     .nav-links ul li a {
         color: dimgray;
         text-decoration: none;
-        font-size: 9px;
+        font-size: 7.5px;
         font-weight: bold;
     }
 

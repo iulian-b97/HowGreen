@@ -38,6 +38,63 @@
 }
 
 
+.authentication {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.authentication h1 {
+    font-size: 36px;
+    font-weight: 600;
+    padding: 20px;
+}
+
+.authentication p {
+    color: #777;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+}
+
+
+.auth-box {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.auth-header {
+    width: 50%;
+    height: auto;
+    margin: auto;
+    background: rgb(36,34,0);
+    background: linear-gradient(90deg, rgba(36,34,0,1) 0%, rgba(9,121,112,1) 35%, rgba(0,255,55,1) 100%);
+    border: 1px solid dimgray;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 5px solid #fff
+}
+
+.auth-header a {
+    padding: 35px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 30px;
+}
+
+.auth-header a:hover {
+    color: rgb(208, 226, 199);
+}
+
+.auth-header a:focus{
+    color: rgb(208, 226, 199);
+}
+
+
 @media (max-width: 700px) {
     .text-box h1 {
         font-size: 20px;
@@ -46,4 +103,25 @@
     .text-box p {
         font-size: 10px;
     }
+
+
+    .authentication h1 {
+        font-size: 20px;
+    }
+    
+    .authentication p {
+        font-size: 10px;
+    }
+
+    
+    .auth-header {
+        width: 100%;
+    }
+
+    .auth-header a {
+        padding: 20px;
+        font-size: 20px;
+    }
 }
+
+

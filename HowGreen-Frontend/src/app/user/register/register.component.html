@@ -1,35 +1,35 @@
 
-<form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">
+<form [formGroup]="service.formModel" class="register-form" autocomplete="off" (submit)="onSubmit()">
     <div class="form-group required">
-        <label style="color: white; margin-top: 10%;">Nume Utilizator</label>
+        <label style="margin-top: 5%;">Nume utilizator</label>
         <input class="form-control" formControlName="UserName">
-        <label class="text-danger" *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.required">This field is mandatory.</label>
+        <label style="font-size: 15px; padding: 3px; background-color: rgb(202, 193, 193); margin-top: 10px; border-radius: 5px;" class="text-danger" *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.required">Acest camp este obligatoriu.</label>
     </div>
     <div class="form-group">
-        <label style="color: white;">Email</label>
+        <label>Email</label>
         <input class="form-control" formControlName="Email">
-        <label class="text-danger" *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.email">Invalid email address.</label>
+        <label style="font-size: 15px; padding: 3px; background-color:rgb(202, 193, 193); margin-top: 10px; border-radius: 5px;" class="text-danger" *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.email">Adresa de email invalida.</label>
     </div>
     <div class="form-group">
-        <label style="color: white;">Nume Complet</label>
+        <label>Nume complet</label>
         <input class="form-control" formControlName="FullName">
     </div>
     <div formGroupName="Passwords">
         <div class="form-group required">
-            <label style="color: white;">Parola</label>
+            <label>Parola</label>
             <input type="password" class="form-control" formControlName="Password">
-            <label class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">Invalid email address.</label>
-            <label class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.minlength">Minimum 4 characters required.</label>
+            <label style="font-size: 15px; padding: 3px; background-color: rgb(202, 193, 193); margin-top: 10px; border-radius: 5px;" class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">Acest camp este obligatoriu.</label>
+            <label style="font-size: 15px; padding: 3px; background-color: rgb(202, 193, 193); margin-top: 10px; border-radius: 5px;" class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.minlength">Parola contine minim 4 caractere.</label>
         </div>
         <div class="form-group required">
-            <label style="color: white;">Confirmare Parola</label>
+            <label>Confirmare parola</label>
             <input type="password" class="form-control" formControlName="ConfirmPassword">
-            <label class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Confirm Password does not match.</label>
+            <label style="font-size: 15px; padding: 3px; background-color: rgb(202, 193, 193); margin-top: 10px; border-radius: 5px;" class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Confirmarea parolei nu corespunde.</label>
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-8 offset-md-2" style="margin-left: 20%;">
-            <button type="submit" class="btn btn-lg btn-block" [disabled]="!service.formModel.valid" style="width: auto;font-size: 2vw;">Inregistrare</button>
+        <div class="form-group col-md-8 offset-md-2">
+            <button type="submit" class="btn btn-lg hero-btn" [disabled]="!service.formModel.valid">Inregistrare</button>
         </div>
     </div>
 </form>
