@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.header {
+    min-height: 55vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(4, 30, 8, 0.7),rgba(4, 30, 8, 0.7)),
+                      url('src/assets/images/media_header_background.jpg');
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+table, th, td {
+    border: 1px solid #fff;
+    border-collapse: collapse;
+    padding: 10px;
+} 
+
+.hero-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+
+.hero-btn:hover {
+    border: 1px solid #f44336;
+    background: #f44336;
+    transition: 1s;
+}
+
+
+.text-box {
+    width: 90%;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+.text-box h1 {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.text-box p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+}
+
+
+.media-list {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.media-list h1 {
+    font-size: 36px;
+    font-weight: 600;
+    padding: 20px;
+}
+
+.media-list p {
+    color: #777;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+    transition: 0.4s;
+    width: 300px;
+    height: 500px;
+    background: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-family: sans-serif;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 50px;
+    cursor: pointer;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    padding-bottom: 10px;
+}
+
+.wrap {
+    width: 80%;
+    margin: auto;
+}
+
+.wrap a {
+    text-decoration: none;
+    color: black;
+}
+
+.container {
+    padding: 2px 16px;
+}
+
+
+@media(max-width: 700px) {
+    .text-box h1 {
+        font-size: 20px;
+    }
+
+    .text-box p {
+        font-size: 9px;
+    }
+
+
+    .media-list h1 {
+        font-size: 16px;
+    }
+    
+    .media-list p {
+        color: #777;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 22px;
+        padding: 10px;
+    }
+}

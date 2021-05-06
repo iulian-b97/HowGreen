@@ -1,59 +1,156 @@
-<ngb-carousel *ngIf="images">
-  <ng-template ngbSlide>
-    <div class="picsum-img-wrapper">
-      <img [src]="images[0]" alt="Random first slide">
+<section class="header">
+    <div class="text-box">
+        <h1>Platforma Dedicata Domeniului Energetic</h1>
+        <p>Aceasta platforma web este o resursa bogata de informatii<br>
+         legate de domeniul energetic pentru utilizatori.
+        </p>
+        <a href="" class="hero-btn">Despre Noi</a>
     </div>
-    <div class="carousel-caption">
-      <h3>First slide label</h3>
-      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-    </div>
-  </ng-template>
-  <ng-template ngbSlide>
-    <div class="picsum-img-wrapper">
-      <img [src]="images[1]" alt="Random second slide">
-    </div>
-    <div class="carousel-caption">
-      <h3>Second slide label</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-  </ng-template>
-  <ng-template ngbSlide>
-    <div class="picsum-img-wrapper">
-      <img [src]="images[2]" alt="Random third slide">
-    </div>
-    <div class="carousel-caption">
-      <h3>Third slide label</h3>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-    </div>
-  </ng-template>
-</ngb-carousel>
+</section> 
 
-<div class="presentation-card">
-  <div class="wrapper">
-    <div class="cards_wrap">
-      <div class="card-item">
-        <div class="card_inner">
-          <div class="card_top">
-            <img src="./assets/images/slide2.jpg" alt="_card image_" style="width: 100px;">
-          </div>
-          <div class="card_bottom">
-            <div class="card_category">
-              Travel
-            </div>
-            <div class="card_info">
-              <p class="title">
-                10 Best Things about Travel
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </p>
-            </div>
-            <div class="card_creator">
-              By Alex Kato
-            </div>
-          </div>
+<section class="services">
+    <h1>Serviciile Pe Care Le Oferim Noi</h1>
+    <p>Mai jos sunt enumerate principalele servicii pe care le oferim.</p>
+
+    <div class="row">
+        <div class="services-col">
+            <h3>Estimarea costului consumului de energie</h3>
+            <p>
+                Mai exact puteti folosi calculatorul nostru pentru 
+                a putea afla un consum estimativ a electrocasnicelor
+                pe care le aveti in locuinta dumneavoastra.<br>
+                De asemenea avem si o lista cu consumul mediu al 
+                celor mai intalnite electrocasnice intr-o locuinta.
+            </p>
         </div>
-      </div>
+        <div class="services-col">
+            <h3>Generarea etichetei energetice a locuintei</h3>
+            <p>
+                Pe baza consumului obtinut in urma folosirii calculatorului
+                nostru se poate genera la cererea clientului si o eticheta 
+                energetica a locuintei.<br>
+                Avem si o clasificare a etichetelor energetice pentru a putea
+                vedea care sunt indecsii de performanta a fiecarei etichete.
+            </p>
+        </div>
+        <div class="services-col">
+            <h3>Suport Prosumator</h3>
+            <p>
+                Va oferim toate informatiile de care aveti nevoie pentru
+                a putea deveni un bun prosumator cum ar fi regulamentul
+                care trebuie respectat, iar pentru cei care sunt deja 
+                prosumatori le oferim o lista cu furnizorii cu care pot
+                colabora.
+            </p>
+        </div>
+        <div class="services-col">
+            <h3>Stiri</h3>
+            <p>
+                Daca iti place sa fii la curent tot timpul cu cele
+                mai noi tehnologii din domeniul energetic, atunci 
+                acceseaza rubrica cu cele mai noi si mai interesante
+                stiri din domeniul energetic.
+            </p>
+        </div>
+        <div class="services-col">
+            <h3>Sfaturi de economisire a energiei electrice</h3>
+            <p>
+                Daca vrei sa invetii sa economisesti cat mai
+                multa energie electrica, atunci citeste rubrica
+                cu cele mai bune sfaturi de economisire.
+            </p>
+        </div>
+        <div class="services-col">
+            <h3>Contact</h3>
+            <p>
+                Daca ai o problema si crezi ca noi te putem
+                ajuta, atunci nu mai sta pe ganduri si acceseaza
+                pagina contact pentru a lua legatura cu un membru
+                din echipa noastra.
+            </p>
+        </div>
     </div>
-  </div>
-</div>
+</section>
+
+<section class="purpose">
+    <h1>Scopul Nostru</h1>
+    <p>Acestea sunt cateva dintre principalele noastre scopuri.</p>
+
+    <div class="row">
+        <div class="purpose-col">
+            <img src="./assets/images/purpose_1.jpg" height="400px">
+            <h3>Sa ajutam consumatorii</h3>
+            <p>
+                Pentru noi e important ca consumatorii sa fie
+                bine informatii si sa fim un sprijin pentru ei,
+                oferind informatiile necesare.
+            </p>
+        </div>
+        <div class="purpose-col">
+            <img src="./assets/images/purpose_2.jpg" height="400px">
+            <h3>Sa ajutam prosumatorii</h3>
+            <p>
+                De asemenea si prosumatorii pentru noi sunt la
+                fel de importanti ca si consumatorii, oferindu-le
+                si acestora sprijinul necesar.
+            </p>
+        </div>
+        <div class="purpose-col">
+            <img src="./assets/images/purpose_3.jpg" height="400px">
+            <h3>Sa oferim date precise si utile</h3>
+            <p>
+                Cel mai important lucru de asemenea este acela de 
+                a furniza informatii cat mai corecte si mai precise.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="opinion">
+    <h1>Ce Spun Clientii Nostrii</h1>
+    <p>Cateva dintre cele mai recente recenzii primite de la clientii nostrii.</p>
+
+    <div class="row">
+        <div class="opinion-col">
+            <img src="./assets/images/opinion1.jpg">
+            <div>
+                <p>
+                    Aceasta platforma a fost foarte utila pentru mine cand
+                    am vrut sa aflu consumul meu mediu luna de luna. Asa ca
+                    va recomand sa incercati si celorlalti.
+                </p>
+                <h3>Ana Maria</h3>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+            </div>
+        </div>
+        <div class="opinion-col">
+            <img src="./assets/images/opinion2.jpg">
+            <div>
+                <p>
+                    Informatiile legate de prosumatori sunt bine detaliate
+                    si usor de inteles, ma ajutat foarte mult sa imi fac 
+                    o parere mai buna despre lumea prosumatorilor si despre
+                    cum functioneaza aceasta.
+                </p>
+                <h3>David Constantin</h3>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <h1>Pentru mai multe informatii luati legatura <br> cu un membru din echipa</h1>
+    <a href="" class="hero-btn">Contacteaza-ne</a>
+</section>
+
+
+

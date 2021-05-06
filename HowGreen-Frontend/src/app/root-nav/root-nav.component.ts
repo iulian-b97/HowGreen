@@ -1,37 +1,24 @@
-import { Component } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
-import { Router } from '@angular/router';
-
-import { UserService } from 'src/app/shared/user.service';
+import { Component, OnInit } from '@angular/core';
+declare const showMenu: any;
+declare const hideMenu: any;
 
 @Component({
   selector: 'app-root-nav',
   templateUrl: './root-nav.component.html',
-  styleUrls: ['./root-nav.component.css'],
-  providers: [
-    UserService
-  ]
+  styleUrls: ['./root-nav.component.css']
 })
-export class RootNavComponent {
+export class RootNavComponent implements OnInit {
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
+  constructor() { }
 
-  constructor(private breakpointObserver: BreakpointObserver, private service: UserService, private router: Router) {}
-
-  isLog(): boolean
-  {
-    return this.service.isLogged();
+  ngOnInit(): void {
   }
 
-  onLogout()
-  {
-    this.service.logout();
-    return this.router.navigate(['/user/login']);
+  show() {
+    showMenu();
+  }
+
+  hide() {
+    hideMenu();
   }
 }

@@ -1,11 +1,30 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { ConsumptionComponent } from './consumption/consumption.component';
+import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
-import { AuthGuard } from './auth/auth.guard';
+import { MediaComponent } from './media/media.component';
+import { ProsumatorComponent } from './prosumator/prosumator.component';
+import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   
-  {path:'home',component:HomeComponent,canActivate:[AuthGuard]},
+  { path:'', redirectTo:'/home', pathMatch:'full' },
+  { path:'home', component: HomeComponent},
+  { path:'contact', component: ContactComponent},
+  { path:'consumption', component: ConsumptionComponent },
+  { path:'prosumator', component: ProsumatorComponent },
+  { path:'media', component: MediaComponent },
+  { path:'contact', component: ContactComponent },
+  {
+    path: 'user', component: UserComponent,
+    children: [
+      { path: 'register', component: RegisterComponent },
+      { path: 'login', component: LoginComponent }
+    ]
+  }
 ];
 
 @NgModule({

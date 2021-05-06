@@ -1,144 +1,20 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>
-      <i class="fas fa-bars" aria-hidden="true" style="margin-left: 27%; color: greenyellow;"></i>
-      <p>Meniu</p>
-    </mat-toolbar>
-    <mat-nav-list class="example" *ngIf="(isLog())">
-      <a mat-list-item [routerLink]="['consumption']">
-        <i class="fas fa-home" aria-hidden="true"></i>
-        <span style="font-size:25px ;margin-left:5%; margin-top: 2%;">Acasa</span>
-      </a>
-      <a mat-list-item [routerLink]="[]">
-        <i class="fas fa-plug" aria-hidden="true"></i>
-        <span style="font-size:25px ;margin-left:5%; margin-top: 2%;">Consum de energie</span>
-      </a>
+<nav>
+    <a routerLink='/home' routerLinkActive='ac'>
+        <img src="assets/images/logo.png">
+    </a>
+    <div class="nav-links">
+        <!--<i class="fas fa-times" id='close-times' (click)="hide()"></i>-->
         <ul>
-          <li><a mat-list-item [routerLink]="['consumption']">Calculator consum electro- casnice</a></li>
-          <li><a mat-list-item [routerLink]="['consumption']">Lista consum electrocasnice</a></li>
-          <li><a mat-list-item [routerLink]="['consumption']">Sfaturi de economisire a consumului</a></li>
+            <li><a routerLink='/home' routerLinkActive='active'>ACASA</a></li>
+            <li><a routerLink='/consumption' routerLinkActive='active'>CONSUM</a></li>
+            <li><a routerLink='/prosumator' routerLinkActive='active'>PROSUMATOR</a></li>
+            <li><a routerLink='/media' routerLinkActive='active'>STIRI</a></li>
+            <li><a routerLink='/contact' routerLinkActive='active'>CONTACT</a></li>
+            <li><a routerLink='/user' routerLinkActive='active'>CONT</a></li>
         </ul>
-      <a mat-list-item [routerLink]="[]">
-        <i class="fas fa-tag" aria-hidden="true"></i>
-        <span style="font-size:25px ;margin-left:5%; margin-top: 2%;">Eticheta energetica</span>
-      </a>
-        <ul>
-          <li><a mat-list-item [routerLink]="['consumption']">Generare eticheta energetica</a></li>
-          <li><a mat-list-item [routerLink]="['consumption']">Clasificarea etichetelor energetice</a></li>
-          <br>
-          <li><a mat-list-item [routerLink]="['consumption']">Beneficiile unei clase energet- ice mai bune</a></li>
-        </ul>
-      <a mat-list-item [routerLink]="[]">
-        <i class="fas fa-headset" aria-hidden="true"></i>
-        <span style="font-size:25px ;margin-left:5%; margin-top: 2%;">Contact</span>
-      </a>
-        <ul>
-          <li><a mat-list-item [routerLink]="['consumption']">Despre noi</a></li>
-          <li><a mat-list-item [routerLink]="['consumption']">Ajutor</a></li>
-        </ul>
-      <a mat-list-item [routerLink]="['consumption']">
-        <i class="fas fa-donate" aria-hidden="true"></i>
-        <span style="font-size:25px ;margin-left:5%; margin-top: 2%;">Doneaza</span>
-      </a>
-      <br>
-      <a mat-list-item [routerLink]="['consumption']">
-        <i class="far fa-newspaper" aria-hidden="true"></i>
-        <span style="font-size:25px ;margin-left:5%; margin-top: 2%;">Stiri</span>
-      </a>
-      <br>
-      <a mat-list-item [routerLink]="[]">
-        <i class="fas fa-info-circle" aria-hidden="true"></i>
-        <span style="font-size:25px ;margin-left:5%;">Suport prosumator</span>
-      </a>
-        <ul>
-          <li><a mat-list-item [routerLink]="['consumption']">Ce este energia regenerabila</a></li>
-          <li><a mat-list-item [routerLink]="['consumption']">Cum devin prosumator</a></li>
-          <li><a mat-list-item [routerLink]="['consumption']">Regulamentul</a></li>
-          <li><a mat-list-item [routerLink]="['consumption']">Lista de furnizorii</a></li>
-        </ul>
-    </mat-nav-list>
-    <mat-nav-list class="example" *ngIf="(!isLog())">
-      <a mat-list-item [routerLink]="['consumption']">
-        <i class="fas fa-home" aria-hidden="true"></i>
-        <span style="font-size:25px ;margin-left:5%; margin-top: 2%;">Acasa</span>
-      </a>
-      <a mat-list-item [routerLink]="[]">
-        <i class="fas fa-plug" aria-hidden="true"></i>
-        <span style="font-size:25px ;margin-left:5%; margin-top: 2%;">Consum de energie</span>
-      </a>
-        <ul>
-          <li><a mat-list-item [routerLink]="['user/login']">Calculator consum electro- casnice</a></li>
-          <li><a mat-list-item [routerLink]="['consumption']">Lista consum electrocasnice</a></li>
-          <li><a mat-list-item [routerLink]="['consumption']">Sfaturi de economisire a consumului</a></li>
-        </ul>
-      <a mat-list-item [routerLink]="[]">
-        <i class="fas fa-tag" aria-hidden="true"></i>
-        <span style="font-size:25px ;margin-left:5%; margin-top: 2%;">Eticheta energetica</span>
-      </a>
-        <ul>
-          <li><a mat-list-item [routerLink]="['user/login']">Generare eticheta energetica</a></li>
-          <li><a mat-list-item [routerLink]="['consumption']">Clasificarea etichetelor energetice</a></li>
-          <br>
-          <li><a mat-list-item [routerLink]="['consumption']">Beneficiile unei clase energet- ice mai bune</a></li>
-        </ul>
-      <a mat-list-item [routerLink]="[]">
-        <i class="fas fa-headset" aria-hidden="true"></i>
-        <span style="font-size:25px ;margin-left:5%; margin-top: 2%;">Contact</span>
-      </a>
-        <ul>
-          <li><a mat-list-item [routerLink]="['consumption']">Despre noi</a></li>
-          <li><a mat-list-item [routerLink]="['user/login']">Ajutor</a></li>
-        </ul>
-      <a mat-list-item [routerLink]="['consumption']">
-        <i class="fas fa-donate" aria-hidden="true"></i>
-        <span style="font-size:25px ;margin-left:5%; margin-top: 2%;">Doneaza</span>
-      </a>
-      <br>
-      <a mat-list-item [routerLink]="['consumption']">
-        <i class="far fa-newspaper" aria-hidden="true"></i>
-        <span style="font-size:25px ;margin-left:5%; margin-top: 2%;">Stiri</span>
-      </a>
-      <br>
-      <a mat-list-item [routerLink]="[]">
-        <i class="fas fa-info-circle" aria-hidden="true"></i>
-        <span style="font-size:25px ;margin-left:5%;">Suport prosumator</span>
-      </a>
-        <ul>
-          <li><a mat-list-item [routerLink]="['consumption']">Ce este energia regenerabila</a></li>
-          <li><a mat-list-item [routerLink]="['consumption']">Cum devin prosumator</a></li>
-          <li><a mat-list-item [routerLink]="['consumption']">Regulamentul</a></li>
-          <li><a mat-list-item [routerLink]="['user/login']">Lista de furnizorii</a></li>
-        </ul>
-    </mat-nav-list>
+    </div>
+    <!--<i class="fas fa-bars" id='menu-bars' (click)="show()" ></i>-->
+</nav>
 
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <a [routerLink]="['consumption']" style="margin-top: 2.3%;">
-        <img src="./assets/images/logo.png" alt="Logo" width="100" height="90" style="margin-top: -2.7%;">
-        <span class="title-logo">How Green</span>
-      </a>
-      <button class="btn btn-logout my-2 my-sm-0" *ngIf="(isLog())" (click)="onLogout()">
-        <i class="fas fa-sign-out-alt"></i>
-        Deconectare
-      </button>
-      <button class="btn btn-login my-2 my-sm-0" *ngIf="(!isLog())" [routerLink]="['user/login']">
-        <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
-        Autentificare
-      </button>
-    </mat-toolbar>
-    <ng-content></ng-content>
-    <!-- Add Content Here -->
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<router-outlet></router-outlet>
+

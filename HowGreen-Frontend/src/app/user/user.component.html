@@ -1,13 +1,19 @@
-<div class="wrapper">
-    <div class="wrapped-div">
-        <div class="tab-header">
-            <h2 routerLink='/user/login' routerLinkActive='active'>Cont Existent</h2>
-            <h2 routerLink='/user/registration' routerLinkActive='active'>Cont Nou</h2>
-        </div>
+<section class="header">
+    <div class="text-box">
+        <h1>Cont</h1>
+        <p>
+            Pe aceasta pagina utilizatorii isi pot face un cont nou,
+            iar<br> cei care au un cont deja se pot conecta pentru a putea<br>
+            beneficia de fiecare serviciu pe care il ofera platforma.
+        </p>
     </div>
-    <div class="row">
-        <div class="col-md-10 offset-md-1">
-            <router-outlet></router-outlet>
-        </div>
-    </div>
-</div>
+</section>
+
+<section>
+    <h1>sdasds</h1>
+    <a routerLink='/user/register' routerLinkActive='active'>Register</a>
+    <a routerLink='/user/login' routerLinkActive='active'>Login</a>
+    <router-outlet></router-outlet>
+</section>
+
+

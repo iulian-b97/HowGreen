@@ -1,27 +1,46 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from "@angular/forms";
-import { RouterModule } from '@angular/router'
+import { RouterModule } from '@angular/router';
 
+import { RootNavComponent } from 'src/app/root-nav/root-nav.component';
+import { HomeComponent } from 'src/app/home/home.component';
+import { ContactComponent } from 'src/app/contact/contact.component';
+import { ConsumptionComponent } from 'src/app/consumption/consumption.component';
 import { UserComponent } from 'src/app/user/user.component';
+import { RegisterComponent } from 'src/app/user/register/register.component';
+import { LoginComponent } from 'src/app/user/login/login.component';
+
+import {ReactiveFormsModule,FormsModule} from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    UserComponent
+    RootNavComponent,
+    HomeComponent,
+    ContactComponent,
+    ConsumptionComponent,
+    UserComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     RouterModule,
-    UserComponent
+    RootNavComponent,
+    HomeComponent,
+    ContactComponent,
+    ConsumptionComponent,
+    UserComponent,
+    RegisterComponent,
+    LoginComponent,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class SharedModule { }
-
