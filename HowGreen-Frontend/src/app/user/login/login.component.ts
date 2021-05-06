@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       err=>{
         if(err.status == 400)
         {
-          this.toastr.error('Nume de utilizator sau parola incorecta.','Autentificare esuata.');
+          this.toastr.error('Nume de utilizator sau parola incorecta.','Autentificare esuata');
           localStorage.setItem('loggedIn','false');
           this.service.isLoggedIn$.next(false);
         }

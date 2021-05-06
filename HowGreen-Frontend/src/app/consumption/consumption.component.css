@@ -456,6 +456,7 @@ table, th, td {
 
     .total-table {
         font-size: 8px;
+        width: 100%;
     }
 
     .appliances-table {

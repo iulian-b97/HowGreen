@@ -15,10 +15,10 @@
 
         <ul *ngIf="(!isLog())">
             <li><a routerLink='/home' routerLinkActive='active'>ACASA</a></li>
-            <li><a routerLink='/user/login' routerLinkActive='active'>CONSUM</a></li>
-            <li><a routerLink='/user/login' routerLinkActive='active'>PROSUMATOR</a></li>
+            <li><a (click)="onAuth()" routerLink='/user/login' routerLinkActive='active'>CONSUM</a></li>
+            <li><a (click)="onAuth()" routerLink='/user/login' routerLinkActive='active'>PROSUMATOR</a></li>
             <li><a routerLink='/media' routerLinkActive='active'>STIRI</a></li>
-            <li><a routerLink='/user/login' routerLinkActive='active'>CONTACT</a></li>
+            <li><a routerLink='/contact' routerLinkActive='active'>CONTACT</a></li>
             <li><a routerLink='/user/login' routerLinkActive='active'>CONECTARE</a></li>
         </ul>
 
