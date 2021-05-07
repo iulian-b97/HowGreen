@@ -119,6 +119,13 @@ table, th, td {
     font-size: 20px;
 }
 
+.computer-box label {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 7%;
+}
+
 .computer-box button {
     top: 15px;
 }

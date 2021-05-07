@@ -1,4 +1,6 @@
-using IdentityServer.Models;
+using Library.IdentityServer.Data;
+using Library.Server.Data;
+using Library.Server.Entities.User;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -6,123 +8,132 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Server.Data;
-using Server.Entities.User;
+using Server;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Server
+public class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static async Task Main(string[] args)
-        {
-            /*
-            string DestinationCs = "server=.;database=HowGreenDB;Trusted_Connection=true;MultipleActiveResultSets=True;";
-            string SourceCs = "server=.;database=UserDB;Trusted_Connection=true;MultipleActiveResultSets=True;";
+        CreateHostBuilder(args).Build().Run();
+    }
 
-            DeleteAllRowsTable(DestinationCs);
-            BulkCopyTable(DestinationCs, SourceCs);
-            */
-
-            IHost webHost = CreateHostBuilder(args).Build();
-
-            using (var scope = webHost.Services.CreateScope())
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
             {
-                IConfiguration configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
+                webBuilder.UseStartup<Startup>();
+            });
+}
 
-                AuthenticationContext authenticationContext = scope.ServiceProvider.GetRequiredService<AuthenticationContext>();
-                UserContext userContext = scope.ServiceProvider.GetRequiredService<UserContext>();
+/*
+string DestinationCs = "server=.;database=HowGreenDB;Trusted_Connection=true;MultipleActiveResultSets=True;";
+string SourceCs = "server=.;database=UserDB;Trusted_Connection=true;MultipleActiveResultSets=True;";
 
-                var users = new List<SmallUser>();
-                foreach (var user in authenticationContext.Users) 
-                {
-                    users.Add(new SmallUser
-                    {
-                        Id = user.Id,
-                        UserName = user.UserName,
-                        Email = user.Email
-                    });
-                }
+DeleteAllRowsTable(DestinationCs);
+BulkCopyTable(DestinationCs, SourceCs);
+*/
 
-                var smallUsers = userContext.SmallUser.AsNoTracking().ToList();
+/*
+IHost webHost = CreateHostBuilder(args).Build();
 
-                var results = users.Where(u => !smallUsers.Any(s => u.Id.Equals(s.Id) && u.UserName.Equals(s.UserName)));
+using (var scope = webHost.Services.CreateScope())
+{
+    IConfiguration configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 
-                foreach(var user in results)
-                {
-                    userContext.SmallUser.Add(user);
-                }
+    AuthenticationContext authenticationContext = scope.ServiceProvider.GetRequiredService<AuthenticationContext>();
+    UserContext userContext = scope.ServiceProvider.GetRequiredService<UserContext>();
 
-                await userContext.SaveChangesAsync();
-            }
-
-            await webHost.RunAsync();
-
-
-            CreateHostBuilder(args).Build().Run();
-        }
-
-        /*private static void BulkCopyTable(string DestinationCs, string SourceCs)
+    var users = new List<SmallUser>();
+    foreach (var user in authenticationContext.Users) 
+    {
+        users.Add(new SmallUser
         {
-            using (SqlConnection SourceCon = new SqlConnection(SourceCs))
-            {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM AspNetUsers", SourceCon);
-                SourceCon.Open();
+            Id = user.Id,
+            UserName = user.UserName,
+            Email = user.Email
+        });
+    }
 
-                using (SqlDataReader rdr = cmd.ExecuteReader())
-                {
-                    using (SqlConnection DestinationCon = new SqlConnection(DestinationCs))
-                    {
-                        using (SqlBulkCopy bc = new SqlBulkCopy(DestinationCon))
-                        {
-                            bc.DestinationTableName = "Users";
-                            DestinationCon.Open();
+    var smallUsers = userContext.SmallUser.AsNoTracking().ToList();
 
-                            // Set up the column mappings by name.
-                            SqlBulkCopyColumnMapping mapID =
-                                new SqlBulkCopyColumnMapping("Id", "Id");
-                            bc.ColumnMappings.Add(mapID);
+    var results = users.Where(u => !smallUsers.Any(s => u.Id.Equals(s.Id) && u.UserName.Equals(s.UserName)));
 
-                            SqlBulkCopyColumnMapping mapUserName =
-                                new SqlBulkCopyColumnMapping("UserName", "UserName");
-                            bc.ColumnMappings.Add(mapUserName);
+    foreach(var user in results)
+    {
+        userContext.SmallUser.Add(user);
+    }
 
-                            SqlBulkCopyColumnMapping mapEmail =
-                                new SqlBulkCopyColumnMapping("Email", "Email");
-                            bc.ColumnMappings.Add(mapEmail);
+    await userContext.SaveChangesAsync();
+}
 
-                            bc.WriteToServer(rdr);
-                        }
-                    }
-                }
-            }
-        }
+await webHost.RunAsync();
 
-        private static void DeleteAllRowsTable(string DestinationCs)
+
+CreateHostBuilder(args).Build().Run();
+}
+
+private static void BulkCopyTable(string DestinationCs, string SourceCs)
+{
+using (SqlConnection SourceCon = new SqlConnection(SourceCs))
+{
+    SqlCommand cmd = new SqlCommand("SELECT * FROM AspNetUsers", SourceCon);
+    SourceCon.Open();
+
+    using (SqlDataReader rdr = cmd.ExecuteReader())
+    {
+        using (SqlConnection DestinationCon = new SqlConnection(DestinationCs))
         {
-            using (SqlConnection DestinationCon = new SqlConnection(DestinationCs))
+            using (SqlBulkCopy bc = new SqlBulkCopy(DestinationCon))
             {
-                SqlCommand cmd = new SqlCommand("DELETE FROM Users", DestinationCon);
+                bc.DestinationTableName = "Users";
                 DestinationCon.Open();
 
-                using (SqlDataReader rdr = cmd.ExecuteReader())
-                {
-    
-                }
+                // Set up the column mappings by name.
+                SqlBulkCopyColumnMapping mapID =
+                    new SqlBulkCopyColumnMapping("Id", "Id");
+                bc.ColumnMappings.Add(mapID);
+
+                SqlBulkCopyColumnMapping mapUserName =
+                    new SqlBulkCopyColumnMapping("UserName", "UserName");
+                bc.ColumnMappings.Add(mapUserName);
+
+                SqlBulkCopyColumnMapping mapEmail =
+                    new SqlBulkCopyColumnMapping("Email", "Email");
+                bc.ColumnMappings.Add(mapEmail);
+
+                bc.WriteToServer(rdr);
             }
-        }*/
+        }
+    }
+}
+}
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+private static void DeleteAllRowsTable(string DestinationCs)
+{
+using (SqlConnection DestinationCon = new SqlConnection(DestinationCs))
+{
+    SqlCommand cmd = new SqlCommand("DELETE FROM Users", DestinationCon);
+    DestinationCon.Open();
 
+    using (SqlDataReader rdr = cmd.ExecuteReader())
+    {
 
     }
 }
+
+
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+Host.CreateDefaultBuilder(args)
+    .ConfigureWebHostDefaults(webBuilder =>
+    {
+        webBuilder.UseStartup<Startup>();
+    });
+
+}*/
+
+

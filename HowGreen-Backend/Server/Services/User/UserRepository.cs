@@ -1,4 +1,5 @@
-﻿using Server.Data;
+﻿using Library.IdentityServer.Data;
+using Library.Server.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,10 @@ namespace Server.Services.User
 {
     public class UserRepository : IUserRepository
     {
-        private readonly UserContext _userContext;
+        private readonly AuthenticationContext _userContext;
         private readonly ConsumptionContext _consumptionContext;
 
-        public UserRepository(UserContext userContext, ConsumptionContext consumptionContext)
+        public UserRepository(AuthenticationContext userContext, ConsumptionContext consumptionContext)
         {
             _userContext = userContext;
             _consumptionContext = consumptionContext;
@@ -24,7 +25,7 @@ namespace Server.Services.User
                 return "";
             }
 
-            var user = _userContext.SmallUser.FirstOrDefault(r => r.UserName.Equals(UserName));
+            var user = _userContext.Users.FirstOrDefault(r => r.UserName.Equals(UserName));
 
             return user.Id;
         }

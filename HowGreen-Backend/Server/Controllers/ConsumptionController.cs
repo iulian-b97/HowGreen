@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Library.Server.Data;
+using Library.Server.Entities.Consumption;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Server.Data;
-using Server.Entities.Consumption;
 using Server.Services.User;
 using System;
 using System.Collections.Generic;
@@ -31,7 +31,8 @@ namespace Server.Controllers
             {
                 ApplianceType = model.ApplianceType,
                 nrWatts = model.nrWatts,
-                hoursDay = model.hoursDay,
+                hh = model.hh,
+                mm = model.mm,
                 priceKw = model.priceKw
             };
 

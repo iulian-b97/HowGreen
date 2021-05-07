@@ -1,4 +1,5 @@
-﻿using IdentityServer.Models;
+﻿using Library.IdentityServer.Entities;
+using Library.IdentityServer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,7 @@
-using IdentityServer.Models;
+using Library.IdentityServer.Data;
+using Library.IdentityServer.Entities;
+using Library.IdentityServer.Models;
+using Library.Server.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,6 +47,11 @@ namespace IdentityServer
             services.AddDbContext<AuthenticationContext>
             (
                 options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection"))
+            );
+
+            services.AddDbContext<UserContext>
+            (
+                options => options.UseSqlServer(Configuration.GetConnectionString("ServerConnection"))
             );
 
             services.AddDefaultIdentity<ApplicationUser>()
