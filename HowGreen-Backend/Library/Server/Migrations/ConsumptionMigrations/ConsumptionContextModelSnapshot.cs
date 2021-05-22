@@ -54,6 +54,46 @@ namespace Library.Server.Migrations.ConsumptionMigrations
                     b.ToTable("Appliance");
                 });
 
+            modelBuilder.Entity("Library.Server.Entities.Consumption.ApplianceConsumption", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ApplianceId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ApplianceType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FinalConsumptionId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("hh")
+                        .HasColumnType("int");
+
+                    b.Property<float>("kwMonth")
+                        .HasColumnType("real");
+
+                    b.Property<int>("mm")
+                        .HasColumnType("int");
+
+                    b.Property<int>("nrWatts")
+                        .HasColumnType("int");
+
+                    b.Property<float>("priceMonth")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplianceId")
+                        .IsUnique()
+                        .HasFilter("[ApplianceId] IS NOT NULL");
+
+                    b.HasIndex("FinalConsumptionId");
+
+                    b.ToTable("ApplianceConsumptions");
+                });
+
             modelBuilder.Entity("Library.Server.Entities.Consumption.EnergyLabel", b =>
                 {
                     b.Property<string>("Id")
@@ -326,16 +366,33 @@ namespace Library.Server.Migrations.ConsumptionMigrations
                     b.HasOne("Library.Server.Entities.Consumption.FinalConsumption", "FinalConsumption")
                         .WithMany("Appliances")
                         .HasForeignKey("FinalConsumptionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Library.Server.Entities.User.SmallUser", "SmallUser")
                         .WithMany("Appliances")
                         .HasForeignKey("SmallUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("FinalConsumption");
 
                     b.Navigation("SmallUser");
+                });
+
+            modelBuilder.Entity("Library.Server.Entities.Consumption.ApplianceConsumption", b =>
+                {
+                    b.HasOne("Library.Server.Entities.Consumption.Appliance", "Appliance")
+                        .WithOne("ApplianceConsumption")
+                        .HasForeignKey("Library.Server.Entities.Consumption.ApplianceConsumption", "ApplianceId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Library.Server.Entities.Consumption.FinalConsumption", "FinalConsumption")
+                        .WithMany("ApplianceConsumptions")
+                        .HasForeignKey("FinalConsumptionId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Appliance");
+
+                    b.Navigation("FinalConsumption");
                 });
 
             modelBuilder.Entity("Library.Server.Entities.Consumption.EnergyLabel", b =>
@@ -343,12 +400,12 @@ namespace Library.Server.Migrations.ConsumptionMigrations
                     b.HasOne("Library.Server.Entities.Consumption.FinalConsumption", "FinalConsumption")
                         .WithOne("EnergyLabel")
                         .HasForeignKey("Library.Server.Entities.Consumption.EnergyLabel", "FinalConsumptionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Library.Server.Entities.User.SmallUser", "SmallUser")
                         .WithMany("EnergyLabels")
                         .HasForeignKey("SmallUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("FinalConsumption");
 
@@ -360,7 +417,7 @@ namespace Library.Server.Migrations.ConsumptionMigrations
                     b.HasOne("Library.Server.Entities.User.SmallUser", "SmallUser")
                         .WithMany("FinalConsumptions")
                         .HasForeignKey("SmallUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("SmallUser");
                 });
@@ -440,8 +497,15 @@ namespace Library.Server.Migrations.ConsumptionMigrations
                     b.Navigation("Pay");
                 });
 
+            modelBuilder.Entity("Library.Server.Entities.Consumption.Appliance", b =>
+                {
+                    b.Navigation("ApplianceConsumption");
+                });
+
             modelBuilder.Entity("Library.Server.Entities.Consumption.FinalConsumption", b =>
                 {
+                    b.Navigation("ApplianceConsumptions");
+
                     b.Navigation("Appliances");
 
                     b.Navigation("EnergyLabel");

@@ -15,6 +15,7 @@ namespace Library.Server.Data
         }
 
         public DbSet<Appliance> Appliance { get; set; }
+        public DbSet<ApplianceConsumption> ApplianceConsumptions { get; set; }
         public DbSet<FinalConsumption> FinalConsumption { get; set; }
         public DbSet<EnergyLabel> EnergyLabel { get; set; }
 
@@ -29,7 +30,7 @@ namespace Library.Server.Data
                 .HasMany(x => x.Appliances)
                 .WithOne(y => y.SmallUser)
                 .HasForeignKey(y => y.SmallUserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             //SmallUser - FinalConsumption (one to many)
             modelBuilder.Entity<FinalConsumption>()
@@ -39,7 +40,7 @@ namespace Library.Server.Data
                 .HasMany(x => x.FinalConsumptions)
                 .WithOne(y => y.SmallUser)
                 .HasForeignKey(y => y.SmallUserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             //SmallUser - EnergyLabel (one to many)
             modelBuilder.Entity<EnergyLabel>()
@@ -49,21 +50,35 @@ namespace Library.Server.Data
                 .HasMany(x => x.EnergyLabels)
                 .WithOne(y => y.SmallUser)
                 .HasForeignKey(y => y.SmallUserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
+
+            //Appliance - ApplianceConsumption (one to one)
+            modelBuilder.Entity<Appliance>()
+                .HasOne(x => x.ApplianceConsumption)
+                .WithOne(y => y.Appliance)
+                .HasForeignKey<ApplianceConsumption>(y => y.ApplianceId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             //FinalConsumption - Appliance (one to many)
             modelBuilder.Entity<FinalConsumption>()
                 .HasMany(x => x.Appliances)
                 .WithOne(y => y.FinalConsumption)
                 .HasForeignKey(y => y.FinalConsumptionId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
+
+            //FinalConsumption - ApplianceConsumption (one to many)
+            modelBuilder.Entity<FinalConsumption>()
+                .HasMany(x => x.ApplianceConsumptions)
+                .WithOne(y => y.FinalConsumption)
+                .HasForeignKey(y => y.FinalConsumptionId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             //FinalConsumption - EnergyLabel (one to one)
             modelBuilder.Entity<FinalConsumption>()
                 .HasOne(x => x.EnergyLabel)
                 .WithOne(y => y.FinalConsumption)
                 .HasForeignKey<EnergyLabel>(y => y.FinalConsumptionId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

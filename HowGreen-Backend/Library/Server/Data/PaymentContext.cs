@@ -28,7 +28,7 @@ namespace Library.Server.Data
                 .HasMany(x => x.Donations)
                 .WithOne(y => y.SmallUser)
                 .HasForeignKey(y => y.SmallUserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             //Donation - Pay (one to one)
             modelBuilder.Entity<Pay>()
@@ -38,7 +38,7 @@ namespace Library.Server.Data
                 .HasOne(x => x.Pay)
                 .WithOne(y => y.Donation)
                 .HasForeignKey<Pay>(y => y.DonationId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             //Pay - StatusPayment (one to one)
             modelBuilder.Entity<StatusPayment>()
@@ -48,7 +48,7 @@ namespace Library.Server.Data
                 .HasOne(x => x.StatusPayment)
                 .WithOne(y => y.Pay)
                 .HasForeignKey<StatusPayment>(y => y.PayId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

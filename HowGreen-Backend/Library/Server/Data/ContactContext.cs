@@ -32,7 +32,7 @@ namespace Library.Server.Data
                 .HasMany(x => x.Messages)
                 .WithOne(y => y.SmallUser)
                 .HasForeignKey(y => y.SmallUserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             //Message - AnswerAdmin (one to one)
             modelBuilder.Entity<AnswerAdmin>()
@@ -42,7 +42,7 @@ namespace Library.Server.Data
                 .HasOne(x => x.AnswerAdmin)
                 .WithOne(y => y.Message)
                 .HasForeignKey<AnswerAdmin>(y => y.MessageId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             //Message - AnswerProvider (one to one)
             modelBuilder.Entity<AnswerProvider>()
@@ -52,7 +52,7 @@ namespace Library.Server.Data
                 .HasOne(x => x.AnswerProvider)
                 .WithOne(y => y.Message)
                 .HasForeignKey<AnswerProvider>(y => y.MessageId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             //Admin - AnswerAdmin (one to many)
             modelBuilder.Entity<Admin>()
@@ -62,7 +62,7 @@ namespace Library.Server.Data
                 .HasMany(x => x.AnswerAdmins)
                 .WithOne(y => y.Admin)
                 .HasForeignKey(y => y.AdminId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             //Provider - AnswerProvider (one to many)
             modelBuilder.Entity<Provider>()
@@ -72,7 +72,7 @@ namespace Library.Server.Data
                 .HasMany(x => x.AnswerProviders)
                 .WithOne(y => y.Provider)
                 .HasForeignKey(y => y.ProviderId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             //Provider - Address (one to one)
             modelBuilder.Entity<Address>()
@@ -82,7 +82,7 @@ namespace Library.Server.Data
                 .HasOne(x => x.Address)
                 .WithOne(y => y.Provider)
                 .HasForeignKey<Address>(y => y.ProviderId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

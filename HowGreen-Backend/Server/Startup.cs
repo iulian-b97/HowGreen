@@ -94,10 +94,10 @@ namespace Server
         {
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
-                var userContext = serviceScope.ServiceProvider.GetRequiredService<UserContext>();
+                /*var userContext = serviceScope.ServiceProvider.GetRequiredService<UserContext>();
                 userContext.Database.Migrate();
 
-                /*var consumptionContext = serviceScope.ServiceProvider.GetRequiredService<ConsumptionContext>();
+                var consumptionContext = serviceScope.ServiceProvider.GetRequiredService<ConsumptionContext>();
                 consumptionContext.Database.Migrate();
 
                 var contactContext = serviceScope.ServiceProvider.GetRequiredService<ContactContext>();

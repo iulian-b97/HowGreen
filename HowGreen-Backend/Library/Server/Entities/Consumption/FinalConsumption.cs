@@ -15,6 +15,7 @@ namespace Library.Server.Entities.Consumption
 
         public SmallUser SmallUser { get; set; }
         public ICollection<Appliance> Appliances { get; set; }
+        public ICollection<ApplianceConsumption> ApplianceConsumptions { get; set; }
         public EnergyLabel EnergyLabel { get; set; }
     }
 }
