@@ -23,19 +23,33 @@
         Utilizatorul trebuie sa introduca datele cerute mai jos <br>
         pentru a putea utiliza calculatorul
     </p>
-    <div class="computer-box">
-        <h1>Calculator</h1>
-        <hr style="background-color: white; height: 4px; margin-top: -2%;">
-        <input type="text" placeholder="Tip Electrocasnic">
-        <input type="text" placeholder="Putere (W)">
+    <form [formGroup]="consumptionService.applianceModel" autocomplete="off" (submit)="onSubmit()">
+      <div class="computer-box">
+          <h1>Calculator</h1>
+          <hr style="background-color: white; height: 4px; margin-top: -2%;">
+          <div class="form-group required">
+            <input class="form-control" formControlName="ApplianceType" type="text" style="margin-left: 10%;" placeholder="Tip Electrocasnic">
+          </div>
+          <div class="form-group required">
+            <input class="form-control" formControlName="nrWatts" type="text" style="margin-left: 10%;" placeholder="Putere (W)">
+          </div>
 
-        <label for="appt">Timp Functionare (hh:mm/zi)</label>
-        <input type="text" style="margin-top: 2%; width: 30%; float: left; margin-left: 20%;" placeholder="HH">
-        <input type="text" style="margin-top: 2%; width: 30%; float: left; margin-left: 3%;" placeholder="MM">
+          <label for="appt">Timp Functionare (hh:mm/zi)</label>
+          <div class="form-group required">
+            <input class="form-control" formControlName="hh" type="text" style="margin-top: 2%; width: 30%; float: left; margin-left: 20%;" placeholder="HH">
+            <input class="form-control" formControlName="mm" type="text" style="margin-top: 2%; width: 30%; float: left; margin-left: 3%;" placeholder="MM">
+          </div>
 
-        <input type="text" placeholder="Pret Kw">
-        <button style="margin-top:2%;" class="hero-btn">Calculeaza</button>
-    </div>
+          <div class="form-group required">
+            <input class="form-control" formControlName="priceKw" type="text" style="margin-left: 10%; margin-top: 20%;" placeholder="Pret Kw">
+          </div>
+          <div class="form-row">
+            <div class="form-group" style="margin:auto">
+              <button type="submit" style="margin-top:5%" class="hero-btn" [disabled]="!consumptionService.applianceModel.valid">Calculeaza</button>
+            </div>
+          </div>
+      </div>
+    </form>
     <div class="cost-appliance">
         <h1>Costul pe electrocasnic</h1>
         <table class="total-table">

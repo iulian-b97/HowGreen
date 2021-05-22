@@ -70,7 +70,7 @@ export class UserService {
     localStorage.removeItem('token');
   }
 
-  getUserProfile()
+  getUserName()
   {
     var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+localStorage.getItem('token')})
     return this.http.get(this.BaseURI+'/UserProfile',{headers : tokenHeader});

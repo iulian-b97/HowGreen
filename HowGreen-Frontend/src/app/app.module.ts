@@ -10,6 +10,7 @@ import { AppRoutingModule} from './app-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AppComponent } from './app.component';
 import { UserService } from 'src/app/services/user.service';
+import { ConsumptionService } from './services/consumption.service';
 
 
 @NgModule({
@@ -26,7 +27,10 @@ import { UserService } from 'src/app/services/user.service';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [UserService],
+  providers: [
+    UserService,
+    ConsumptionService 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

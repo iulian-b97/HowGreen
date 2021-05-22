@@ -65,11 +65,19 @@ namespace Server
             (
                 options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection"))
             );
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(options =>
+               options.WithOrigins(Configuration["ApplicationSettings:Client_URL"].ToString())
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+           );
+
             //Apply pending migrations
             InitializeDatabase(app);
 

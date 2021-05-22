@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 import { ConsumptionComponent } from './consumption/consumption.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
@@ -14,7 +15,7 @@ const routes: Routes = [
   { path:'', redirectTo:'/home', pathMatch:'full' },
   { path:'home', component: HomeComponent},
   { path:'contact', component: ContactComponent},
-  { path:'consumption', component: ConsumptionComponent },
+  { path:'consumption', component: ConsumptionComponent, canActivate:[AuthGuard] },
   { path:'prosumator', component: ProsumatorComponent },
   { path:'media', component: MediaComponent },
   { path:'contact', component: ContactComponent },
