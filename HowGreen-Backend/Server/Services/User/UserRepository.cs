@@ -37,9 +37,9 @@ namespace Server.Services.User
                 return "";
             }
 
-            var consumption  = _consumptionContext.FinalConsumption.FirstOrDefault(r => r.SmallUser.UserName.Equals(UserName));
+            var consumption  = _consumptionContext.FinalConsumptions.FirstOrDefault(r => r.SmallUser.UserName.Equals(UserName));
 
-            return consumption.Id;
+            return consumption.IndexConsumptionId;
         }
     }
 }

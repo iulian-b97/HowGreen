@@ -7,7 +7,7 @@ namespace Library.Server.Entities.Consumption
 {
     public class FinalConsumption
     {
-        public string Id { get; set; }
+        public string IndexConsumptionId { get; set; }
         public string SmallUserId { get; set; }
         public DateTime Data { get; set; }
         public float nrKw { get; set; }
@@ -16,6 +16,7 @@ namespace Library.Server.Entities.Consumption
         public SmallUser SmallUser { get; set; }
         public ICollection<Appliance> Appliances { get; set; }
         public ICollection<ApplianceConsumption> ApplianceConsumptions { get; set; }
-        public EnergyLabel EnergyLabel { get; set; }
+        public EnergyLabelInput EnergyLabelInput { get; set; }
+        public IndexConsumption IndexConsumption { get; set; }
     }
 }

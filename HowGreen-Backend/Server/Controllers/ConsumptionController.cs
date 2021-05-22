@@ -38,9 +38,9 @@ namespace Server.Controllers
 
             appliance.Id = Guid.NewGuid().ToString();
             appliance.SmallUserId = _userRepository.GetIdByName(UserName);
-            appliance.FinalConsumptionId = _userRepository.GetIdConsumptionByName(UserName);
+            appliance.IndexConsumptionId = _userRepository.GetIdConsumptionByName(UserName);
 
-            await _consumptionContext.Appliance.AddAsync(appliance);
+            await _consumptionContext.Appliances.AddAsync(appliance);
             await _consumptionContext.SaveChangesAsync();
 
             return Ok(appliance);
@@ -57,10 +57,10 @@ namespace Server.Controllers
                 Price = model.Price
             };
 
-            consumption.Id = Guid.NewGuid().ToString();
+            consumption.IndexConsumptionId = Guid.NewGuid().ToString();
             consumption.SmallUserId = _userRepository.GetIdByName(UserName);
 
-            await _consumptionContext.FinalConsumption.AddAsync(consumption);
+            await _consumptionContext.FinalConsumptions.AddAsync(consumption);
             await _consumptionContext.SaveChangesAsync();
 
             return Ok(consumption);

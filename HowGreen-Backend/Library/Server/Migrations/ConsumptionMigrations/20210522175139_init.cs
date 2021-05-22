@@ -20,6 +20,17 @@ namespace Library.Server.Migrations.ConsumptionMigrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "IndexConsumptions",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IndexConsumptions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Provider",
                 columns: table => new
                 {
@@ -89,10 +100,10 @@ namespace Library.Server.Migrations.ConsumptionMigrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FinalConsumption",
+                name: "FinalConsumptions",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IndexConsumptionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     SmallUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Data = table.Column<DateTime>(type: "datetime2", nullable: false),
                     nrKw = table.Column<float>(type: "real", nullable: false),
@@ -100,9 +111,15 @@ namespace Library.Server.Migrations.ConsumptionMigrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FinalConsumption", x => x.Id);
+                    table.PrimaryKey("PK_FinalConsumptions", x => x.IndexConsumptionId);
                     table.ForeignKey(
-                        name: "FK_FinalConsumption_SmallUser_SmallUserId",
+                        name: "FK_FinalConsumptions_IndexConsumptions_IndexConsumptionId",
+                        column: x => x.IndexConsumptionId,
+                        principalTable: "IndexConsumptions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_FinalConsumptions_SmallUser_SmallUserId",
                         column: x => x.SmallUserId,
                         principalTable: "SmallUser",
                         principalColumn: "Id",
@@ -151,29 +168,35 @@ namespace Library.Server.Migrations.ConsumptionMigrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Appliance",
+                name: "Appliances",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     SmallUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    FinalConsumptionId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    IndexConsumptionId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ApplianceType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     nrWatts = table.Column<int>(type: "int", nullable: false),
                     hh = table.Column<int>(type: "int", nullable: false),
                     mm = table.Column<int>(type: "int", nullable: false),
-                    priceKw = table.Column<int>(type: "int", nullable: false)
+                    priceKw = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Appliance", x => x.Id);
+                    table.PrimaryKey("PK_Appliances", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Appliance_FinalConsumption_FinalConsumptionId",
-                        column: x => x.FinalConsumptionId,
-                        principalTable: "FinalConsumption",
+                        name: "FK_Appliances_FinalConsumptions_IndexConsumptionId",
+                        column: x => x.IndexConsumptionId,
+                        principalTable: "FinalConsumptions",
+                        principalColumn: "IndexConsumptionId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Appliances_IndexConsumptions_IndexConsumptionId",
+                        column: x => x.IndexConsumptionId,
+                        principalTable: "IndexConsumptions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Appliance_SmallUser_SmallUserId",
+                        name: "FK_Appliances_SmallUser_SmallUserId",
                         column: x => x.SmallUserId,
                         principalTable: "SmallUser",
                         principalColumn: "Id",
@@ -181,26 +204,33 @@ namespace Library.Server.Migrations.ConsumptionMigrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EnergyLabel",
+                name: "EnergyLabelInputs",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     SmallUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    FinalConsumptionId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    EnergyClass = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EfficientIndex = table.Column<int>(type: "int", nullable: false)
+                    IndexConsumptionId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    TotalConsumption = table.Column<float>(type: "real", nullable: false),
+                    MP = table.Column<int>(type: "int", nullable: false),
+                    TypeHouse = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EnergyLabel", x => x.Id);
+                    table.PrimaryKey("PK_EnergyLabelInputs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EnergyLabel_FinalConsumption_FinalConsumptionId",
-                        column: x => x.FinalConsumptionId,
-                        principalTable: "FinalConsumption",
+                        name: "FK_EnergyLabelInputs_FinalConsumptions_IndexConsumptionId",
+                        column: x => x.IndexConsumptionId,
+                        principalTable: "FinalConsumptions",
+                        principalColumn: "IndexConsumptionId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_EnergyLabelInputs_IndexConsumptions_IndexConsumptionId",
+                        column: x => x.IndexConsumptionId,
+                        principalTable: "IndexConsumptions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_EnergyLabel_SmallUser_SmallUserId",
+                        name: "FK_EnergyLabelInputs_SmallUser_SmallUserId",
                         column: x => x.SmallUserId,
                         principalTable: "SmallUser",
                         principalColumn: "Id",
@@ -284,7 +314,7 @@ namespace Library.Server.Migrations.ConsumptionMigrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ApplianceId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    FinalConsumptionId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    IndexConsumptionId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ApplianceType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     nrWatts = table.Column<int>(type: "int", nullable: false),
                     hh = table.Column<int>(type: "int", nullable: false),
@@ -296,15 +326,51 @@ namespace Library.Server.Migrations.ConsumptionMigrations
                 {
                     table.PrimaryKey("PK_ApplianceConsumptions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ApplianceConsumptions_Appliance_ApplianceId",
+                        name: "FK_ApplianceConsumptions_Appliances_ApplianceId",
                         column: x => x.ApplianceId,
-                        principalTable: "Appliance",
+                        principalTable: "Appliances",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ApplianceConsumptions_FinalConsumption_FinalConsumptionId",
-                        column: x => x.FinalConsumptionId,
-                        principalTable: "FinalConsumption",
+                        name: "FK_ApplianceConsumptions_FinalConsumptions_IndexConsumptionId",
+                        column: x => x.IndexConsumptionId,
+                        principalTable: "FinalConsumptions",
+                        principalColumn: "IndexConsumptionId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ApplianceConsumptions_IndexConsumptions_IndexConsumptionId",
+                        column: x => x.IndexConsumptionId,
+                        principalTable: "IndexConsumptions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EnergyLabelOutputs",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    SmallUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    EnergyLabelInputId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    EnergyClass = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Index = table.Column<float>(type: "real", nullable: false),
+                    kW_mpa = table.Column<float>(type: "real", nullable: false),
+                    TypeHouse = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Data = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EnergyLabelOutputs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EnergyLabelOutputs_EnergyLabelInputs_EnergyLabelInputId",
+                        column: x => x.EnergyLabelInputId,
+                        principalTable: "EnergyLabelInputs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_EnergyLabelOutputs_SmallUser_SmallUserId",
+                        column: x => x.SmallUserId,
+                        principalTable: "SmallUser",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -341,16 +407,6 @@ namespace Library.Server.Migrations.ConsumptionMigrations
                 column: "ProviderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Appliance_FinalConsumptionId",
-                table: "Appliance",
-                column: "FinalConsumptionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Appliance_SmallUserId",
-                table: "Appliance",
-                column: "SmallUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ApplianceConsumptions_ApplianceId",
                 table: "ApplianceConsumptions",
                 column: "ApplianceId",
@@ -358,9 +414,19 @@ namespace Library.Server.Migrations.ConsumptionMigrations
                 filter: "[ApplianceId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ApplianceConsumptions_FinalConsumptionId",
+                name: "IX_ApplianceConsumptions_IndexConsumptionId",
                 table: "ApplianceConsumptions",
-                column: "FinalConsumptionId");
+                column: "IndexConsumptionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appliances_IndexConsumptionId",
+                table: "Appliances",
+                column: "IndexConsumptionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appliances_SmallUserId",
+                table: "Appliances",
+                column: "SmallUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Donation_SmallUserId",
@@ -368,20 +434,32 @@ namespace Library.Server.Migrations.ConsumptionMigrations
                 column: "SmallUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EnergyLabel_FinalConsumptionId",
-                table: "EnergyLabel",
-                column: "FinalConsumptionId",
+                name: "IX_EnergyLabelInputs_IndexConsumptionId",
+                table: "EnergyLabelInputs",
+                column: "IndexConsumptionId",
                 unique: true,
-                filter: "[FinalConsumptionId] IS NOT NULL");
+                filter: "[IndexConsumptionId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EnergyLabel_SmallUserId",
-                table: "EnergyLabel",
+                name: "IX_EnergyLabelInputs_SmallUserId",
+                table: "EnergyLabelInputs",
                 column: "SmallUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FinalConsumption_SmallUserId",
-                table: "FinalConsumption",
+                name: "IX_EnergyLabelOutputs_EnergyLabelInputId",
+                table: "EnergyLabelOutputs",
+                column: "EnergyLabelInputId",
+                unique: true,
+                filter: "[EnergyLabelInputId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EnergyLabelOutputs_SmallUserId",
+                table: "EnergyLabelOutputs",
+                column: "SmallUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FinalConsumptions_SmallUserId",
+                table: "FinalConsumptions",
                 column: "SmallUserId");
 
             migrationBuilder.CreateIndex(
@@ -419,7 +497,7 @@ namespace Library.Server.Migrations.ConsumptionMigrations
                 name: "ApplianceConsumptions");
 
             migrationBuilder.DropTable(
-                name: "EnergyLabel");
+                name: "EnergyLabelOutputs");
 
             migrationBuilder.DropTable(
                 name: "StatusPayment");
@@ -434,16 +512,22 @@ namespace Library.Server.Migrations.ConsumptionMigrations
                 name: "Provider");
 
             migrationBuilder.DropTable(
-                name: "Appliance");
+                name: "Appliances");
+
+            migrationBuilder.DropTable(
+                name: "EnergyLabelInputs");
 
             migrationBuilder.DropTable(
                 name: "Pay");
 
             migrationBuilder.DropTable(
-                name: "FinalConsumption");
+                name: "FinalConsumptions");
 
             migrationBuilder.DropTable(
                 name: "Donation");
+
+            migrationBuilder.DropTable(
+                name: "IndexConsumptions");
 
             migrationBuilder.DropTable(
                 name: "SmallUser");

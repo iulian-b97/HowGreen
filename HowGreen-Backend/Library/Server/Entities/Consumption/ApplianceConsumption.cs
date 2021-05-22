@@ -10,7 +10,7 @@ namespace Library.Server.Entities.Consumption
     {
         public string Id { get; set; }
         public string ApplianceId { get; set; }
-        public string FinalConsumptionId { get; set; }
+        public string IndexConsumptionId { get; set; }
         public string ApplianceType { get; set; }
         public int nrWatts { get; set; }
         public int hh { get; set; }
@@ -20,5 +20,6 @@ namespace Library.Server.Entities.Consumption
 
         public Appliance Appliance { get; set; }
         public FinalConsumption FinalConsumption { get; set; }
+        public IndexConsumption IndexConsumption { get; set; }
     }
 }

@@ -17,7 +17,8 @@ namespace Library.Server.Entities.User
 
         public ICollection<Appliance> Appliances { get; set; }
         public ICollection<FinalConsumption> FinalConsumptions { get; set; }
-        public ICollection<EnergyLabel> EnergyLabels { get; set; }
+        public ICollection<EnergyLabelInput> EnergyLabelInputs { get; set; }
+        public ICollection<EnergyLabelOutput> EnergyLabelOutputs { get; set; }
         public ICollection<Message> Messages { get; set; }
         public ICollection<Donation> Donations { get; set; }
     }
