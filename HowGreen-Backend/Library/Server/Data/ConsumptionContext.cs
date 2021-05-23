@@ -116,13 +116,25 @@ namespace Library.Server.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             //FinalConsumption - EnergyLabelInput (one to one)
-            modelBuilder.Entity<FinalConsumption>()
+            modelBuilder.Entity<EnergyLabelInput>()
+                .HasKey(x => x.Id);
+
+            /*modelBuilder.Entity<FinalConsumption>()
                 .HasOne(x => x.EnergyLabelInput)
                 .WithOne(y => y.FinalConsumption)
                 .HasForeignKey<EnergyLabelInput>(y => y.IndexConsumptionId)
+                .OnDelete(DeleteBehavior.Restrict);*/
+
+            modelBuilder.Entity<EnergyLabelInput>()
+                .HasOne(x => x.FinalConsumption)
+                .WithOne(y => y.EnergyLabelInput)
+                .HasForeignKey<FinalConsumption>(y => y.EnergyLabelInputId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             //EnergyLabelInput - EnergyLabelOutput (one to one)
+            modelBuilder.Entity<EnergyLabelOutput>()
+                .HasKey(x => x.Id);
+
             modelBuilder.Entity<EnergyLabelInput>()
                 .HasOne(x => x.EnergyLabelOutput)
                 .WithOne(y => y.EnergyLabelInput)
