@@ -15,11 +15,8 @@ namespace Library.Server.Entities.User
         public string UserName { get; set; }
         public string Email { get; set; }
 
-        public ICollection<Appliance> Appliances { get; set; }
-        public ICollection<FinalConsumption> FinalConsumptions { get; set; }
-        public ICollection<EnergyLabelInput> EnergyLabelInputs { get; set; }
-        public ICollection<EnergyLabelOutput> EnergyLabelOutputs { get; set; }
-        public ICollection<Message> Messages { get; set; }
-        public ICollection<Donation> Donations { get; set; }
+        public virtual ICollection<IndexConsumption> IndexConsumptions { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
+        public  virtual ICollection<Donation> Donations { get; set; }
     }
 }
