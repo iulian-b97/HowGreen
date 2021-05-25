@@ -33,6 +33,9 @@ namespace Library.Server.Migrations
                     b.Property<string>("IndexConsumptionId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("SmallUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("hh")
                         .HasColumnType("int");
 
@@ -56,6 +59,8 @@ namespace Library.Server.Migrations
                     b.HasIndex("FinalConsumptionId");
 
                     b.HasIndex("IndexConsumptionId");
+
+                    b.HasIndex("SmallUserId");
 
                     b.ToTable("Appliances");
                 });
@@ -132,6 +137,9 @@ namespace Library.Server.Migrations
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
+                    b.Property<string>("SmallUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<float>("nrKw")
                         .HasColumnType("real");
 
@@ -140,6 +148,8 @@ namespace Library.Server.Migrations
                     b.HasIndex("IndexConsumptionId")
                         .IsUnique()
                         .HasFilter("[IndexConsumptionId] IS NOT NULL");
+
+                    b.HasIndex("SmallUserId");
 
                     b.ToTable("FinalConsumptions");
                 });
@@ -384,9 +394,15 @@ namespace Library.Server.Migrations
                         .WithMany("Appliances")
                         .HasForeignKey("IndexConsumptionId");
 
+                    b.HasOne("Library.Server.Entities.User.SmallUser", "SmallUser")
+                        .WithMany("Appliances")
+                        .HasForeignKey("SmallUserId");
+
                     b.Navigation("FinalConsumption");
 
                     b.Navigation("IndexConsumption");
+
+                    b.Navigation("SmallUser");
                 });
 
             modelBuilder.Entity("Library.Server.Entities.Consumption.EnergyLabelInput", b =>
@@ -413,7 +429,13 @@ namespace Library.Server.Migrations
                         .WithOne("FinalConsumption")
                         .HasForeignKey("Library.Server.Entities.Consumption.FinalConsumption", "IndexConsumptionId");
 
+                    b.HasOne("Library.Server.Entities.User.SmallUser", "SmallUser")
+                        .WithMany("FinalConsumptions")
+                        .HasForeignKey("SmallUserId");
+
                     b.Navigation("IndexConsumption");
+
+                    b.Navigation("SmallUser");
                 });
 
             modelBuilder.Entity("Library.Server.Entities.Consumption.IndexConsumption", b =>
@@ -550,7 +572,11 @@ namespace Library.Server.Migrations
 
             modelBuilder.Entity("Library.Server.Entities.User.SmallUser", b =>
                 {
+                    b.Navigation("Appliances");
+
                     b.Navigation("Donations");
+
+                    b.Navigation("FinalConsumptions");
 
                     b.Navigation("IndexConsumptions");
 

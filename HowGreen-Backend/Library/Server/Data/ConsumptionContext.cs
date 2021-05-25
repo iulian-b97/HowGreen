@@ -23,9 +23,33 @@ namespace Library.Server.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //PK
+            modelBuilder.Entity<IndexConsumption>()
+                .HasKey(x => x.Id);
+            modelBuilder.Entity<FinalConsumption>()
+                .HasKey(x => x.Id);
+            modelBuilder.Entity<Appliance>()
+                .HasKey(x => x.Id);
+            modelBuilder.Entity<EnergyLabelInput>()
+                .HasKey(x => x.Id);
+            modelBuilder.Entity<EnergyLabelOutput>()
+                .HasKey(x => x.Id);
+
             //SmallUser - IndexConsumption (one to many)
             modelBuilder.Entity<SmallUser>()
                 .HasMany(x => x.IndexConsumptions)
+                .WithOne(y => y.SmallUser)
+                .HasForeignKey(y => y.SmallUserId);
+
+            //SmallUser - Appliance (one to many)
+            modelBuilder.Entity<SmallUser>()
+                .HasMany(x => x.Appliances)
+                .WithOne(y => y.SmallUser)
+                .HasForeignKey(y => y.SmallUserId);
+
+            //SmallUser - FinalConsumption (one to many)
+            modelBuilder.Entity<SmallUser>()
+                .HasMany(x => x.FinalConsumptions)
                 .WithOne(y => y.SmallUser)
                 .HasForeignKey(y => y.SmallUserId);
 

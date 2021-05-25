@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Server.Services.Consumption;
 using Server.Services.User;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,7 @@ namespace Server
             );
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IApplianceRepository, ApplianceRepository>();
 
             services.AddDbContext<AuthenticationContext>
             (

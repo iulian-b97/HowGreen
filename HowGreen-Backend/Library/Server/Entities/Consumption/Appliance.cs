@@ -18,6 +18,8 @@ namespace Library.Server.Entities.Consumption
         public float kwMonth { get; set; }
         public float priceMonth { get; set; }
 
+        public virtual string SmallUserId { get; set; }
+        public virtual SmallUser SmallUser { get; set; }
         public virtual string IndexConsumptionId { get; set; }
         public virtual IndexConsumption IndexConsumption { get; set; }
         public virtual string FinalConsumptionId { get; set; }

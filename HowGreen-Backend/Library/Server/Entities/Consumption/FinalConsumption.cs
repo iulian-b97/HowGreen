@@ -14,7 +14,9 @@ namespace Library.Server.Entities.Consumption
         public float nrKw { get; set; }
         public float Price { get; set; }
 
-        public string IndexConsumptionId { get; set; }
+        public virtual string IndexConsumptionId { get; set; }
+        public virtual string SmallUserId { get; set; }
+        public virtual SmallUser SmallUser { get; set; }
         public virtual IndexConsumption IndexConsumption { get; set; }
         public virtual ICollection<Appliance> Appliances { get; set; }
         public virtual EnergyLabelInput EnergyLabelInput { get; set; }

@@ -2,6 +2,7 @@
 using Library.Server.Entities.Consumption;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Server.Services.Consumption;
 using Server.Services.User;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,13 @@ namespace Server.Controllers
     {
         private readonly ConsumptionContext _consumptionContext;
         private readonly IUserRepository _userRepository;
+        private readonly IApplianceRepository _applianceRepository;
 
-        public ConsumptionController(ConsumptionContext consumptionContext, IUserRepository userRepository)
+        public ConsumptionController(ConsumptionContext consumptionContext, IUserRepository userRepository, IApplianceRepository applianceRepository)
         {
             _consumptionContext = consumptionContext;
             _userRepository = userRepository;
+            _applianceRepository = applianceRepository;
         }
 
         [HttpPost]
@@ -47,13 +50,18 @@ namespace Server.Controllers
                 nrWatts = model.nrWatts,
                 hh = model.hh,
                 mm = model.mm,
-                priceKw = model.priceKw,
-                kwMonth = model.kwMonth,
-                priceMonth = model.priceMonth
+                priceKw = model.priceKw
             };
 
+            int hhTOmm = _applianceRepository.ConvertHHToMM(appliance.hh);
+            int total_mm = hhTOmm + appliance.mm;
+            int mmTOss = _applianceRepository.ConvertMMToSS(total_mm);
+            float wTokw = _applianceRepository.ConvertWattsToKw(appliance.nrWatts);
+            appliance.kwMonth = _applianceRepository.GetKwMonth(wTokw, mmTOss);
+            appliance.priceMonth = _applianceRepository.GetPriceMonth(appliance.kwMonth, appliance.priceKw);
+
             appliance.Id = Guid.NewGuid().ToString();
-            //appliance.SmallUserId = _userRepository.GetIdByName(UserName);
+            appliance.SmallUserId = _userRepository.GetIdByName(UserName);
             appliance.IndexConsumptionId = _userRepository.GetIdConsumptionByName(UserName);
 
             await _consumptionContext.Appliances.AddAsync(appliance);

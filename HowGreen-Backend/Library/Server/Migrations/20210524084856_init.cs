@@ -155,7 +155,8 @@ namespace Library.Server.Migrations
                     Data = table.Column<DateTime>(type: "datetime2", nullable: false),
                     nrKw = table.Column<float>(type: "real", nullable: false),
                     Price = table.Column<float>(type: "real", nullable: false),
-                    IndexConsumptionId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    IndexConsumptionId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    SmallUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -164,6 +165,12 @@ namespace Library.Server.Migrations
                         name: "FK_FinalConsumptions_IndexConsumptions_IndexConsumptionId",
                         column: x => x.IndexConsumptionId,
                         principalTable: "IndexConsumptions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_FinalConsumptions_SmallUser_SmallUserId",
+                        column: x => x.SmallUserId,
+                        principalTable: "SmallUser",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -251,6 +258,7 @@ namespace Library.Server.Migrations
                     priceKw = table.Column<float>(type: "real", nullable: false),
                     kwMonth = table.Column<float>(type: "real", nullable: false),
                     priceMonth = table.Column<float>(type: "real", nullable: false),
+                    SmallUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     IndexConsumptionId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     FinalConsumptionId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
@@ -267,6 +275,12 @@ namespace Library.Server.Migrations
                         name: "FK_Appliances_IndexConsumptions_IndexConsumptionId",
                         column: x => x.IndexConsumptionId,
                         principalTable: "IndexConsumptions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Appliances_SmallUser_SmallUserId",
+                        column: x => x.SmallUserId,
+                        principalTable: "SmallUser",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -357,6 +371,11 @@ namespace Library.Server.Migrations
                 column: "IndexConsumptionId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Appliances_SmallUserId",
+                table: "Appliances",
+                column: "SmallUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Donation_SmallUserId",
                 table: "Donation",
                 column: "SmallUserId");
@@ -381,6 +400,11 @@ namespace Library.Server.Migrations
                 column: "IndexConsumptionId",
                 unique: true,
                 filter: "[IndexConsumptionId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FinalConsumptions_SmallUserId",
+                table: "FinalConsumptions",
+                column: "SmallUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_IndexConsumptions_SmallUserId",
