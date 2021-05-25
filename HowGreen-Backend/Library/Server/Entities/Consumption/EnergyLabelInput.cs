@@ -14,8 +14,10 @@ namespace Library.Server.Entities.Consumption
         public int MP { get; set; }
         public string TypeHouse { get; set; }
 
-        public string FinalConsumptionId { get; set; }
+        public virtual string FinalConsumptionId { get; set; }
+        public virtual string SmallUserId { get; set; }
         public virtual FinalConsumption FinalConsumption { get; set; }
+        public virtual SmallUser SmallUser { get; set; }
         public virtual EnergyLabelOutput EnergyLabelOutput { get; set; }
     }
 }

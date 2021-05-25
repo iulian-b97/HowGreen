@@ -18,7 +18,11 @@ namespace Library.Server.Entities.Consumption
         public string TypeHouse { get; set; }
         public DateTime Data { get; set; }
 
+        public string SmallUserId { get; set; }
+        public string FinalConsumptionId { get; set; }
         public string EnergyLabelInputId { get; set; }
+        public virtual SmallUser SmallUser { get; set; }
         public virtual EnergyLabelInput EnergyLabelInput { get; set; }
+        public virtual FinalConsumption FinalConsumption { get; set; }
     }
 }

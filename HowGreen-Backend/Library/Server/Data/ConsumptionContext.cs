@@ -27,7 +27,7 @@ namespace Library.Server.Data
             modelBuilder.Entity<IndexConsumption>()
                 .HasKey(x => x.Id);
             modelBuilder.Entity<FinalConsumption>()
-                .HasKey(x => x.Id);
+                .HasKey(x => x.FinalConsumptionId);
             modelBuilder.Entity<Appliance>()
                 .HasKey(x => x.Id);
             modelBuilder.Entity<EnergyLabelInput>()
@@ -53,12 +53,23 @@ namespace Library.Server.Data
                 .WithOne(y => y.SmallUser)
                 .HasForeignKey(y => y.SmallUserId);
 
+            //SmallUser - EnergyLabelInput (one to many)
+            modelBuilder.Entity<SmallUser>()
+                .HasMany(x => x.EnergyLabelInputs)
+                .WithOne(y => y.SmallUser)
+                .HasForeignKey(y => y.SmallUserId);
+
+            //SmallUser - EnergyLabelOutput (one to many)
+            modelBuilder.Entity<SmallUser>()
+                .HasMany(x => x.EnergyLabelOutputs)
+                .WithOne(y => y.SmallUser)
+                .HasForeignKey(y => y.SmallUserId);
+
             //IndexConsumption - Appliance (one to many)
             modelBuilder.Entity<IndexConsumption>()
                 .HasMany(x => x.Appliances)
                 .WithOne(y => y.IndexConsumption)
                 .HasForeignKey(y => y.IndexConsumptionId);
-
 
             //FinalConsumption - Appliance (one to many)
             modelBuilder.Entity<FinalConsumption>()
@@ -71,6 +82,12 @@ namespace Library.Server.Data
                 .HasOne(x => x.EnergyLabelInput)
                 .WithOne(y => y.FinalConsumption)
                 .HasForeignKey<EnergyLabelInput>(y => y.FinalConsumptionId);
+
+            //FinalConsumption - EnergyLabelOutput (one to one)
+            modelBuilder.Entity<FinalConsumption>()
+                .HasOne(x => x.EnergyLabelOutput)
+                .WithOne(y => y.FinalConsumption)
+                .HasForeignKey<EnergyLabelOutput>(y => y.FinalConsumptionId);
 
             //EnergyLabelInput - EnergyLabelOutput (one to one)
             modelBuilder.Entity<EnergyLabelInput>()

@@ -41,5 +41,31 @@ namespace Server.Services.User
 
             return consumption.Id;
         }
+
+        public string GetIdFinalConsumptionByName(string UserName)
+        {
+            if (UserName == null)
+            {
+                return "";
+            }
+
+            var consumption = _consumptionContext.FinalConsumptions.OrderBy(r => r.SmallUser.UserName.Equals(UserName)).Last();
+
+            return consumption.FinalConsumptionId;
+        }
+
+        public string GetIdEnergyLabelInput(string FinalConsumptionId)
+        {
+            var consumption = _consumptionContext.EnergyLabelInputs.FirstOrDefault(x => x.FinalConsumptionId.Equals(FinalConsumptionId));
+
+            return consumption.Id;
+        }
+
+        public float GetTotalConsumptionByFinalId(string id)
+        {
+            var consumption = _consumptionContext.FinalConsumptions.FirstOrDefault(x => x.FinalConsumptionId.Equals(id));
+
+            return consumption.nrKw;
+        }
     }
 }

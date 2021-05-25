@@ -16,5 +16,12 @@ namespace Server.Services.Consumption
 
         public float GetTotalKw(List<Appliance> allAppliances);
         public float GetTotalPrice(List<Appliance> allAppliances);
+
+
+        public int GetMP(string EnergyLabelInputId);
+        public string GetHouseType(string EnergyLabelInputId);
+        public float GetKwMpa(float kwMonth, int mp);
+        public float GetIndex(float kwMpa);
+        public string GetEnergyLabel(float index);
     }
 }

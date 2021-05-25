@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.Server.Migrations
 {
     [DbContext(typeof(ConsumptionContext))]
-    [Migration("20210524084856_init")]
+    [Migration("20210525150752_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,6 +78,9 @@ namespace Library.Server.Migrations
                     b.Property<int>("MP")
                         .HasColumnType("int");
 
+                    b.Property<string>("SmallUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<float>("TotalConsumption")
                         .HasColumnType("real");
 
@@ -89,6 +92,8 @@ namespace Library.Server.Migrations
                     b.HasIndex("FinalConsumptionId")
                         .IsUnique()
                         .HasFilter("[FinalConsumptionId] IS NOT NULL");
+
+                    b.HasIndex("SmallUserId");
 
                     b.ToTable("EnergyLabelInputs");
                 });
@@ -107,8 +112,14 @@ namespace Library.Server.Migrations
                     b.Property<string>("EnergyLabelInputId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("FinalConsumptionId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<float>("Index")
                         .HasColumnType("real");
+
+                    b.Property<string>("SmallUserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("TypeHouse")
                         .HasColumnType("nvarchar(max)");
@@ -122,12 +133,18 @@ namespace Library.Server.Migrations
                         .IsUnique()
                         .HasFilter("[EnergyLabelInputId] IS NOT NULL");
 
+                    b.HasIndex("FinalConsumptionId")
+                        .IsUnique()
+                        .HasFilter("[FinalConsumptionId] IS NOT NULL");
+
+                    b.HasIndex("SmallUserId");
+
                     b.ToTable("EnergyLabelOutputs");
                 });
 
             modelBuilder.Entity("Library.Server.Entities.Consumption.FinalConsumption", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("FinalConsumptionId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("Data")
@@ -142,10 +159,15 @@ namespace Library.Server.Migrations
                     b.Property<string>("SmallUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<float>("nrKw")
                         .HasColumnType("real");
 
-                    b.HasKey("Id");
+                    b.HasKey("FinalConsumptionId");
 
                     b.HasIndex("IndexConsumptionId")
                         .IsUnique()
@@ -413,7 +435,13 @@ namespace Library.Server.Migrations
                         .WithOne("EnergyLabelInput")
                         .HasForeignKey("Library.Server.Entities.Consumption.EnergyLabelInput", "FinalConsumptionId");
 
+                    b.HasOne("Library.Server.Entities.User.SmallUser", "SmallUser")
+                        .WithMany("EnergyLabelInputs")
+                        .HasForeignKey("SmallUserId");
+
                     b.Navigation("FinalConsumption");
+
+                    b.Navigation("SmallUser");
                 });
 
             modelBuilder.Entity("Library.Server.Entities.Consumption.EnergyLabelOutput", b =>
@@ -422,7 +450,19 @@ namespace Library.Server.Migrations
                         .WithOne("EnergyLabelOutput")
                         .HasForeignKey("Library.Server.Entities.Consumption.EnergyLabelOutput", "EnergyLabelInputId");
 
+                    b.HasOne("Library.Server.Entities.Consumption.FinalConsumption", "FinalConsumption")
+                        .WithOne("EnergyLabelOutput")
+                        .HasForeignKey("Library.Server.Entities.Consumption.EnergyLabelOutput", "FinalConsumptionId");
+
+                    b.HasOne("Library.Server.Entities.User.SmallUser", "SmallUser")
+                        .WithMany("EnergyLabelOutputs")
+                        .HasForeignKey("SmallUserId");
+
                     b.Navigation("EnergyLabelInput");
+
+                    b.Navigation("FinalConsumption");
+
+                    b.Navigation("SmallUser");
                 });
 
             modelBuilder.Entity("Library.Server.Entities.Consumption.FinalConsumption", b =>
@@ -534,6 +574,8 @@ namespace Library.Server.Migrations
                     b.Navigation("Appliances");
 
                     b.Navigation("EnergyLabelInput");
+
+                    b.Navigation("EnergyLabelOutput");
                 });
 
             modelBuilder.Entity("Library.Server.Entities.Consumption.IndexConsumption", b =>
@@ -577,6 +619,10 @@ namespace Library.Server.Migrations
                     b.Navigation("Appliances");
 
                     b.Navigation("Donations");
+
+                    b.Navigation("EnergyLabelInputs");
+
+                    b.Navigation("EnergyLabelOutputs");
 
                     b.Navigation("FinalConsumptions");
 
