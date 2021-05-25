@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Server.Entities.Consumption;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,5 +13,8 @@ namespace Server.Services.Consumption
         public int ConvertMMToSS(int MM);
         public float GetKwMonth(float kW, int SS);
         public float GetPriceMonth(float kwMonth, float priceKw);
+
+        public float GetTotalKw(List<Appliance> allAppliances);
+        public float GetTotalPrice(List<Appliance> allAppliances);
     }
 }

@@ -72,18 +72,39 @@ namespace Server.Controllers
 
 
         [HttpPost]
-        [Route("AddConsumption")]
-        public async Task<ActionResult> AddConsumption(FinalConsumption model, string UserName)
+        [Route("AddFinalConsumption")]
+        public async Task<ActionResult> AddFinalConsumption(FinalConsumption model, string UserName)
         {
             var consumption = new FinalConsumption
             {
-                Data = model.Data,
-                nrKw = model.nrKw,
-                Price = model.Price
+                Data = model.Data
             };
 
+            consumption.Id = Guid.NewGuid().ToString();
             consumption.IndexConsumptionId = _userRepository.GetIdConsumptionByName(UserName);
-            //consumption.SmallUserId = _userRepository.GetIdByName(UserName);
+            consumption.SmallUserId = _userRepository.GetIdByName(UserName);
+
+            List<Appliance> allAppliances = new List<Appliance>();
+            allAppliances =  _consumptionContext.Appliances.Where(x => x.IndexConsumptionId.Equals(consumption.IndexConsumptionId)).ToList();
+            //var allKwMonths = allAppliances.Select(x => x.kwMonth).ToList();
+
+            float x = 0, y = 0;
+            
+            /*foreach (Appliance appliance in allAppliances)
+            {
+                if (appliance != null) 
+                 { 
+                     Console.WriteLine(); 
+                 }
+                 else //if ((appliance.SmallUserId.ToString().Equals(consumption.SmallUserId.ToString())) && (appliance.IndexConsumptionId.ToString().Equals(consumption.IndexConsumptionId.ToString())))
+                 { 
+                     x += appliance.kwMonth;
+                     y += appliance.priceMonth;
+                 }
+            }*/
+
+            consumption.nrKw = _applianceRepository.GetTotalKw(allAppliances);
+            consumption.Price = _applianceRepository.GetTotalPrice(allAppliances);
 
             await _consumptionContext.FinalConsumptions.AddAsync(consumption);
             await _consumptionContext.SaveChangesAsync();
