@@ -22,6 +22,17 @@ export class ConsumptionComponent implements OnInit {
     );
   }
 
+  addDistrict() {
+    this.consumptionService.addDistr(this.userName).subscribe(
+      (resp) => {
+          console.log(resp);
+      },
+      (error) => {
+          console.log(error.error);
+      }
+    );
+  }
+
   onSubmit() {
     this.consumptionService.addAppliance(this.userName).subscribe(
         (resp) => {

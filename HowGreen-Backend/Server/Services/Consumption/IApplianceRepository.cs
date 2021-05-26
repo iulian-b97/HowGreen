@@ -23,5 +23,7 @@ namespace Server.Services.Consumption
         public float GetKwMpa(float kwMonth, int mp);
         public float GetIndex(float kwMpa);
         public string GetEnergyLabel(float index);
+
+        public float GetPriceKw(string IndexConsumptionId);
     }
 }

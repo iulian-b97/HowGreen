@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.Server.Migrations
 {
     [DbContext(typeof(ConsumptionContext))]
-    [Migration("20210526100950_init")]
+    [Migration("20210526121147_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,9 +49,6 @@ namespace Library.Server.Migrations
 
                     b.Property<int>("nrWatts")
                         .HasColumnType("int");
-
-                    b.Property<float>("priceKw")
-                        .HasColumnType("real");
 
                     b.Property<float>("priceMonth")
                         .HasColumnType("real");
@@ -182,6 +179,9 @@ namespace Library.Server.Migrations
                 {
                     b.Property<string>("IndexConsumptionId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("District")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

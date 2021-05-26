@@ -14,7 +14,6 @@ namespace Library.Server.Entities.Consumption
         public int nrWatts { get; set; }
         public int hh { get; set; }
         public int mm { get; set; }
-        public float priceKw { get; set; }  
         public float kwMonth { get; set; }
         public float priceMonth { get; set; }
 

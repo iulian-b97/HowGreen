@@ -30,7 +30,11 @@ namespace Server.Controllers
         [Route("AddIndexConsumption")]
         public async Task<ActionResult> AddIndexConsumption(IndexConsumption model, string UserName)
         {
-            var consumption = new IndexConsumption();
+            var consumption = new IndexConsumption
+            {
+                District = model.District
+            };
+
             consumption.IndexConsumptionId = Guid.NewGuid().ToString();
             consumption.SmallUserId = _userRepository.GetIdByName(UserName);
 
@@ -50,7 +54,6 @@ namespace Server.Controllers
                 nrWatts = model.nrWatts,
                 hh = model.hh,
                 mm = model.mm,
-                priceKw = model.priceKw
             };
 
             int hhTOmm = _applianceRepository.ConvertHHToMM(appliance.hh);
@@ -58,11 +61,13 @@ namespace Server.Controllers
             int mmTOss = _applianceRepository.ConvertMMToSS(total_mm);
             float wTokw = _applianceRepository.ConvertWattsToKw(appliance.nrWatts);
             appliance.kwMonth = _applianceRepository.GetKwMonth(wTokw, mmTOss);
-            appliance.priceMonth = _applianceRepository.GetPriceMonth(appliance.kwMonth, appliance.priceKw);
 
             appliance.Id = Guid.NewGuid().ToString();
             appliance.SmallUserId = _userRepository.GetIdByName(UserName);
             appliance.IndexConsumptionId = _userRepository.GetIdConsumptionByName(UserName);
+
+            float priceKw = _applianceRepository.GetPriceKw(appliance.IndexConsumptionId);
+            appliance.priceMonth = _applianceRepository.GetPriceMonth(appliance.kwMonth, priceKw);
 
             await _consumptionContext.Appliances.AddAsync(appliance);
             await _consumptionContext.SaveChangesAsync();

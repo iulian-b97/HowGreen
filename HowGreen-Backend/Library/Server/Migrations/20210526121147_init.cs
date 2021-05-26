@@ -95,6 +95,7 @@ namespace Library.Server.Migrations
                     IndexConsumptionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    District = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SmallUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -259,7 +260,6 @@ namespace Library.Server.Migrations
                     nrWatts = table.Column<int>(type: "int", nullable: false),
                     hh = table.Column<int>(type: "int", nullable: false),
                     mm = table.Column<int>(type: "int", nullable: false),
-                    priceKw = table.Column<float>(type: "real", nullable: false),
                     kwMonth = table.Column<float>(type: "real", nullable: false),
                     priceMonth = table.Column<float>(type: "real", nullable: false),
                     SmallUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),

@@ -48,9 +48,6 @@ namespace Library.Server.Migrations
                     b.Property<int>("nrWatts")
                         .HasColumnType("int");
 
-                    b.Property<float>("priceKw")
-                        .HasColumnType("real");
-
                     b.Property<float>("priceMonth")
                         .HasColumnType("real");
 
@@ -180,6 +177,9 @@ namespace Library.Server.Migrations
                 {
                     b.Property<string>("IndexConsumptionId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("District")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

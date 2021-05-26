@@ -15,14 +15,31 @@ export class ConsumptionService {
 
   readonly BaseURI = 'http://localhost:51546/api';
 
+  districtModel = this.fb.group({
+    District :['']
+  });
 
   applianceModel = this.fb.group({
     ApplianceType :[''],
     nrWatts :[''],
     hh :[''],
-    mm :[''],
-    priceKw :['']
+    mm :['']
   });
+
+
+  addDistr(userName:any)
+  {
+    var body = {
+      District: this.districtModel.value.District
+    }
+
+    const params = new HttpParams()
+      .set('userName', userName.userName)
+
+    this.districtModel.reset();
+
+    return this.http.post(this.BaseURI+'/Consumption/AddIndexConsumption', body, {params});
+  }
 
   addAppliance(userName:any)
   {
@@ -30,8 +47,7 @@ export class ConsumptionService {
       ApplianceType: this.applianceModel.value.ApplianceType,
       nrWatts: this.applianceModel.value.nrWatts,
       hh: this.applianceModel.value.hh,
-      mm: this.applianceModel.value.mm,
-      priceKw: this.applianceModel.value.priceKw
+      mm: this.applianceModel.value.mm
     };
 
     const params = new HttpParams()

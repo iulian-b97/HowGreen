@@ -15,6 +15,7 @@ namespace Library.Server.Entities.Consumption
         public int Id { get; set; }
         [Key]
         public string IndexConsumptionId { get; set; }
+        public string District { get; set; }
 
         public string SmallUserId { get; set; }
         public virtual SmallUser SmallUser { get; set; }
