@@ -2,6 +2,8 @@ import { Variable } from '@angular/compiler/src/render3/r3_ast';
 import { Component, OnInit } from '@angular/core';
 import { ConsumptionService } from '../services/consumption.service';
 import { UserService } from '../services/user.service';
+import { Appliance } from 'src/app/consumption/Appliance';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-consumption',
@@ -11,6 +13,7 @@ import { UserService } from '../services/user.service';
 export class ConsumptionComponent implements OnInit {
 
   userName:any;
+  allAppliances: any[];
 
   constructor(public userService: UserService, public consumptionService: ConsumptionService) { }
 
@@ -42,5 +45,11 @@ export class ConsumptionComponent implements OnInit {
             console.log(error.error);
         }
     );
+  }
+
+  onSubmit2() {
+    this.consumptionService.getAppliances(this.userName).subscribe((resp: any) => {
+      this.allAppliances = resp;
+    });
   }
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 
@@ -56,6 +57,14 @@ export class ConsumptionService {
     this.applianceModel.reset();
 
     return this.http.post(this.BaseURI+'/Consumption/AddAppliance', body, {params});
+  }
+
+  getAppliances(userName:any): any
+  {
+    const params = new HttpParams()
+      .set('userName', userName.userName)
+
+      return this.http.get(this.BaseURI+'/Consumption/GetAllAppliances', {params});
   }
 }
 

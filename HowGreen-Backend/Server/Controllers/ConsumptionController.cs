@@ -150,5 +150,18 @@ namespace Server.Controllers
 
             return Ok(energyLabel);
         }
+
+
+        [HttpGet]
+        [Route("GetAllAppliances")]
+        public async Task<IActionResult> GetAllAppliances(string UserName)
+        {
+            ICollection<Appliance> allAppliances = new List<Appliance>();
+
+            string userId = _userRepository.GetIdByName(UserName);
+            allAppliances =  _consumptionContext.Appliances.Where(x => x.SmallUserId.Equals(userId)).OrderBy(x => x.ApplianceType).ToList();
+
+            return Ok(allAppliances);
+        }
     }
 }

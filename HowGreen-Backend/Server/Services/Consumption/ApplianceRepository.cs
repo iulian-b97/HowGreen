@@ -121,7 +121,10 @@ namespace Server.Services.Consumption
         public float GetKwMonth(float kW, int SS)
         {
             float rez = ((float)SS / 3600) * 30;
-            return (kW * rez);
+            float x = (kW * rez);
+            float xf = (float)Math.Round(x * 100f) / 100f;
+
+            return xf;
         }
 
         public float GetKwMpa(float kwMonth, int mp)
@@ -314,7 +317,10 @@ namespace Server.Services.Consumption
 
         public float GetPriceMonth(float kwMonth, float priceKw)
         {
-            return (kwMonth * priceKw);
+            float x = (kwMonth * priceKw);
+            float xf = (float)Math.Round(x * 100f) / 100f;
+
+            return xf;
         }
 
 

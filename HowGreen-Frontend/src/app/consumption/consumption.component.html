@@ -56,175 +56,52 @@
 
           <div class="form-row">
             <div class="form-group"> 
-              <button type="submit" style="margin-top: 35%; margin-left: -270%;" class="hero-btn" [disabled]="!consumptionService.applianceModel.valid">Calculeaza</button>
+              <button type="submit" (click)="onSubmit2()" style="margin-top: 35%; margin-left: -270%;" class="hero-btn" [disabled]="!consumptionService.applianceModel.valid">Calculeaza</button>
             </div>
           </div>
       </div>
-    </form>
-    <div class="cost-appliance">
-        <h1>Costul pe electrocasnic</h1>
-        <table class="total-table">
-            <tr>
-              <th>Tip Electrocasnic</th>
-              <th>Puterea (W)</th> 
-              <th>Timp Functionare</th>
-              <th>Pret Kw</th>
-              <th>Cost Ora</th>
-              <th>Cost Zi</th>
-              <th>Cost Luna</th>
-              <th>Cost An</th>
-            </tr>
-            <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-              </tr>
-              <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-              </tr>
-              <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-              </tr>
-              <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-              </tr>
-              <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-              </tr>
-              <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-              </tr>
-              <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-              </tr>
-              <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-              </tr>
-              <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-              </tr>
-              <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-              </tr>
-              <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-              </tr>
-            <tr>
-              <td>Eve</td>
-              <td>Jackson</td>
-              <td>94</td>
-              <td>50</td>
-              <td>50</td>
-              <td>50</td>
-              <td>50</td>
-              <td>50</td>
-            </tr>
-            <tr>
-              <td>John</td>
-              <td>Doe</td>
-              <td>80</td>
-              <td>50</td>
-              <td>50</td>
-              <td>50</td>
-              <td>50</td>
-              <td>50</td>
-            </tr>
-          </table>  
-          <h1>Costul total</h1>  
+    </form> 
+
+      <div class="cost-appliance">
+          <h1>Costul pe electrocasnic</h1>
           <table class="total-table">
-            <tr>
-              <th>Numar Electrocasnice</th>
-              <th>Cost Ora</th> 
-              <th>Cost Zi</th>
-              <th>Cost Luna</th>
-              <th>Cost An</th>
-              <th>Data</th>
-            </tr>
-            <tr>
-              <td>Jill</td>
-              <td>80</td>
-              <td>80</td>
-              <td>80</td>
-              <td>80</td>
-              <td>80</td>
-            </tr>
-          </table>                   
-    </div>
+              <tr>
+                <th>Tip Electrocasnic</th>
+                <th>Puterea (W)</th> 
+                <th>Timp Functionare / Zi</th>
+                <th>Consum kW / Luna</th>
+                <th>Cost Lei / Luna</th>
+              </tr>
+              <tr *ngFor="let item of allAppliances">
+                  <td>{{item.applianceType}}</td>
+                  <td>{{item.nrWatts}} W</td>
+                  <td>{{item.hh}}h {{item.mm}}m</td>
+                  <td>{{item.kwMonth}} kW</td>
+                  <td>{{item.priceMonth}} Lei</td>
+              </tr>
+            </table> 
+        </div>
+
+
+      <div class="cost-appliance">
+            <h1>Costul total</h1>  
+            <table class="total-table">
+              <tr>
+                <th>Numar <br>Electrocasnice</th>
+                <th>Consum kW / Luna</th>
+                <th>Cost Lei / Luna</th>
+                <th>Data</th>
+                <th>Lista <br>Electrocasnice</th>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>321.23 kW</td>
+                <td>542.53 Lei</td>
+                <td>12-05-2021</td>
+                <td><button class="hero-btn">Vezi Lista</button></td>
+              </tr>
+            </table>                   
+      </div>
 </section>
 
 <section class="list-appliances">
