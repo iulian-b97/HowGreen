@@ -92,12 +92,14 @@ namespace Library.Server.Migrations
                 name: "IndexConsumptions",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IndexConsumptionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     SmallUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IndexConsumptions", x => x.Id);
+                    table.PrimaryKey("PK_IndexConsumptions", x => x.IndexConsumptionId);
                     table.ForeignKey(
                         name: "FK_IndexConsumptions_SmallUser_SmallUserId",
                         column: x => x.SmallUserId,
@@ -152,7 +154,7 @@ namespace Library.Server.Migrations
                 columns: table => new
                 {
                     FinalConsumptionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Data = table.Column<DateTime>(type: "datetime2", nullable: false),
                     nrKw = table.Column<float>(type: "real", nullable: false),
@@ -167,7 +169,7 @@ namespace Library.Server.Migrations
                         name: "FK_FinalConsumptions_IndexConsumptions_IndexConsumptionId",
                         column: x => x.IndexConsumptionId,
                         principalTable: "IndexConsumptions",
-                        principalColumn: "Id",
+                        principalColumn: "IndexConsumptionId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_FinalConsumptions_SmallUser_SmallUserId",
@@ -277,7 +279,7 @@ namespace Library.Server.Migrations
                         name: "FK_Appliances_IndexConsumptions_IndexConsumptionId",
                         column: x => x.IndexConsumptionId,
                         principalTable: "IndexConsumptions",
-                        principalColumn: "Id",
+                        principalColumn: "IndexConsumptionId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Appliances_SmallUser_SmallUserId",

@@ -31,7 +31,7 @@ namespace Server.Controllers
         public async Task<ActionResult> AddIndexConsumption(IndexConsumption model, string UserName)
         {
             var consumption = new IndexConsumption();
-            consumption.Id = Guid.NewGuid().ToString();
+            consumption.IndexConsumptionId = Guid.NewGuid().ToString();
             consumption.SmallUserId = _userRepository.GetIdByName(UserName);
 
             await _consumptionContext.IndexConsumptions.AddAsync(consumption);

@@ -25,7 +25,7 @@ namespace Library.Server.Data
         {
             //PK
             modelBuilder.Entity<IndexConsumption>()
-                .HasKey(x => x.Id);
+                .HasKey(x => x.IndexConsumptionId);
             modelBuilder.Entity<FinalConsumption>()
                 .HasKey(x => x.FinalConsumptionId);
             modelBuilder.Entity<Appliance>()
@@ -70,6 +70,12 @@ namespace Library.Server.Data
                 .HasMany(x => x.Appliances)
                 .WithOne(y => y.IndexConsumption)
                 .HasForeignKey(y => y.IndexConsumptionId);
+
+            //IndexConsumption - FinalConsumption (one to one)
+            modelBuilder.Entity<IndexConsumption>()
+                .HasOne(x => x.FinalConsumption)
+                .WithOne(y => y.IndexConsumption)
+                .HasForeignKey<FinalConsumption>(y => y.IndexConsumptionId);
 
             //FinalConsumption - Appliance (one to many)
             modelBuilder.Entity<FinalConsumption>()

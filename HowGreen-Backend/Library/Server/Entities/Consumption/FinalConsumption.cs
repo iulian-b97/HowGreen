@@ -10,7 +10,7 @@ namespace Library.Server.Entities.Consumption
     public class FinalConsumption
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int Id { get; set; }
         [Key]
         public string FinalConsumptionId { get; set; }
         public DateTime Data { get; set; }

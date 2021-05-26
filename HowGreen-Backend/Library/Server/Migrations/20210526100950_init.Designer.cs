@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.Server.Migrations
 {
     [DbContext(typeof(ConsumptionContext))]
-    [Migration("20210525150752_init")]
+    [Migration("20210526100950_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -150,6 +150,11 @@ namespace Library.Server.Migrations
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<string>("IndexConsumptionId")
                         .HasColumnType("nvarchar(450)");
 
@@ -158,11 +163,6 @@ namespace Library.Server.Migrations
 
                     b.Property<string>("SmallUserId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<float>("nrKw")
                         .HasColumnType("real");
@@ -180,13 +180,18 @@ namespace Library.Server.Migrations
 
             modelBuilder.Entity("Library.Server.Entities.Consumption.IndexConsumption", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("IndexConsumptionId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("SmallUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IndexConsumptionId");
 
                     b.HasIndex("SmallUserId");
 
