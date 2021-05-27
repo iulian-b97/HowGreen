@@ -243,14 +243,24 @@
         Pe baza consumului obtinut cu ajutorul calculatorului aici aveti 
         ocazia<br> de a genera si eticheta energetica a locuintei dumneavoastra
     </p>
-    <div class="label-box">
-      <h1>Generare Eticheta</h1>
-      <hr style="background-color: white; height: 4px; margin-top: 3%;">
-      <input type="text" placeholder="Consum total (kW/An)">
-      <input type="text" placeholder="MP Locuibili">
-      <input type="text" placeholder="Tipul Locuintei">
-      <button class="hero-btn">Obtine Eticheta</button>
-    </div>
+    <form [formGroup]="consumptionService.inputLabelModel" autocomplete="off" (submit)="onSubmit4()">
+      <div class="label-box">
+        <h1>Generare Eticheta</h1>
+        <hr style="background-color: white; height: 4px; margin-top: 3%;">
+        <!--<input type="text" placeholder="Consum total (kW/An)">-->
+        <div class="form-group required">
+          <input class="form-control" formControlName="MP" type="text" placeholder="MP Locuibili">
+        </div>
+        <div class="form-group required">
+          <input class="form-control" formControlName="TypeHouse" type="text" placeholder="Tipul Locuintei">
+        </div>
+        <div class="form-row">
+          <div class="form-group" style="margin:auto">
+            <button class="hero-btn">Obtine Eticheta</button>
+          </div>
+        </div>
+      </div>
+    </form>
     <div class="label-box" style="margin-top: 5%; height: 80vh;">
       <h1>Eticheta Energetica</h1>
       <hr style="background-color: white; height: 4px; margin-top: 3%;">

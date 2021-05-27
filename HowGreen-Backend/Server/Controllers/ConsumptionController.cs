@@ -116,7 +116,7 @@ namespace Server.Controllers
             energyLabel.SmallUserId = _userRepository.GetIdByName(UserName);
             energyLabel.FinalConsumptionId = _userRepository.GetIdFinalConsumptionByName(UserName);
 
-            energyLabel.TotalConsumption = _userRepository.GetTotalConsumptionByFinalId(energyLabel.FinalConsumptionId);
+            energyLabel.TotalConsumption = (_userRepository.GetTotalConsumptionByFinalId(energyLabel.FinalConsumptionId) * 12);
 
             await _consumptionContext.EnergyLabelInputs.AddAsync(energyLabel);
             await _consumptionContext.SaveChangesAsync();

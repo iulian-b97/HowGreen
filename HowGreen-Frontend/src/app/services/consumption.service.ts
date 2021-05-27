@@ -27,6 +27,11 @@ export class ConsumptionService {
     mm :['']
   });
 
+  inputLabelModel = this.fb.group({
+    MP :[''],
+    TypeHouse :['']
+  })
+
 
   addDistr(userName:any)
   {
@@ -69,6 +74,21 @@ export class ConsumptionService {
       .set('userName', userName.userName)
 
       return this.http.post(this.BaseURI+'/Consumption/AddFinalConsumption', body, {params});
+  }
+
+  addEnergyLab(userName:any)
+  {
+    var body = {
+      MP: this.inputLabelModel.value.MM,
+      TypeHouse: this.inputLabelModel.value.TypeHouse
+    }
+
+    const params = new HttpParams()
+      .set('userName', userName.userName)
+
+    this.inputLabelModel.reset();
+
+    return this.http.post(this.BaseURI+'/Consumption/AddEnergyLabelInput', body, {params});
   }
 
   getAppliances(userName:any): any

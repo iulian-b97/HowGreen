@@ -299,7 +299,7 @@ table, th, td {
 }
 
 .label-box {
-    height: 50vh;
+    height: 39vh;
     width: 30%;
     background: rgb(36,34,0);
     background: linear-gradient(90deg, rgba(36,34,0,1) 0%, rgba(9,121,112,1) 35%, rgba(0,255,55,1) 100%);
