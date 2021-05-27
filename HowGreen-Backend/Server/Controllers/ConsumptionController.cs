@@ -89,6 +89,7 @@ namespace Server.Controllers
             consumption.IndexConsumptionId = _userRepository.GetIdConsumptionByName(UserName);
             consumption.SmallUserId = _userRepository.GetIdByName(UserName);
 
+            consumption.nrAppliances = _consumptionContext.Appliances.Where(x => x.SmallUserId.Equals(consumption.SmallUserId)).Count();
             List<Appliance> allAppliances = new List<Appliance>();
             allAppliances =  _consumptionContext.Appliances.Where(x => x.IndexConsumptionId.Equals(consumption.IndexConsumptionId)).ToList();
             consumption.nrKw = _applianceRepository.GetTotalKw(allAppliances);
@@ -162,6 +163,18 @@ namespace Server.Controllers
             allAppliances =  _consumptionContext.Appliances.Where(x => x.SmallUserId.Equals(userId)).OrderBy(x => x.ApplianceType).ToList();
 
             return Ok(allAppliances);
+        }
+
+        [HttpGet]
+        [Route("GetFinalConsumption")]
+        public async Task<IActionResult> GetFinalConsumption(string UserName)
+        {
+            FinalConsumption finalConsumption = new FinalConsumption();
+
+            string userId = _userRepository.GetIdByName(UserName);
+            finalConsumption = _consumptionContext.FinalConsumptions.FirstOrDefault(x => x.SmallUserId.Equals(userId));
+
+            return Ok(finalConsumption);
         }
     }
 }

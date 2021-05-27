@@ -14,6 +14,7 @@ export class ConsumptionComponent implements OnInit {
 
   userName:any;
   allAppliances: any[];
+  finalConsumption: any;
 
   constructor(public userService: UserService, public consumptionService: ConsumptionService) { }
 
@@ -52,4 +53,27 @@ export class ConsumptionComponent implements OnInit {
       this.allAppliances = resp;
     });
   }
+
+  addFinalConsumption()
+  {
+    this.consumptionService.addFinalCon(this.userName).subscribe(
+      (resp) => {
+          console.log(resp);
+      },
+      (error) => {
+          console.log(error.error);
+      }
+    );
+
+    this.consumptionService.getFinalCon(this.userName).subscribe((resp: any) => {
+      this.finalConsumption = resp;
+    });
+  }
+
+ /*onSubmit3() {
+    this.consumptionService.getFinalCon(this.userName).subscribe((resp: any) => {
+      this.finalConsumption = resp;
+    });
+  }*/
 }
+

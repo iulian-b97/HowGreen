@@ -59,12 +59,32 @@ export class ConsumptionService {
     return this.http.post(this.BaseURI+'/Consumption/AddAppliance', body, {params});
   }
 
+  addFinalCon(userName:any)
+  {
+    var body = {
+
+    };
+
+    const params = new HttpParams()
+      .set('userName', userName.userName)
+
+      return this.http.post(this.BaseURI+'/Consumption/AddFinalConsumption', body, {params});
+  }
+
   getAppliances(userName:any): any
   {
     const params = new HttpParams()
       .set('userName', userName.userName)
 
       return this.http.get(this.BaseURI+'/Consumption/GetAllAppliances', {params});
+  }
+
+  getFinalCon(userName:any): any
+  {
+    const params = new HttpParams()
+      .set('userName', userName.userName)
+
+      return this.http.get(this.BaseURI+'/Consumption/GetFinalConsumption', {params});
   }
 }
 

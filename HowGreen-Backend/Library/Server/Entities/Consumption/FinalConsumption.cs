@@ -13,6 +13,7 @@ namespace Library.Server.Entities.Consumption
         public int Id { get; set; }
         [Key]
         public string FinalConsumptionId { get; set; }
+        public int nrAppliances { get; set; }
         public DateTime Data { get; set; }
         public float nrKw { get; set; }
         public float Price { get; set; }

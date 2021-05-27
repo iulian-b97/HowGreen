@@ -85,6 +85,7 @@
 
       <div class="cost-appliance">
             <h1>Costul total</h1>  
+            <button type="submit" style="margin-bottom: 15px;" (click)="addFinalConsumption()" class="kwMonth-btn">Calculeaza consumul total</button> 
             <table class="total-table">
               <tr>
                 <th>Numar <br>Electrocasnice</th>
@@ -93,11 +94,11 @@
                 <th>Data</th>
                 <th>Lista <br>Electrocasnice</th>
               </tr>
-              <tr>
-                <td>10</td>
-                <td>321.23 kW</td>
-                <td>542.53 Lei</td>
-                <td>12-05-2021</td>
+              <tr *ngIf="finalConsumption">
+                <td>{{finalConsumption.nrAppliances | json}}</td>
+                <td>{{finalConsumption.nrKw | json}} Kw</td>
+                <td>{{finalConsumption.price | json}} Lei</td>
+                <td>27/05/2021</td>
                 <td><button class="hero-btn">Vezi Lista</button></td>
               </tr>
             </table>                   
