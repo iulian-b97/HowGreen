@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.Server.Migrations
 {
     [DbContext(typeof(ConsumptionContext))]
-    [Migration("20210527080027_update")]
-    partial class update
+    [Migration("20210602104422_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,38 +64,7 @@ namespace Library.Server.Migrations
                     b.ToTable("Appliances");
                 });
 
-            modelBuilder.Entity("Library.Server.Entities.Consumption.EnergyLabelInput", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("FinalConsumptionId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("MP")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SmallUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<float>("TotalConsumption")
-                        .HasColumnType("real");
-
-                    b.Property<string>("TypeHouse")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FinalConsumptionId")
-                        .IsUnique()
-                        .HasFilter("[FinalConsumptionId] IS NOT NULL");
-
-                    b.HasIndex("SmallUserId");
-
-                    b.ToTable("EnergyLabelInputs");
-                });
-
-            modelBuilder.Entity("Library.Server.Entities.Consumption.EnergyLabelOutput", b =>
+            modelBuilder.Entity("Library.Server.Entities.Consumption.EnergyLabel", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -106,29 +75,28 @@ namespace Library.Server.Migrations
                     b.Property<string>("EnergyClass")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EnergyLabelInputId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("FinalConsumptionId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("HouseType")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Index")
                         .HasColumnType("real");
 
+                    b.Property<int>("MP")
+                        .HasColumnType("int");
+
                     b.Property<string>("SmallUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("TypeHouse")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<float>("TotalConsumption")
+                        .HasColumnType("real");
 
                     b.Property<float>("kW_mpa")
                         .HasColumnType("real");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EnergyLabelInputId")
-                        .IsUnique()
-                        .HasFilter("[EnergyLabelInputId] IS NOT NULL");
 
                     b.HasIndex("FinalConsumptionId")
                         .IsUnique()
@@ -136,7 +104,7 @@ namespace Library.Server.Migrations
 
                     b.HasIndex("SmallUserId");
 
-                    b.ToTable("EnergyLabelOutputs");
+                    b.ToTable("EnergyLabels");
                 });
 
             modelBuilder.Entity("Library.Server.Entities.Consumption.FinalConsumption", b =>
@@ -437,36 +405,15 @@ namespace Library.Server.Migrations
                     b.Navigation("SmallUser");
                 });
 
-            modelBuilder.Entity("Library.Server.Entities.Consumption.EnergyLabelInput", b =>
+            modelBuilder.Entity("Library.Server.Entities.Consumption.EnergyLabel", b =>
                 {
                     b.HasOne("Library.Server.Entities.Consumption.FinalConsumption", "FinalConsumption")
-                        .WithOne("EnergyLabelInput")
-                        .HasForeignKey("Library.Server.Entities.Consumption.EnergyLabelInput", "FinalConsumptionId");
+                        .WithOne("EnergyLabel")
+                        .HasForeignKey("Library.Server.Entities.Consumption.EnergyLabel", "FinalConsumptionId");
 
                     b.HasOne("Library.Server.Entities.User.SmallUser", "SmallUser")
-                        .WithMany("EnergyLabelInputs")
+                        .WithMany("EnergyLabels")
                         .HasForeignKey("SmallUserId");
-
-                    b.Navigation("FinalConsumption");
-
-                    b.Navigation("SmallUser");
-                });
-
-            modelBuilder.Entity("Library.Server.Entities.Consumption.EnergyLabelOutput", b =>
-                {
-                    b.HasOne("Library.Server.Entities.Consumption.EnergyLabelInput", "EnergyLabelInput")
-                        .WithOne("EnergyLabelOutput")
-                        .HasForeignKey("Library.Server.Entities.Consumption.EnergyLabelOutput", "EnergyLabelInputId");
-
-                    b.HasOne("Library.Server.Entities.Consumption.FinalConsumption", "FinalConsumption")
-                        .WithOne("EnergyLabelOutput")
-                        .HasForeignKey("Library.Server.Entities.Consumption.EnergyLabelOutput", "FinalConsumptionId");
-
-                    b.HasOne("Library.Server.Entities.User.SmallUser", "SmallUser")
-                        .WithMany("EnergyLabelOutputs")
-                        .HasForeignKey("SmallUserId");
-
-                    b.Navigation("EnergyLabelInput");
 
                     b.Navigation("FinalConsumption");
 
@@ -572,18 +519,11 @@ namespace Library.Server.Migrations
                     b.Navigation("Pay");
                 });
 
-            modelBuilder.Entity("Library.Server.Entities.Consumption.EnergyLabelInput", b =>
-                {
-                    b.Navigation("EnergyLabelOutput");
-                });
-
             modelBuilder.Entity("Library.Server.Entities.Consumption.FinalConsumption", b =>
                 {
                     b.Navigation("Appliances");
 
-                    b.Navigation("EnergyLabelInput");
-
-                    b.Navigation("EnergyLabelOutput");
+                    b.Navigation("EnergyLabel");
                 });
 
             modelBuilder.Entity("Library.Server.Entities.Consumption.IndexConsumption", b =>
@@ -628,9 +568,7 @@ namespace Library.Server.Migrations
 
                     b.Navigation("Donations");
 
-                    b.Navigation("EnergyLabelInputs");
-
-                    b.Navigation("EnergyLabelOutputs");
+                    b.Navigation("EnergyLabels");
 
                     b.Navigation("FinalConsumptions");
 

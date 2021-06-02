@@ -77,14 +77,23 @@ export class ConsumptionComponent implements OnInit {
   }*/
 
   onSubmit4() {
-    this.consumptionService.addEnergyLab(this.userName).subscribe(
+    this.consumptionService.addEnergyLabelIn(this.userName).subscribe(
       (resp) => {
           console.log(resp);
       },
       (error) => {
           console.log(error.error);
       }
-  );
+    );
+
+    this.consumptionService.addEnergyLabelOut(this.userName).subscribe(
+      (resp) => {
+          console.log(resp);
+      },
+      (error) => {
+          console.log(error.error);
+      }
+    );
   }
 }
 

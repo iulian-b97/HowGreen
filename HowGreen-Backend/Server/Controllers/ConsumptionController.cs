@@ -103,13 +103,14 @@ namespace Server.Controllers
 
         
         [HttpPost]
-        [Route("AddEnergyLabelInput")]
-        public async Task<IActionResult> AddEnergyLabelInput(EnergyLabelInput model, string UserName)
+        [Route("AddEnergyLabel")]
+        public async Task<IActionResult> AddEnergyLabel(EnergyLabel model, string UserName)
         {
-            EnergyLabelInput energyLabel = new EnergyLabelInput
+            EnergyLabel energyLabel = new EnergyLabel
             {
                 MP = model.MP,
-                TypeHouse = model.TypeHouse
+                HouseType = model.HouseType,
+                Data = model.Data
             };
 
             energyLabel.Id = Guid.NewGuid().ToString();
@@ -118,35 +119,11 @@ namespace Server.Controllers
 
             energyLabel.TotalConsumption = (_userRepository.GetTotalConsumptionByFinalId(energyLabel.FinalConsumptionId) * 12);
 
-            await _consumptionContext.EnergyLabelInputs.AddAsync(energyLabel);
-            await _consumptionContext.SaveChangesAsync();
-
-            return Ok(energyLabel);
-        }
-
-
-        [HttpPost]
-        [Route("AddEnergyLabelOutput")]
-        public async Task<IActionResult> AddEnergyLabelOutput(EnergyLabelOutput model, string UserName)
-        {
-            EnergyLabelOutput energyLabel = new EnergyLabelOutput 
-            {
-                Data = model.Data
-            };
-
-            energyLabel.Id = Guid.NewGuid().ToString();
-            energyLabel.SmallUserId = _userRepository.GetIdByName(UserName);
-            energyLabel.FinalConsumptionId = _userRepository.GetIdFinalConsumptionByName(UserName);
-            energyLabel.EnergyLabelInputId = _userRepository.GetIdEnergyLabelInput(energyLabel.FinalConsumptionId);
-
-            int MP = _applianceRepository.GetMP(energyLabel.EnergyLabelInputId);
-            float consumptionMonth = _userRepository.GetTotalConsumptionByFinalId(energyLabel.FinalConsumptionId);
-            energyLabel.TypeHouse = _applianceRepository.GetHouseType(energyLabel.EnergyLabelInputId);
-            energyLabel.kW_mpa = _applianceRepository.GetKwMpa(consumptionMonth, MP);
-            energyLabel.Index = _applianceRepository.GetIndex(energyLabel.kW_mpa);
+            energyLabel.kW_mpa = (float)_applianceRepository.GetKwMpa(energyLabel.TotalConsumption, energyLabel.MP);
+            energyLabel.Index = (float)_applianceRepository.GetIndex(energyLabel.kW_mpa);
             energyLabel.EnergyClass = _applianceRepository.GetEnergyLabel(energyLabel.Index);
-            
-            await _consumptionContext.EnergyLabelOutputs.AddAsync(energyLabel);
+
+            await _consumptionContext.EnergyLabels.AddAsync(energyLabel);
             await _consumptionContext.SaveChangesAsync();
 
             return Ok(energyLabel);
@@ -175,6 +152,18 @@ namespace Server.Controllers
             finalConsumption = _consumptionContext.FinalConsumptions.FirstOrDefault(x => x.SmallUserId.Equals(userId));
 
             return Ok(finalConsumption);
+        }
+
+        [HttpGet]
+        [Route("GetEnergyLabel")]
+        public async Task<IActionResult> GetEnergyLabel(string UserName)
+        {
+            EnergyLabel energyLabel = new EnergyLabel();
+
+            string userId = _userRepository.GetIdByName(UserName);
+            energyLabel = _consumptionContext.EnergyLabels.FirstOrDefault(x => x.SmallUserId.Equals(userId));
+
+            return Ok(energyLabel);
         }
     }
 }

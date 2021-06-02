@@ -23,7 +23,6 @@ namespace Library.Server.Entities.Consumption
         public virtual SmallUser SmallUser { get; set; }
         public virtual IndexConsumption IndexConsumption { get; set; }
         public virtual ICollection<Appliance> Appliances { get; set; }
-        public virtual EnergyLabelInput EnergyLabelInput { get; set; }
-        public virtual EnergyLabelOutput EnergyLabelOutput { get; set; }
+        public virtual EnergyLabel EnergyLabel { get; set; }
     }
 }

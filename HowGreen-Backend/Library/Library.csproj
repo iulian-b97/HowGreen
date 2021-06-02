@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="IdentityServer\Migrations\" />
-    <Folder Include="Server\Models\" />
   </ItemGroup>
 
   <ItemGroup>

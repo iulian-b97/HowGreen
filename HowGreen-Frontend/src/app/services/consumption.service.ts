@@ -76,7 +76,7 @@ export class ConsumptionService {
       return this.http.post(this.BaseURI+'/Consumption/AddFinalConsumption', body, {params});
   }
 
-  addEnergyLab(userName:any)
+  addEnergyLabelIn(userName:any)
   {
     var body = {
       MP: this.inputLabelModel.value.MM,
@@ -89,6 +89,18 @@ export class ConsumptionService {
     this.inputLabelModel.reset();
 
     return this.http.post(this.BaseURI+'/Consumption/AddEnergyLabelInput', body, {params});
+  }
+
+  addEnergyLabelOut(userName:any)
+  {
+    var body = {
+
+    }
+
+    const params = new HttpParams()
+      .set('userName', userName.userName)
+
+    return this.http.post(this.BaseURI+'/Consumption/AddEnergyLabelOutput', body, {params});
   }
 
   getAppliances(userName:any): any

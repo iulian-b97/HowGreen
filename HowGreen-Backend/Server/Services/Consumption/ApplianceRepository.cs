@@ -71,13 +71,6 @@ namespace Server.Services.Consumption
             }
         }
 
-        public string GetHouseType(string EnergyLabelInputId)
-        {
-            var consumption = _consumptionContext.EnergyLabelInputs.FirstOrDefault(x => x.Id.Equals(EnergyLabelInputId));
-
-            return consumption.TypeHouse;
-        }
-
         public float GetIndex(float kwMpa)
         {
             if(kwMpa <= 10)
@@ -127,14 +120,15 @@ namespace Server.Services.Consumption
             return xf;
         }
 
-        public float GetKwMpa(float kwMonth, int mp)
+        public float GetKwMpa(float kwYear, int mp)
         {
-            return (kwMonth * 12) / (float)mp;
+            return (kwYear) / (float)mp;
         }
 
-        public int GetMP(string EnergyLabelInputId)
+        
+        public int GetMP(string EnergyLabelId)
         {
-            var consumption = _consumptionContext.EnergyLabelInputs.FirstOrDefault(x => x.Id.Equals(EnergyLabelInputId));
+            var consumption = _consumptionContext.EnergyLabels.FirstOrDefault(x => x.Id.Equals(EnergyLabelId));
 
             return consumption.MP;
         }

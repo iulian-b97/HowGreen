@@ -43,6 +43,7 @@ namespace Server.Services.User
             return consumption.IndexConsumptionId;
         }
 
+
         public string GetIdFinalConsumptionByName(string UserName)
         {
             if (UserName == null)
@@ -55,9 +56,10 @@ namespace Server.Services.User
             return consumption.FinalConsumptionId;
         }
 
+        
         public string GetIdEnergyLabelInput(string FinalConsumptionId)
         {
-            var consumption = _consumptionContext.EnergyLabelInputs.FirstOrDefault(x => x.FinalConsumptionId.Equals(FinalConsumptionId));
+            var consumption = _consumptionContext.EnergyLabels.FirstOrDefault(x => x.FinalConsumptionId.Equals(FinalConsumptionId));
 
             return consumption.Id;
         }

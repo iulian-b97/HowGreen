@@ -16,8 +16,7 @@ namespace Library.Server.Data
 
         public DbSet<Appliance> Appliances { get; set; }
         public DbSet<FinalConsumption> FinalConsumptions { get; set; }
-        public DbSet<EnergyLabelInput> EnergyLabelInputs { get; set; }
-        public DbSet<EnergyLabelOutput> EnergyLabelOutputs { get; set; }
+        public DbSet<EnergyLabel> EnergyLabels { get; set; }
         public DbSet<IndexConsumption> IndexConsumptions { get; set; }
 
 
@@ -30,9 +29,7 @@ namespace Library.Server.Data
                 .HasKey(x => x.FinalConsumptionId);
             modelBuilder.Entity<Appliance>()
                 .HasKey(x => x.Id);
-            modelBuilder.Entity<EnergyLabelInput>()
-                .HasKey(x => x.Id);
-            modelBuilder.Entity<EnergyLabelOutput>()
+            modelBuilder.Entity<EnergyLabel>()
                 .HasKey(x => x.Id);
 
             //SmallUser - IndexConsumption (one to many)
@@ -53,15 +50,9 @@ namespace Library.Server.Data
                 .WithOne(y => y.SmallUser)
                 .HasForeignKey(y => y.SmallUserId);
 
-            //SmallUser - EnergyLabelInput (one to many)
+            //SmallUser - EnergyLabel (one to many)
             modelBuilder.Entity<SmallUser>()
-                .HasMany(x => x.EnergyLabelInputs)
-                .WithOne(y => y.SmallUser)
-                .HasForeignKey(y => y.SmallUserId);
-
-            //SmallUser - EnergyLabelOutput (one to many)
-            modelBuilder.Entity<SmallUser>()
-                .HasMany(x => x.EnergyLabelOutputs)
+                .HasMany(x => x.EnergyLabels)
                 .WithOne(y => y.SmallUser)
                 .HasForeignKey(y => y.SmallUserId);
 
@@ -83,23 +74,11 @@ namespace Library.Server.Data
                 .WithOne(y => y.FinalConsumption)
                 .HasForeignKey(y => y.FinalConsumptionId);
 
-            //FinalConsumption - EnergyLabelInput (one to one)
+            //FinalConsumption - EnergyLabel(one to one)
             modelBuilder.Entity<FinalConsumption>()
-                .HasOne(x => x.EnergyLabelInput)
+                .HasOne(x => x.EnergyLabel)
                 .WithOne(y => y.FinalConsumption)
-                .HasForeignKey<EnergyLabelInput>(y => y.FinalConsumptionId);
-
-            //FinalConsumption - EnergyLabelOutput (one to one)
-            modelBuilder.Entity<FinalConsumption>()
-                .HasOne(x => x.EnergyLabelOutput)
-                .WithOne(y => y.FinalConsumption)
-                .HasForeignKey<EnergyLabelOutput>(y => y.FinalConsumptionId);
-
-            //EnergyLabelInput - EnergyLabelOutput (one to one)
-            modelBuilder.Entity<EnergyLabelInput>()
-                .HasOne(x => x.EnergyLabelOutput)
-                .WithOne(y => y.EnergyLabelInput)
-                .HasForeignKey<EnergyLabelOutput>(y => y.EnergyLabelInputId);
+                .HasForeignKey<EnergyLabel>(y => y.FinalConsumptionId);
         }
     }
 }
