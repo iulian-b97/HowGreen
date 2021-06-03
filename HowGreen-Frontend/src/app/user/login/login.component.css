@@ -2,8 +2,8 @@
     width: 50%;
     margin: auto;
     text-align: center;
-    background: rgb(36,34,0);
-    background: linear-gradient(90deg, rgba(36,34,0,1) 0%, rgba(9,121,112,1) 35%, rgba(0,255,55,1) 100%);
+    background: rgb(138,180,141);
+    background: linear-gradient(45deg, rgb(120, 219, 126) 0%, rgba(11, 73, 27, 0.75) 49%, rgb(85, 202, 106) 95%);
     margin-bottom: 50px;
     border: 1px solid dimgray;
     border-bottom-right-radius: 10px;

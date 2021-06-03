@@ -29,7 +29,7 @@ export class ConsumptionService {
 
   inputLabelModel = this.fb.group({
     MP :[''],
-    TypeHouse :['']
+    HouseType :['']
   })
 
 
@@ -76,11 +76,11 @@ export class ConsumptionService {
       return this.http.post(this.BaseURI+'/Consumption/AddFinalConsumption', body, {params});
   }
 
-  addEnergyLabelIn(userName:any)
+  addEnergyLabel(userName:any)
   {
     var body = {
-      MP: this.inputLabelModel.value.MM,
-      TypeHouse: this.inputLabelModel.value.TypeHouse
+      MP: this.inputLabelModel.value.MP,
+      HouseType: this.inputLabelModel.value.HouseType
     }
 
     const params = new HttpParams()
@@ -88,20 +88,9 @@ export class ConsumptionService {
 
     this.inputLabelModel.reset();
 
-    return this.http.post(this.BaseURI+'/Consumption/AddEnergyLabelInput', body, {params});
+    return this.http.post(this.BaseURI+'/Consumption/AddEnergyLabel', body, {params});
   }
 
-  addEnergyLabelOut(userName:any)
-  {
-    var body = {
-
-    }
-
-    const params = new HttpParams()
-      .set('userName', userName.userName)
-
-    return this.http.post(this.BaseURI+'/Consumption/AddEnergyLabelOutput', body, {params});
-  }
 
   getAppliances(userName:any): any
   {
@@ -117,6 +106,14 @@ export class ConsumptionService {
       .set('userName', userName.userName)
 
       return this.http.get(this.BaseURI+'/Consumption/GetFinalConsumption', {params});
+  }
+
+  getEnergyLab(userName:any): any
+  {
+    const params = new HttpParams()
+      .set('userName', userName.userName)
+
+      return this.http.get(this.BaseURI+'/Consumption/GetEnergyLabel', {params});
   }
 }
 

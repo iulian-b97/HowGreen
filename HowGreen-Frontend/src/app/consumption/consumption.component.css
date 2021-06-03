@@ -82,8 +82,8 @@ table, th, td {
 }
 
 .computer p {
-    color: #777;
-    font-size: 14px;
+    color: black;
+    font-size: 16px;
     font-weight: 300;
     line-height: 22px;
     padding: 10px;
@@ -110,10 +110,10 @@ table, th, td {
 }
 
 .district-box {
-    height: 28vh;
+    height: 25vh;
     width: 30%;
-    background: rgb(36,34,0);
-    background: linear-gradient(90deg, rgba(36,34,0,1) 0%, rgba(9,121,112,1) 35%, rgba(0,255,55,1) 100%);
+    background: rgb(138,180,141);
+    background: linear-gradient(45deg, rgb(120, 219, 126) 0%, rgba(11, 73, 27, 0.75) 49%, rgb(85, 202, 106) 95%);
     padding-bottom: 20px;
     margin: auto;
     border: 1px solid black;
@@ -142,8 +142,8 @@ table, th, td {
 .computer-box {
     height: 45vh;
     width: 30%;
-    background: rgb(142,200,140);
-background: linear-gradient(90deg, rgba(142,200,140,1) 0%, rgba(0,145,95,1) 100%);
+    background: rgb(138,180,141);
+    background: linear-gradient(45deg, rgb(120, 219, 126) 0%, rgba(11, 73, 27, 0.75) 49%, rgb(85, 202, 106) 95%);
     padding-bottom: 20px;
     margin: auto;
     border: 1px solid black;
@@ -188,8 +188,8 @@ background: linear-gradient(90deg, rgba(142,200,140,1) 0%, rgba(0,145,95,1) 100%
 
 .total-table {
     width: 80%;
-    background: rgb(36,34,0);
-    background: linear-gradient(90deg, rgba(36,34,0,1) 0%, rgba(9,121,112,1) 35%, rgba(0,255,55,1) 100%);
+    background: rgb(138,180,141);
+    background: linear-gradient(45deg, rgb(120, 219, 126) 0%, rgba(11, 73, 27, 0.75) 49%, rgb(85, 202, 106) 95%);
     color: #fff;
     border-radius: 10px;
     margin-top: 3%;
@@ -231,8 +231,8 @@ background: linear-gradient(90deg, rgba(142,200,140,1) 0%, rgba(0,145,95,1) 100%
 }
 
 .list-appliances p {
-    color: #777;
-    font-size: 14px;
+    color: black;
+    font-size: 16px;
     font-weight: 300;
     line-height: 22px;
     padding: 10px;
@@ -243,8 +243,8 @@ background: linear-gradient(90deg, rgba(142,200,140,1) 0%, rgba(0,145,95,1) 100%
     width: 80%;
     margin: auto;
     margin-top: 5%;
-    background: rgb(36,34,0);
-    background: linear-gradient(90deg, rgba(36,34,0,1) 0%, rgba(9,121,112,1) 35%, rgba(0,255,55,1) 100%);
+    background: rgb(138,180,141);
+    background: linear-gradient(45deg, rgb(120, 219, 126) 0%, rgba(11, 73, 27, 0.75) 49%, rgb(85, 202, 106) 95%);
     color: #fff;
     border: 1px solid #777;
     border-radius: 10px;
@@ -264,8 +264,8 @@ background: linear-gradient(90deg, rgba(142,200,140,1) 0%, rgba(0,145,95,1) 100%
 }
 
 .label-classification p {
-    color: #777;
-    font-size: 14px;
+    color: black;
+    font-size: 16px;
     font-weight: 300;
     line-height: 22px;
     padding: 10px;
@@ -290,19 +290,18 @@ background: linear-gradient(90deg, rgba(142,200,140,1) 0%, rgba(0,145,95,1) 100%
 }
 
 .generate-label p {
-    color: #777;
-    font-size: 14px;
+    color: black;
+    font-size: 16px;
     font-weight: 300;
     line-height: 22px;
     padding: 10px;
-    padding-bottom: 50px;
 }
 
 .label-box {
-    height: 39vh;
+    height: 35vh;
     width: 30%;
-    background: rgb(36,34,0);
-    background: linear-gradient(90deg, rgba(36,34,0,1) 0%, rgba(9,121,112,1) 35%, rgba(0,255,55,1) 100%);
+    background: rgb(138,180,141);
+    background: linear-gradient(45deg, rgb(120, 219, 126) 0%, rgba(11, 73, 27, 0.75) 49%, rgb(85, 202, 106) 95%);
     padding-bottom: 20px;
     margin: auto;
     border: 1px solid black;
@@ -357,8 +356,8 @@ background: linear-gradient(90deg, rgba(142,200,140,1) 0%, rgba(0,145,95,1) 100%
 }
 
 .save-energy p {
-    color: #777;
-    font-size: 14px;
+    color: black;
+    font-size: 16px;
     font-weight: 300;
     line-height: 22px;
     padding: 10px;
@@ -397,8 +396,8 @@ background: linear-gradient(90deg, rgba(142,200,140,1) 0%, rgba(0,145,95,1) 100%
 }
 
 .energy-class p {
-    color: #777;
-    font-size: 14px;
+    color: black;
+    font-size: 16px;
     font-weight: 300;
     line-height: 22px;
     padding: 10px;

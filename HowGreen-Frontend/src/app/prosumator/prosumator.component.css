@@ -76,8 +76,8 @@ table, th, td {
 }
 
 .prosumator p {
-    color: #777;
-    font-size: 14px;
+    color: black;
+    font-size: 16px;
     font-weight: 300;
     line-height: 22px;
     padding: 10px;
@@ -123,8 +123,8 @@ table, th, td {
 }
 
 .green-energy p {
-    color: #777;
-    font-size: 14px;
+    color: black;
+    font-size: 16px;
     font-weight: 300;
     line-height: 22px;
     padding: 10px;
@@ -170,8 +170,8 @@ table, th, td {
 }
 
 .provider p {
-    color: #777;
-    font-size: 14px;
+    color: black;
+    font-size: 16px;
     font-weight: 300;
     line-height: 22px;
     padding: 10px;
@@ -179,8 +179,8 @@ table, th, td {
 
 .provider-table {
     width: 80%;
-    background: rgb(36,34,0);
-    background: linear-gradient(90deg, rgba(36,34,0,1) 0%, rgba(9,121,112,1) 35%, rgba(0,255,55,1) 100%);
+    background: rgb(138,180,141);
+    background: linear-gradient(45deg, rgb(120, 219, 126) 0%, rgba(11, 73, 27, 0.75) 49%, rgb(85, 202, 106) 95%);
     color: #fff;
     border-radius: 10px;
     margin-top: 3%;

@@ -52,8 +52,8 @@
 }
 
 .data p {
-    color: #777;
-    font-size: 14px;
+    color: black;
+    font-size: 16px;
     font-weight: 300;
     line-height: 22px;
     padding: 10px;
@@ -101,8 +101,8 @@ h3 {
 }
 
 .message p {
-    color: #777;
-    font-size: 14px;
+    color: black;
+    font-size: 16px;
     font-weight: 300;
     line-height: 22px;
     padding: 10px;

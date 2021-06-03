@@ -33,7 +33,7 @@ namespace Server.Services.Consumption
 
         public string GetEnergyLabel(float index)
         {
-            if (index == 0.55)
+            if (index == 0.55f)
             {
                 return "A++";
             }
@@ -61,7 +61,7 @@ namespace Server.Services.Consumption
             {
                 return "E";
             }
-            else if (index == 4.00)
+            else if (index == 4.00f)
             {
                 return "F";
             }

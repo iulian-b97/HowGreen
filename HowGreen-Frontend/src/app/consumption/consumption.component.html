@@ -19,12 +19,12 @@
         Foloseste calculatorul pentru a afla costul estimativ<br>
         a facturii tale de energie electrica
     </h1>
-    <p>
+    <p style="margin-top: -1%;">
         Utilizatorul trebuie sa introduca datele cerute mai jos <br>
         pentru a putea utiliza calculatorul
     </p>
     <form [formGroup]="consumptionService.districtModel" autocomplete="off" (submit)="addDistrict()">
-      <div class="district-box">
+      <div class="district-box" style="margin-top: 35px;">
         <h1>Locatia ta</h1>
         <hr style="background-color: white; height: 4px; margin-top: -2%;">
         <div class="form-group required">
@@ -56,7 +56,7 @@
 
           <div class="form-row">
             <div class="form-group"> 
-              <button type="submit" (click)="onSubmit2()" style="margin-top: 45%; margin-left: -300%;" class="hero-btn" [disabled]="!consumptionService.applianceModel.valid">Calculeaza</button>
+              <button type="submit" (click)="onSubmit2()" style="margin-top: 35%; margin-left: -280%;" class="hero-btn" [disabled]="!consumptionService.applianceModel.valid">Calculeaza</button>
             </div>
           </div>
       </div>
@@ -105,7 +105,7 @@
       </div>
 </section>
 
-<section class="list-appliances">
+<section class="list-appliances" style="margin-top: 100px;">
     <h1>
         Vizualizeaza lista electrocasnicelor care au un <br>consum 
         mediu de energie electrica
@@ -114,7 +114,7 @@
         Mai jos puteti vedea lista celor mai intalnite electrocasnice<br>
         care au un consum mediu de energie electrica
     </p>
-    <table class="appliances-table">
+    <table class="appliances-table" style="margin-top: 35px;">
         <tr>
           <th>Tip Electrocasnic</th>
           <th>Putere (W)</th>
@@ -148,7 +148,7 @@
     </table>
 </section>
 
-<section class="label-classification">
+<section class="label-classification" style="margin-top: 100px;">
     <h1>
         Ce este o eticheta energetica si cum<br> este clasificata aceasta
     </h1>
@@ -159,10 +159,10 @@
     </p>
     <br>
     <span>In aceasta imagine avem consumul unei locuinte in kW pe metru patrat anual si indexul de eficienta.</span>
-    <img src="./assets/images/energy_label_classification.png">
+    <img src="./assets/images/energy_label_classification.png" style="border-radius: 10px; margin-top: 50px; height: 500px;">
 </section>
 
-<section class="generate-label">
+<section class="generate-label" style="margin-top: 100px;">
     <h1>    
         Generarea etichetei tale energetice in functie de<br> consumul
         electrocasnicelor obtinut
@@ -172,7 +172,7 @@
         ocazia<br> de a genera si eticheta energetica a locuintei dumneavoastra
     </p>
     <form [formGroup]="consumptionService.inputLabelModel" autocomplete="off" (submit)="onSubmit4()">
-      <div class="label-box" style="margin-bottom:5%">
+      <div class="label-box" style="margin-bottom:5%; margin-top: 3%;">
         <h1>Generare Eticheta</h1>
         <hr style="background-color: white; height: 4px; margin-top: 3%;">
         <!--<input type="text" placeholder="Consum total (kW/An)">-->
@@ -180,16 +180,16 @@
           <input class="form-control" style="margin-left: 10%;" formControlName="MP" type="text" placeholder="MP Locuibili">
         </div>
         <div class="form-group required">
-          <input class="form-control" style="margin-left: 10%;" formControlName="TypeHouse" type="text" placeholder="Tipul Locuintei">
+          <input class="form-control" style="margin-left: 10%;" formControlName="HouseType" type="text" placeholder="Tipul Locuintei">
         </div>
         <div class="form-row">
           <div class="form-group" style="margin:auto">
-            <button class="hero-btn">Adauga</button>
+            <button type="submit" class="hero-btn">Adauga</button>
           </div>
         </div>
       </div>
     </form>
-    <div class="label-box" style="margin-top: 0%; height: 80vh;">
+    <div class="label-box" style=" height: 72vh;">
       <h1>Eticheta Energetica</h1>
       <hr style="background-color: white; height: 4px; margin-top: 3%;">
       <label style="margin-top: 10%;">Clasa Energetica:</label>
@@ -205,7 +205,7 @@
     </div>
 </section>
 
-<section class="save-energy">
+<section class="save-energy" style="margin-top: 100px;">
     <h1>
         Sfaturi de economisire a energiei electrice
     </h1>
@@ -219,7 +219,7 @@
           energiei electrice, astfel incat facturile tale sa fie vizibil mai mici, iar zambetul mult mai larg.
           Pentru ca orice schimbare trebuie sa porneasca de undeva, iata cateva idei utile cu care sa poti sa incepi.
         </span>
-        <img src="./assets/images/consumption_energy-class.jpg" style="padding: 20px;" width="100%">
+        <img src="./assets/images/consumption_energy-class.jpg" style="padding: 20px;" width="100%" height="500px" style="border-radius:10px; margin-top: 50px;">
         <br> <br> <br>
         <h1>Instalează ferestre inteligente</h1>
         <p>Aceasta noua tehnologie folosita la fabricarea ferestrelor impiedica pierderile de caldura din locuinta ta.
@@ -276,7 +276,7 @@
     </div>
 </section>
 
-<section class="energy-class">
+<section class="energy-class" style="margin-top: 100px; padding-bottom: 100px;">
     <h1>
         Beneficiile unei clase energetice mai bune
     </h1>
@@ -289,7 +289,7 @@
         Știați că renovarea clădirilor existente în Europa cu izolația corectă, 
         ar putea economisi de două ori mai mult dioxid de carbon decât emite Franța într-un an?
       </span>
-      <img src="./assets/images/bloc.jfif" style="padding: 20px;" width="100%">
+      <img src="./assets/images/bloc.jfif" style="padding: 20px;" width="100%" height="500px" style="border-radius: 10px; margin-top: 50px;">
       <br> <br>
       <p style="color: black; font-size: 15px;">
         Dacă ar fi să instalăm o izolație eficientă din punct de vedere energetic pentru fiecare clădire 

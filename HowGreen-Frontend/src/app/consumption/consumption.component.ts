@@ -2,8 +2,7 @@ import { Variable } from '@angular/compiler/src/render3/r3_ast';
 import { Component, OnInit } from '@angular/core';
 import { ConsumptionService } from '../services/consumption.service';
 import { UserService } from '../services/user.service';
-import { Appliance } from 'src/app/consumption/Appliance';
-import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-consumption',
@@ -77,16 +76,7 @@ export class ConsumptionComponent implements OnInit {
   }*/
 
   onSubmit4() {
-    this.consumptionService.addEnergyLabelIn(this.userName).subscribe(
-      (resp) => {
-          console.log(resp);
-      },
-      (error) => {
-          console.log(error.error);
-      }
-    );
-
-    this.consumptionService.addEnergyLabelOut(this.userName).subscribe(
+    this.consumptionService.addEnergyLabel(this.userName).subscribe(
       (resp) => {
           console.log(resp);
       },
