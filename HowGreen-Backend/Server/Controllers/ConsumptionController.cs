@@ -46,7 +46,7 @@ namespace Server.Controllers
 
         [HttpPost]
         [Route("AddAppliance")]
-        public async Task<ActionResult> AddAppliance(Appliance model, string UserName)
+        public async Task<ActionResult> AddAppliance(Appliance model, string UserName, string indexConsumptionId)
         {
             var appliance = new Appliance
             {
@@ -64,7 +64,8 @@ namespace Server.Controllers
 
             appliance.Id = Guid.NewGuid().ToString();
             appliance.SmallUserId = _userRepository.GetIdByName(UserName);
-            appliance.IndexConsumptionId = _userRepository.GetIdConsumptionByName(UserName);
+            //appliance.IndexConsumptionId = _userRepository.GetIdConsumptionByName(UserName);
+            appliance.IndexConsumptionId = indexConsumptionId;
 
             float priceKw = _applianceRepository.GetPriceKw(appliance.IndexConsumptionId);
             appliance.priceMonth = _applianceRepository.GetPriceMonth(appliance.kwMonth, priceKw);
@@ -78,7 +79,7 @@ namespace Server.Controllers
 
         [HttpPost]
         [Route("AddFinalConsumption")]
-        public async Task<ActionResult> AddFinalConsumption(FinalConsumption model, string UserName)
+        public async Task<ActionResult> AddFinalConsumption(FinalConsumption model, string UserName, string indexConsumptionId)
         {
             var consumption = new FinalConsumption
             {
@@ -86,10 +87,11 @@ namespace Server.Controllers
             };
 
             consumption.FinalConsumptionId = Guid.NewGuid().ToString();
-            consumption.IndexConsumptionId = _userRepository.GetIdConsumptionByName(UserName);
+            //consumption.IndexConsumptionId = _userRepository.GetIdConsumptionByName(UserName);
+            consumption.IndexConsumptionId = indexConsumptionId;
             consumption.SmallUserId = _userRepository.GetIdByName(UserName);
 
-            consumption.nrAppliances = _consumptionContext.Appliances.Where(x => x.SmallUserId.Equals(consumption.SmallUserId)).Count();
+            consumption.nrAppliances = _consumptionContext.Appliances.Where(x => x.SmallUserId.Equals(consumption.SmallUserId)).Where(x => x.IndexConsumptionId.Equals(indexConsumptionId)).Count();
             List<Appliance> allAppliances = new List<Appliance>();
             allAppliances =  _consumptionContext.Appliances.Where(x => x.IndexConsumptionId.Equals(consumption.IndexConsumptionId)).ToList();
             consumption.nrKw = _applianceRepository.GetTotalKw(allAppliances);
@@ -104,7 +106,7 @@ namespace Server.Controllers
         
         [HttpPost]
         [Route("AddEnergyLabel")]
-        public async Task<IActionResult> AddEnergyLabel(EnergyLabel model, string UserName)
+        public async Task<IActionResult> AddEnergyLabel(EnergyLabel model, string UserName, string indexConsumptionId)
         {
             EnergyLabel energyLabel = new EnergyLabel
             {
@@ -115,7 +117,7 @@ namespace Server.Controllers
 
             energyLabel.Id = Guid.NewGuid().ToString();
             energyLabel.SmallUserId = _userRepository.GetIdByName(UserName);
-            energyLabel.FinalConsumptionId = _userRepository.GetIdFinalConsumptionByName(UserName);
+            energyLabel.FinalConsumptionId = _userRepository.GetIdFinalConsumptionByIndexConsumption(indexConsumptionId);
 
             energyLabel.TotalConsumption = (_userRepository.GetTotalConsumptionByFinalId(energyLabel.FinalConsumptionId) * 12);
 
@@ -129,39 +131,50 @@ namespace Server.Controllers
             return Ok(energyLabel);
         }
 
+        [HttpGet]
+        [Route("GetIndexConsumption")]
+        public async Task<IActionResult> GetIndexConsumption(string UserName)
+        {
+            IndexConsumption indexConsumption = new IndexConsumption();
+            var userId = _userRepository.GetIdByName(UserName);
+            indexConsumption = _consumptionContext.IndexConsumptions.Where(x => x.SmallUserId.Equals(userId)).OrderBy(x => x.Id).Last();
+
+            return Ok(indexConsumption);
+        }
 
         [HttpGet]
         [Route("GetAllAppliances")]
-        public async Task<IActionResult> GetAllAppliances(string UserName)
+        public async Task<IActionResult> GetAllAppliances(string UserName, string indexConsumptionId)
         {
             ICollection<Appliance> allAppliances = new List<Appliance>();
 
             string userId = _userRepository.GetIdByName(UserName);
-            allAppliances =  _consumptionContext.Appliances.Where(x => x.SmallUserId.Equals(userId)).OrderBy(x => x.ApplianceType).ToList();
+            allAppliances =  _consumptionContext.Appliances.Where(x => x.SmallUserId.Equals(userId)).Where(x => x.IndexConsumptionId.Equals(indexConsumptionId)).OrderBy(x => x.ApplianceType).ToList();
 
             return Ok(allAppliances);
         }
 
         [HttpGet]
         [Route("GetFinalConsumption")]
-        public async Task<IActionResult> GetFinalConsumption(string UserName)
+        public async Task<IActionResult> GetFinalConsumption(string UserName, string indexConsumptionId)
         {
             FinalConsumption finalConsumption = new FinalConsumption();
 
             string userId = _userRepository.GetIdByName(UserName);
-            finalConsumption = _consumptionContext.FinalConsumptions.FirstOrDefault(x => x.SmallUserId.Equals(userId));
+            finalConsumption = _consumptionContext.FinalConsumptions.Where(x => x.SmallUserId.Equals(userId)).Where(x => x.IndexConsumptionId.Equals(indexConsumptionId)).OrderBy(x => x.Id).Last();
 
             return Ok(finalConsumption);
         }
 
         [HttpGet]
         [Route("GetEnergyLabel")]
-        public async Task<IActionResult> GetEnergyLabel(string UserName)
+        public async Task<IActionResult> GetEnergyLabel(string UserName, string indexConsumptionId)
         {
             EnergyLabel energyLabel = new EnergyLabel();
 
             string userId = _userRepository.GetIdByName(UserName);
-            energyLabel = _consumptionContext.EnergyLabels.FirstOrDefault(x => x.SmallUserId.Equals(userId));
+            string finalConsumptionId = _userRepository.GetIdFinalConsumptionByIndexConsumption(indexConsumptionId);
+            energyLabel = _consumptionContext.EnergyLabels.Where(x => x.SmallUserId.Equals(userId)).Where(x => x.FinalConsumptionId.Equals(finalConsumptionId)).FirstOrDefault();
 
             return Ok(energyLabel);
         }

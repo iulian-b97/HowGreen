@@ -9,7 +9,7 @@ namespace Server.Services.User
     {
         public string GetIdByName(string UserName);
         public string GetIdConsumptionByName(string UserName);
-        public string GetIdFinalConsumptionByName(string UserName);
+        public string GetIdFinalConsumptionByIndexConsumption(string indexConsumptionId);
         public float GetTotalConsumptionByFinalId(string id);
         public string GetIdEnergyLabelInput(string FinalConsumptionId);
     }

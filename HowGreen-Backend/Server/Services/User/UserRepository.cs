@@ -44,14 +44,14 @@ namespace Server.Services.User
         }
 
 
-        public string GetIdFinalConsumptionByName(string UserName)
+        public string GetIdFinalConsumptionByIndexConsumption(string indexConsumptionId)
         {
-            if (UserName == null)
+            if (indexConsumptionId == null)
             {
                 return "";
             }
 
-            var consumption = _consumptionContext.FinalConsumptions.OrderBy(r => r.SmallUser.UserName.Equals(UserName)).Last();
+            var consumption = _consumptionContext.FinalConsumptions.Where(x => x.IndexConsumptionId.Equals(indexConsumptionId)).OrderBy(x => x.Id).Last();
 
             return consumption.FinalConsumptionId;
         }
