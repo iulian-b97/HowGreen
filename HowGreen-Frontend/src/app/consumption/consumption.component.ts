@@ -14,6 +14,7 @@ export class ConsumptionComponent implements OnInit {
   userName:any;
   allAppliances: any[];
   finalConsumption: any;
+  energyLabel: any;
 
   constructor(public userService: UserService, public consumptionService: ConsumptionService) { }
 
@@ -84,6 +85,10 @@ export class ConsumptionComponent implements OnInit {
           console.log(error.error);
       }
     );
+
+    this.consumptionService.getEnergyLab(this.userName).subscribe((resp: any) => {
+      this.energyLabel = resp;
+    });
   }
 }
 

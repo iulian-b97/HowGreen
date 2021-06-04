@@ -110,7 +110,7 @@ table, th, td {
 }
 
 .district-box {
-    height: 25vh;
+    height: 28vh;
     width: 30%;
     background: rgb(138,180,141);
     background: linear-gradient(45deg, rgb(120, 219, 126) 0%, rgba(11, 73, 27, 0.75) 49%, rgb(85, 202, 106) 95%);
@@ -140,7 +140,7 @@ table, th, td {
 }
 
 .computer-box {
-    height: 45vh;
+    height: 49vh;
     width: 30%;
     background: rgb(138,180,141);
     background: linear-gradient(45deg, rgb(120, 219, 126) 0%, rgba(11, 73, 27, 0.75) 49%, rgb(85, 202, 106) 95%);
@@ -298,7 +298,7 @@ table, th, td {
 }
 
 .label-box {
-    height: 35vh;
+    height: 38vh;
     width: 30%;
     background: rgb(138,180,141);
     background: linear-gradient(45deg, rgb(120, 219, 126) 0%, rgba(11, 73, 27, 0.75) 49%, rgb(85, 202, 106) 95%);

@@ -189,19 +189,19 @@
         </div>
       </div>
     </form>
-    <div class="label-box" style=" height: 72vh;">
+    <div class="label-box" style=" height: 78vh;" *ngIf="energyLabel">
       <h1>Eticheta Energetica</h1>
       <hr style="background-color: white; height: 4px; margin-top: 3%;">
       <label style="margin-top: 10%;">Clasa Energetica:</label>
-      <p>A++</p>
+      <p>{{energyLabel.energyClass}}</p>
       <label>Index Performanta:</label>
-      <p> <= 0.55 </p>
+      <p> <= {{energyLabel.index}} </p>
       <label>Consum Anual kW / mpa:</label>
-      <p> <= 10 kW / mpa </p>
+      <p> {{energyLabel.kW_mpa}} kW / mpa </p>
       <label>Tipul Locuintei:</label>
-      <p> Apartament </p>
+      <p> {{energyLabel.houseType}} </p>
       <label>Data Emiterii:</label>
-      <p> 28/04/2021 </p>
+      <p> {{energyLabel.data}} </p>
     </div>
 </section>
 
