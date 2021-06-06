@@ -47,7 +47,7 @@ export class ConsumptionService {
     return this.http.post(this.BaseURI+'/Consumption/AddIndexConsumption', body, {params});
   }
 
-  addAppliance(userName:any)
+  addAppliance(userName:any, indexConsumptionId:any)
   {
     var body = {
       ApplianceType: this.applianceModel.value.ApplianceType,
@@ -58,13 +58,14 @@ export class ConsumptionService {
 
     const params = new HttpParams()
       .set('userName', userName.userName)
+      .set('indexConsumptionId', indexConsumptionId)
 
     this.applianceModel.reset();
 
     return this.http.post(this.BaseURI+'/Consumption/AddAppliance', body, {params});
   }
 
-  addFinalCon(userName:any)
+  addFinalCon(userName:any, indexConsumptionId:any)
   {
     var body = {
 
@@ -72,6 +73,7 @@ export class ConsumptionService {
 
     const params = new HttpParams()
       .set('userName', userName.userName)
+      .set('indexConsumptionId', indexConsumptionId)
 
       return this.http.post(this.BaseURI+'/Consumption/AddFinalConsumption', body, {params});
   }
@@ -91,19 +93,28 @@ export class ConsumptionService {
     return this.http.post(this.BaseURI+'/Consumption/AddEnergyLabel', body, {params});
   }
 
-
-  getAppliances(userName:any): any
+  getIndexConsumption(userName:any): any
   {
     const params = new HttpParams()
       .set('userName', userName.userName)
+
+      return this.http.get(this.BaseURI+'/Consumption/GetIndexConsumption', {params});
+  }
+
+  getAppliances(userName:any, indexConsumptionId:any): any
+  {
+    const params = new HttpParams()
+      .set('userName', userName.userName)
+      .set('indexConsumptionId', indexConsumptionId)
 
       return this.http.get(this.BaseURI+'/Consumption/GetAllAppliances', {params});
   }
 
-  getFinalCon(userName:any): any
+  getFinalCon(userName:any, indexConsumptionId:any): any
   {
     const params = new HttpParams()
       .set('userName', userName.userName)
+      .set('indexConsumptionId', indexConsumptionId)
 
       return this.http.get(this.BaseURI+'/Consumption/GetFinalConsumption', {params});
   }

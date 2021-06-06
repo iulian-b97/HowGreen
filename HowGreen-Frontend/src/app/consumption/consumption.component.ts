@@ -4,6 +4,7 @@ import { ConsumptionService } from '../services/consumption.service';
 import { UserService } from '../services/user.service';
 
 
+
 @Component({
   selector: 'app-consumption',
   templateUrl: './consumption.component.html',
@@ -12,9 +13,13 @@ import { UserService } from '../services/user.service';
 export class ConsumptionComponent implements OnInit {
 
   userName:any;
+  indexConsumption:any;
+  indexConsumptionId:string;
   allAppliances: any[];
   finalConsumption: any;
   energyLabel: any;
+
+  isFinalCon: boolean = false;
 
   constructor(public userService: UserService, public consumptionService: ConsumptionService) { }
 
@@ -30,44 +35,70 @@ export class ConsumptionComponent implements OnInit {
     this.consumptionService.addDistr(this.userName).subscribe(
       (resp) => {
           console.log(resp);
+          this.indexConsumption = resp;
+          //console.log(this.indexConsumptionId);
+          //console.log(Object.keys(this.indexConsumption));
+          var x =  Object.values(this.indexConsumption)[1];
+          //this.indexConsumptionId = Object.values(this.indexConsumptionId)[1].toString.call([]);
+          //console.log(y);
+          this.indexConsumptionId = x.toString();
+          console.log(typeof this.indexConsumptionId);
       },
       (error) => {
           console.log(error.error);
       }
     );
+
+    /*this.consumptionService.getIndexConsumption(this.userName).subscribe(
+      (res:any) => {
+        this.indexConsumption = res;
+        console.warn(res);
+      }
+    );*/
   }
 
   onSubmit() {
-    this.consumptionService.addAppliance(this.userName).subscribe(
-        (resp) => {
+    this.consumptionService.addAppliance(this.userName, this.indexConsumptionId).subscribe(
+        (resp: any) => {
             console.log(resp);
+            //this.allAppliances = resp;
+            //console.log(this.allAppliances);
         },
         (error) => {
             console.log(error.error);
         }
     );
-  }
 
-  onSubmit2() {
-    this.consumptionService.getAppliances(this.userName).subscribe((resp: any) => {
-      this.allAppliances = resp;
+    this.consumptionService.getAppliances(this.userName, this.indexConsumptionId).subscribe((resp: any) => 
+    {
+      this.allAppliances = resp; 
+      console.log(resp)
     });
   }
 
+  /*onSubmit2() {
+    this.consumptionService.getAppliances(this.userName).subscribe((resp: any) => {
+      this.allAppliances = resp;
+    });
+  }*/
+
   addFinalConsumption()
   {
-    this.consumptionService.addFinalCon(this.userName).subscribe(
+    this.consumptionService.addFinalCon(this.userName, this.indexConsumptionId).subscribe(
       (resp) => {
           console.log(resp);
+          this.isFinalCon = true;
+          this.finalConsumption = resp;
       },
       (error) => {
           console.log(error.error);
       }
     );
 
-    this.consumptionService.getFinalCon(this.userName).subscribe((resp: any) => {
+    /*this.consumptionService.getFinalCon(this.userName, this.indexConsumptionId).subscribe((resp: any) => {
       this.finalConsumption = resp;
-    });
+      console.log(resp);
+    });*/
   }
 
  /*onSubmit3() {

@@ -128,7 +128,11 @@ namespace Server.Controllers
             await _consumptionContext.EnergyLabels.AddAsync(energyLabel);
             await _consumptionContext.SaveChangesAsync();
 
-            return Ok(energyLabel);
+            ICollection<Appliance> allAppliances = new List<Appliance>();
+            string userId = _userRepository.GetIdByName(UserName);
+            allAppliances = _consumptionContext.Appliances.Where(x => x.SmallUserId.Equals(userId)).Where(x => x.IndexConsumptionId.Equals(indexConsumptionId)).OrderBy(x => x.ApplianceType).ToList();
+
+            return Ok(allAppliances);
         }
 
         [HttpGet]
