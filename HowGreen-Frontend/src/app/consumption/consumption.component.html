@@ -100,7 +100,7 @@
                 <td>{{finalConsumption.nrAppliances | json}}</td>
                 <td>{{finalConsumption.nrKw | json}} Kw</td>
                 <td>{{finalConsumption.price | json}} Lei</td>
-                <td>27/05/2021</td>
+                <td>{{finalConsumption.data | date: 'HH:mm:ss'}}<br> {{finalConsumption.data | date: 'dd/MM/yyyy'}}</td>
                 <td><button class="hero-btn">Vezi Lista</button></td>
               </tr>
             </table>                   
@@ -173,7 +173,7 @@
         Pe baza consumului obtinut cu ajutorul calculatorului aici aveti 
         ocazia<br> de a genera si eticheta energetica a locuintei dumneavoastra
     </p>
-    <form [formGroup]="consumptionService.inputLabelModel" autocomplete="off" (submit)="onSubmit4()">
+    <form [formGroup]="consumptionService.inputLabelModel" autocomplete="off" (submit)="onSubmit4()" *ngIf="!energyLabel">
       <div class="label-box" style="margin-bottom:5%; margin-top: 3%;">
         <h1>Generare Eticheta</h1>
         <hr style="background-color: white; height: 4px; margin-top: 3%;">
@@ -191,7 +191,7 @@
         </div>
       </div>
     </form>
-    <div class="label-box" style=" height: 78vh;" *ngIf="energyLabel">
+    <div class="label-box" style=" height: 80vh;" *ngIf="energyLabel">
       <h1>Eticheta Energetica</h1>
       <hr style="background-color: white; height: 4px; margin-top: 3%;">
       <label style="margin-top: 10%;">Clasa Energetica:</label>
@@ -203,7 +203,8 @@
       <label>Tipul Locuintei:</label>
       <p> {{energyLabel.houseType}} </p>
       <label>Data Emiterii:</label>
-      <p> {{energyLabel.data}} </p>
+      <p> {{energyLabel.data | date: 'HH:mm:ss'}} </p>
+      <p style="margin-top: -12%;"> {{energyLabel.data | date: 'dd/MM/yyyy'}} </p>
     </div>
 </section>
 

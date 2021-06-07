@@ -78,7 +78,7 @@ export class ConsumptionService {
       return this.http.post(this.BaseURI+'/Consumption/AddFinalConsumption', body, {params});
   }
 
-  addEnergyLabel(userName:any)
+  addEnergyLabel(userName:any, indexConsumptionId:any)
   {
     var body = {
       MP: this.inputLabelModel.value.MP,
@@ -87,6 +87,7 @@ export class ConsumptionService {
 
     const params = new HttpParams()
       .set('userName', userName.userName)
+      .set('indexConsumptionId', indexConsumptionId)
 
     this.inputLabelModel.reset();
 

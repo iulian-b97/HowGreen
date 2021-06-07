@@ -61,19 +61,19 @@ export class ConsumptionComponent implements OnInit {
     this.consumptionService.addAppliance(this.userName, this.indexConsumptionId).subscribe(
         (resp: any) => {
             console.log(resp);
-            //this.allAppliances = resp;
-            //console.log(this.allAppliances);
+            this.allAppliances = resp;
+            console.log(this.allAppliances);
         },
         (error) => {
             console.log(error.error);
         }
     );
 
-    this.consumptionService.getAppliances(this.userName, this.indexConsumptionId).subscribe((resp: any) => 
+    /*this.consumptionService.getAppliances(this.userName, this.indexConsumptionId).subscribe((resp: any) => 
     {
       this.allAppliances = resp; 
       console.log(resp)
-    });
+    });*/
   }
 
   /*onSubmit2() {
@@ -108,18 +108,19 @@ export class ConsumptionComponent implements OnInit {
   }*/
 
   onSubmit4() {
-    this.consumptionService.addEnergyLabel(this.userName).subscribe(
+    this.consumptionService.addEnergyLabel(this.userName, this.indexConsumptionId).subscribe(
       (resp) => {
           console.log(resp);
+          this.energyLabel = resp;
       },
       (error) => {
           console.log(error.error);
       }
     );
 
-    this.consumptionService.getEnergyLab(this.userName).subscribe((resp: any) => {
+   /* this.consumptionService.getEnergyLab(this.userName).subscribe((resp: any) => {
       this.energyLabel = resp;
-    });
+    }); */
   }
 }
 

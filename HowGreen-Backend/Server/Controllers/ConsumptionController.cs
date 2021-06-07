@@ -73,7 +73,11 @@ namespace Server.Controllers
             await _consumptionContext.Appliances.AddAsync(appliance);
             await _consumptionContext.SaveChangesAsync();
 
-            return Ok(appliance);
+            ICollection<Appliance> allAppliances = new List<Appliance>();
+            string userId = _userRepository.GetIdByName(UserName);
+            allAppliances = _consumptionContext.Appliances.Where(x => x.SmallUserId.Equals(userId)).Where(x => x.IndexConsumptionId.Equals(indexConsumptionId)).OrderBy(x => x.ApplianceType).ToList();
+
+            return Ok(allAppliances);
         }
 
 
@@ -81,10 +85,9 @@ namespace Server.Controllers
         [Route("AddFinalConsumption")]
         public async Task<ActionResult> AddFinalConsumption(FinalConsumption model, string UserName, string indexConsumptionId)
         {
-            var consumption = new FinalConsumption
-            {
-                Data = model.Data
-            };
+            var consumption = new FinalConsumption();
+
+            consumption.Data = DateTime.Now;
 
             consumption.FinalConsumptionId = Guid.NewGuid().ToString();
             //consumption.IndexConsumptionId = _userRepository.GetIdConsumptionByName(UserName);
@@ -112,8 +115,9 @@ namespace Server.Controllers
             {
                 MP = model.MP,
                 HouseType = model.HouseType,
-                Data = model.Data
             };
+
+            energyLabel.Data = DateTime.Now;
 
             energyLabel.Id = Guid.NewGuid().ToString();
             energyLabel.SmallUserId = _userRepository.GetIdByName(UserName);
@@ -128,11 +132,7 @@ namespace Server.Controllers
             await _consumptionContext.EnergyLabels.AddAsync(energyLabel);
             await _consumptionContext.SaveChangesAsync();
 
-            ICollection<Appliance> allAppliances = new List<Appliance>();
-            string userId = _userRepository.GetIdByName(UserName);
-            allAppliances = _consumptionContext.Appliances.Where(x => x.SmallUserId.Equals(userId)).Where(x => x.IndexConsumptionId.Equals(indexConsumptionId)).OrderBy(x => x.ApplianceType).ToList();
-
-            return Ok(allAppliances);
+            return Ok(energyLabel);
         }
 
         [HttpGet]
