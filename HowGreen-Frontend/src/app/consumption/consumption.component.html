@@ -107,48 +107,96 @@
       </div>
 </section>
 
+
+
+<section class="generate-label" style="margin-top: -20px;" *ngIf="isFinalCon">
+  <h1>    
+      Generarea etichetei tale energetice in functie de<br> consumul
+      electrocasnicelor obtinut
+  </h1>
+  <p>
+      Pe baza consumului obtinut cu ajutorul calculatorului aici aveti 
+      ocazia<br> de a genera si eticheta energetica a locuintei dumneavoastra
+  </p>
+  <form [formGroup]="consumptionService.inputLabelModel" autocomplete="off" (submit)="onSubmit4()" *ngIf="!energyLabel">
+    <div class="label-box" style="margin-bottom:5%; margin-top: 3%;">
+      <h1>Generare Eticheta</h1>
+      <hr style="background-color: white; height: 4px; margin-top: 3%;">
+      <!--<input type="text" placeholder="Consum total (kW/An)">-->
+      <div class="form-group required">
+        <input class="form-control" style="margin-left: 10%;" formControlName="MP" type="text" placeholder="MP Locuibili">
+      </div>
+      <div class="form-group required">
+        <input class="form-control" style="margin-left: 10%;" formControlName="HouseType" type="text" placeholder="Tipul Locuintei">
+      </div>
+      <div class="form-row">
+        <div class="form-group" style="margin:auto">
+          <button type="submit" class="hero-btn">Adauga</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="label-box" style=" height: 80vh; margin-top: 35px;" *ngIf="energyLabel">
+    <h1>Eticheta Energetica</h1>
+    <hr style="background-color: white; height: 4px; margin-top: 3%;">
+    <label style="margin-top: 10%;">Clasa Energetica:</label>
+    <p>{{energyLabel.energyClass}}</p>
+    <label>Index Performanta:</label>
+    <p> <= {{energyLabel.index}} </p>
+    <label>Consum Anual kW / mpa:</label>
+    <p> {{energyLabel.kW_mpa}} kW / mpa </p>
+    <label>Tipul Locuintei:</label>
+    <p> {{energyLabel.houseType}} </p>
+    <label>Data Emiterii:</label>
+    <p> {{energyLabel.data | date: 'HH:mm:ss'}} </p>
+    <p style="margin-top: -12%;"> {{energyLabel.data | date: 'dd/MM/yyyy'}} </p>
+  </div>
+</section>
+
+
 <section class="list-appliances" style="margin-top: 100px;">
-    <h1>
-        Vizualizeaza lista electrocasnicelor care au un <br>consum 
-        mediu de energie electrica
-    </h1>
-    <p>
-        Mai jos puteti vedea lista celor mai intalnite electrocasnice<br>
-        care au un consum mediu de energie electrica
-    </p>
-    <table class="appliances-table" style="margin-top: 35px;">
-        <tr>
-          <th>Tip Electrocasnic</th>
-          <th>Putere (W)</th>
-          <th>Timp Functionare (h/Zi)</th> 
-          <th>Consum Mediu (kW/Zi)</th>
-        </tr>
-        <tr>
-            <td>Combina Frigorifica</td>
-            <td>150</td>
-            <td>24h</td>
-            <td>3.60</td>
-        </tr>
-        <tr>
-          <td>Aer Conditionat</td>
-          <td>1000</td>
-          <td>4h</td>
+  <h1>
+      Vizualizeaza lista electrocasnicelor care au un <br>consum 
+      mediu de energie electrica
+  </h1>
+  <p>
+      Mai jos puteti vedea lista celor mai intalnite electrocasnice<br>
+      care au un consum mediu de energie electrica
+  </p>
+  <table class="appliances-table" style="margin-top: 35px;">
+      <tr>
+        <th>Tip Electrocasnic</th>
+        <th>Putere (W)</th>
+        <th>Timp Functionare (h/Zi)</th> 
+        <th>Consum Mediu (kW/Zi)</th>
+      </tr>
+      <tr>
+          <td>Combina Frigorifica</td>
+          <td>150</td>
+          <td>24h</td>
           <td>3.60</td>
       </tr>
       <tr>
-        <td>TV Led</td>
-        <td>45</td>
-        <td>6h</td>
-        <td>0.27</td>
+        <td>Aer Conditionat</td>
+        <td>1000</td>
+        <td>4h</td>
+        <td>3.60</td>
     </tr>
     <tr>
-      <td>Aspirator</td>
-      <td>1500</td>
-      <td>1h</td>
-      <td>1.50</td>
-    </tr>
-    </table>
+      <td>TV Led</td>
+      <td>45</td>
+      <td>6h</td>
+      <td>0.27</td>
+  </tr>
+  <tr>
+    <td>Aspirator</td>
+    <td>1500</td>
+    <td>1h</td>
+    <td>1.50</td>
+  </tr>
+  </table>
 </section>
+
 
 <section class="label-classification" style="margin-top: 100px;">
     <h1>
@@ -164,49 +212,7 @@
     <img src="./assets/images/energy_label_classification.png" style="border-radius: 10px; margin-top: 50px; height: 500px;">
 </section>
 
-<section class="generate-label" style="margin-top: 100px;">
-    <h1>    
-        Generarea etichetei tale energetice in functie de<br> consumul
-        electrocasnicelor obtinut
-    </h1>
-    <p>
-        Pe baza consumului obtinut cu ajutorul calculatorului aici aveti 
-        ocazia<br> de a genera si eticheta energetica a locuintei dumneavoastra
-    </p>
-    <form [formGroup]="consumptionService.inputLabelModel" autocomplete="off" (submit)="onSubmit4()" *ngIf="!energyLabel">
-      <div class="label-box" style="margin-bottom:5%; margin-top: 3%;">
-        <h1>Generare Eticheta</h1>
-        <hr style="background-color: white; height: 4px; margin-top: 3%;">
-        <!--<input type="text" placeholder="Consum total (kW/An)">-->
-        <div class="form-group required">
-          <input class="form-control" style="margin-left: 10%;" formControlName="MP" type="text" placeholder="MP Locuibili">
-        </div>
-        <div class="form-group required">
-          <input class="form-control" style="margin-left: 10%;" formControlName="HouseType" type="text" placeholder="Tipul Locuintei">
-        </div>
-        <div class="form-row">
-          <div class="form-group" style="margin:auto">
-            <button type="submit" class="hero-btn">Adauga</button>
-          </div>
-        </div>
-      </div>
-    </form>
-    <div class="label-box" style=" height: 80vh;" *ngIf="energyLabel">
-      <h1>Eticheta Energetica</h1>
-      <hr style="background-color: white; height: 4px; margin-top: 3%;">
-      <label style="margin-top: 10%;">Clasa Energetica:</label>
-      <p>{{energyLabel.energyClass}}</p>
-      <label>Index Performanta:</label>
-      <p> <= {{energyLabel.index}} </p>
-      <label>Consum Anual kW / mpa:</label>
-      <p> {{energyLabel.kW_mpa}} kW / mpa </p>
-      <label>Tipul Locuintei:</label>
-      <p> {{energyLabel.houseType}} </p>
-      <label>Data Emiterii:</label>
-      <p> {{energyLabel.data | date: 'HH:mm:ss'}} </p>
-      <p style="margin-top: -12%;"> {{energyLabel.data | date: 'dd/MM/yyyy'}} </p>
-    </div>
-</section>
+
 
 <section class="save-energy" style="margin-top: 100px;">
     <h1>

@@ -122,7 +122,10 @@ namespace Server.Services.Consumption
 
         public float GetKwMpa(float kwYear, int mp)
         {
-            return (kwYear) / (float)mp;
+            float x = (kwYear) / (float)mp;
+            float xf = (float)Math.Round(x * 100f) / 100f;
+
+            return xf;
         }
 
         
