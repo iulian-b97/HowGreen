@@ -11,6 +11,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AppComponent } from './app.component';
 import { UserService } from 'src/app/services/user.service';
 import { ConsumptionService } from './services/consumption.service';
+import { ContactService } from './services/contact.service';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ConsumptionService } from './services/consumption.service';
   ],
   providers: [
     UserService,
-    ConsumptionService 
+    ConsumptionService,
+    ContactService 
   ],
   bootstrap: [AppComponent]
 })

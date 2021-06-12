@@ -22,23 +22,17 @@
                 Locatie: Timisoara | RO 
             </p>
             <p>
-                Telefon: 0723 938 232 
-            </p>
-            <p>
                 Email: owner.howgreen@gmail.com 
             </p>
         </div>
 
         <div class="data-col">
-            <h3>Admin</h3>
+            <h3>Moderator</h3>
             <p>
                 Locatie: Bucuresti | RO 
             </p>
             <p>
-                Telefon: 0755 353 112 
-            </p>
-            <p>
-                Email: admin.howgreen@gmail.com 
+                Email: moderator.howgreen@gmail.com 
             </p>
         </div>
 
@@ -46,9 +40,6 @@
             <h3>Staff</h3>
             <p>
                 Locatie: Arad | RO 
-            </p>
-            <p>
-                Telefon: 0770 653 435 
             </p>
             <p>
                 Email: staff.howgreen@gmail.com 
@@ -64,26 +55,25 @@
         Mai jos puteti trimite un mesaj catre un membru al echipei
     </p>
 
-    <div class="container" style="margin-left: 7%;">
-        <div class="row">
-          <div class="column">
-            <img src="./assets/images/contact1.jpg" style="width:100%; margin-top: 7%;">
-          </div>
-          <div class="column">
-            <form>
-              <label for="sender">Email Expeditor</label>
-              <input type="text" name="email" placeholder="Adresa ta de email">
-              <label for="receiver">Email Destinatar</label>
-              <select id="receiver" name="receiver">
-                <option value="owner">owner.howgreen@gmail.com</option>
-                <option value="admin">admin.howgreen@gmail.com</option>
-                <option value="staff">staff.howgreen@gmail.com</option>
-              </select>
-              <label for="subject">Subiect</label>
-              <textarea id="subject" name="subject" placeholder="Scrie ceva.." style="height:170px"></textarea>
-              <input type="submit" value="Trimite">
-            </form>
-          </div>
+    <form [formGroup]="contactService.contactModel" autocomplete="off" (submit)="onSubmit()">
+        <div class="container" style="margin-left: 4%;">
+            <div class="row">
+            <div class="column">
+                <img src="./assets/images/contact1.jpg" style="width:100%; margin-top: 7%;">
+            </div>
+            <div class="column">
+                <label for="receiver">Email Destinatar</label>
+                <div class="form-group required">
+                    <input class="form-control" formControlName="ReceiverEmail" type="text">
+                </div>
+                <label for="subject">Subiect</label>
+                <div class="form-group required">
+                    <textarea formControlName="Content" id="subject" name="subject" placeholder="Scrie ceva.." style="height:200px"></textarea>
+                </div>
+                <button type="submit" class="hero-btn">Trimite</button>
+
+            </div>
+            </div>
         </div>
-      </div>
+    </form>
 </section>

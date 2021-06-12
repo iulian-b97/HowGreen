@@ -1,4 +1,5 @@
-﻿using MailKit.Net.Smtp;
+﻿using Library.Server.Models;
+using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
@@ -20,28 +21,35 @@ namespace Server.Controllers
 
         [HttpPost]
         [Route("SendMessage")]
-        public async Task<ActionResult> SendMessage()
+        public async Task<ActionResult> SendMessage(MessageModel model, string userName)
         {
+            MessageModel messageModel = new MessageModel
+            {
+                ReceiverEmail = model.ReceiverEmail,
+                Content = model.Content
+            };
+            messageModel.UserName = userName;
+
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Test Project", "iulian.burghelea1998@gmail.com"));
-            message.To.Add(new MailboxAddress("naren", "iulian.burghelea1997@gmail.com"));
-            message.Subject = "test mail in asp.net core";
+            message.From.Add(new MailboxAddress("Utilizatorul HowGreen: " + messageModel.UserName, "system.howgreen@gmail.com"));
+            message.To.Add(new MailboxAddress("naren", messageModel.ReceiverEmail));
+            message.Subject = "Mesaj trimis de un utilizator HowGreen";
             message.Body = new TextPart("plain")
             {
-                Text = "hello world mail"
+                Text = messageModel.Content
             };
 
             using (var client = new SmtpClient())
             {
                 client.Connect("smtp.gmail.com", 587, false);
-                client.Authenticate("iulian.burghelea1998@gmail.com", "golfgti456");
+                client.Authenticate("system.howgreen@gmail.com", "golfgti456");
 
                 client.Send(message);
 
                 client.Disconnect(true);
             }
 
-            return Ok(message);
+            return Ok();
         }
     }
 }

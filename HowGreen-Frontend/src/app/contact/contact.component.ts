@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ContactService } from '../services/contact.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-contact',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  userName:any;
 
-  ngOnInit(): void {
+  constructor(public contactService: ContactService, public userService: UserService) { }
+
+  ngOnInit(): void 
+  {
+    this.userService.getUserName().subscribe(
+      (res: any) => {
+        this.userName = res;
+      }
+    );
   }
 
+  onSubmit()
+  {
+    this.contactService.sendMessage(this.userName).subscribe(
+      (res: any) => {
+        console.log(res);
+      },
+      (error) => {
+        console.log(error.error);
+    }
+    );
+  }
 }
