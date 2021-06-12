@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { RootNavComponent } from 'src/app/root-nav/root-nav.component';
 import { HomeComponent } from 'src/app/home/home.component';
 import { ContactComponent } from 'src/app/contact/contact.component';
+import { ProsumatorComponent } from '../prosumator/prosumator.component';
 import { ConsumptionComponent } from 'src/app/consumption/consumption.component';
 import { UserComponent } from 'src/app/user/user.component';
 import { RegisterComponent } from 'src/app/user/register/register.component';
@@ -21,7 +22,8 @@ import {ReactiveFormsModule,FormsModule} from '@angular/forms';
     ConsumptionComponent,
     UserComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ProsumatorComponent
   ],
   imports: [
     CommonModule,
@@ -35,6 +37,7 @@ import {ReactiveFormsModule,FormsModule} from '@angular/forms';
     RootNavComponent,
     HomeComponent,
     ContactComponent,
+    ProsumatorComponent,
     ConsumptionComponent,
     UserComponent,
     RegisterComponent,

@@ -51,5 +51,39 @@ namespace Server.Controllers
 
             return Ok();
         }
+
+
+        [HttpPost]
+        [Route("SendMessageProvider")]
+        public async Task<ActionResult> SendMessageProvider(MessageModel model, string userName)
+        {
+            MessageModel messageModel = new MessageModel
+            {
+                ReceiverEmail = model.ReceiverEmail,
+                Content = model.Content
+            };
+            messageModel.UserName = userName;
+
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("Prosumatorul HowGreen: " + messageModel.UserName, "system.howgreen@gmail.com"));
+            message.To.Add(new MailboxAddress("naren", messageModel.ReceiverEmail));
+            message.Subject = "Un prosumator HowGreen este interesat de un parteneriat cu firma dumneavoastra.";
+            message.Body = new TextPart("plain")
+            {
+                Text = messageModel.Content
+            };
+
+            using (var client = new SmtpClient())
+            {
+                client.Connect("smtp.gmail.com", 587, false);
+                client.Authenticate("system.howgreen@gmail.com", "golfgti456");
+
+                client.Send(message);
+
+                client.Disconnect(true);
+            }
+
+            return Ok();
+        }
     }
 }

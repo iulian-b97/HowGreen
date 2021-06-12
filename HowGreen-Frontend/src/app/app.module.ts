@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { UserService } from 'src/app/services/user.service';
 import { ConsumptionService } from './services/consumption.service';
 import { ContactService } from './services/contact.service';
+import { ProsumatorService } from './services/prosumator.service';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ContactService } from './services/contact.service';
   providers: [
     UserService,
     ConsumptionService,
-    ContactService 
+    ContactService,
+    ProsumatorService
   ],
   bootstrap: [AppComponent]
 })

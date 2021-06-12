@@ -58,21 +58,20 @@
     <form [formGroup]="contactService.contactModel" autocomplete="off" (submit)="onSubmit()">
         <div class="container" style="margin-left: 4%;">
             <div class="row">
-            <div class="column">
-                <img src="./assets/images/contact1.jpg" style="width:100%; margin-top: 7%;">
-            </div>
-            <div class="column">
-                <label for="receiver">Email Destinatar</label>
-                <div class="form-group required">
-                    <input class="form-control" formControlName="ReceiverEmail" type="text">
+                <div class="column">
+                    <img src="./assets/images/contact1.jpg" style="width:100%; margin-top: 7%;">
                 </div>
-                <label for="subject">Subiect</label>
-                <div class="form-group required">
-                    <textarea formControlName="Content" id="subject" name="subject" placeholder="Scrie ceva.." style="height:200px"></textarea>
+                <div class="column">
+                    <label for="receiver">Email Destinatar</label>
+                    <div class="form-group required">
+                        <input class="form-control" formControlName="ReceiverEmail" type="text">
+                    </div>
+                    <label for="subject">Subiect</label>
+                    <div class="form-group required">
+                        <textarea formControlName="Content" id="subject" name="subject" placeholder="Scrie ceva.." style="height:200px"></textarea>
+                    </div>
+                    <button type="submit" class="hero-btn">Trimite</button>
                 </div>
-                <button type="submit" class="hero-btn">Trimite</button>
-
-            </div>
             </div>
         </div>
     </form>

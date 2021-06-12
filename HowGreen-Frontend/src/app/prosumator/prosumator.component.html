@@ -218,6 +218,28 @@
 <section class="provider" style="margin-top: 50px;">
     <h1>Lista de furnizori</h1>
     <p>Mai jos gasim lista furnizoriilor de energie electrica care<br> sunt dispusi sa colaboreze cu prosumatorii</p>
+
+    <form [formGroup]="prosumatorService.prosumatorModel" autocomplete="off" (submit)="onSubmit()"> 
+        <div class="container" style="margin-left: 4%;">
+            <div class="row">
+            <div class="column">
+                <img src="./assets/images/energie-electrica-3.jpg" style="width:100%; margin-top: 7%;">
+            </div>
+            <div class="column">
+                <label for="receiver">Email Furnizor</label>
+                <div class="form-group required">
+                    <input class="form-control" formControlName="ReceiverEmail" type="text">
+                </div>
+                <label for="subject">Subiect</label>
+                <div class="form-group required">
+                    <textarea formControlName="Content" id="subject" name="subject" placeholder="Scrie ceva.." style="height:200px"></textarea>
+                </div>
+                <button type="submit" class="send-btn">Trimite</button>
+            </div>
+            </div>
+        </div>
+    </form> 
+
     <table class="provider-table" style="margin-top: 50px; margin-bottom: 100px;">
         <tr>
           <th>Denumire Furnizor</th>
@@ -227,7 +249,6 @@
           <th>Oras</th>
           <th>Adresa</th>
           <th>Site Prezentare</th>
-          <th>Trimite Mesaj</th>
         </tr>
         <tr>
             <td>CEZ Vanzare S.A.</td>
@@ -237,7 +258,6 @@
             <td>Bucuresti</td>
             <td>Str.Cernei, Nr.13</td>
             <td><a href="https://www.cez.ro" target="_blank" style="color: rgb(14, 74, 185); font-weight: bold;">www.cez.ro</a></td>
-            <td><button class="btn hero-btn">Mesaj</button></td>
           </tr>
     </table>
 </section>
