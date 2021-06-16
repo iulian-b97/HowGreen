@@ -1,4 +1,4 @@
-# HowGreen
+# HowGreen (ASP.NET Core & Angular)
 
 ![alt text](https://github.com/iulian-b97/HowGreen/blob/main/How%20Green-Screens/s1.jpg)
 #
