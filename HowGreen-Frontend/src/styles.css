@@ -2,7 +2,7 @@
 
 
 body {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 0.9)),
+    background-image: linear-gradient(rgba(255, 255, 255, 0.85),rgba(255, 255, 255, 0.85)),
     url('src/assets/images/background-body2.jpg');
     width: 100%;
     background-repeat: repeat;

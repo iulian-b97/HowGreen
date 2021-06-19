@@ -12,6 +12,7 @@
     background-position: center;
     background-size: cover;
     position: relative;
+    margin-top: -66px;
 }
 
 table, th, td {
