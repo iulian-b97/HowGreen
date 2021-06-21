@@ -330,7 +330,9 @@ namespace Server.Services.Consumption
                 sum += (float)appliance.kwMonth;
             }
 
-            return sum;
+            float xf = (float)Math.Round(sum * 100f) / 100f;
+
+            return xf;
         }
 
         public float GetTotalPrice(List<Appliance> allAppliances)

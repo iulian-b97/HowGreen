@@ -102,6 +102,22 @@ export class ConsumptionService {
       return this.http.get(this.BaseURI+'/Consumption/GetIndexConsumption', {params});
   }
 
+  getDistrictByIndex(indexConsumptionId:any)
+  {
+    const params = new HttpParams()
+    .set('indexConsumptionId', indexConsumptionId)
+
+      return this.http.get(this.BaseURI+'/Consumption/GetDistrictByIndex', {params});
+  }
+
+  getDistricts(userName:any)
+  {
+    const params = new HttpParams()
+      .set('userName', userName.userName)
+
+      return this.http.get(this.BaseURI+'/Consumption/GetAllDistricts', {params});
+  }
+
   getAppliances(userName:any, indexConsumptionId:any): any
   {
     const params = new HttpParams()
@@ -118,6 +134,14 @@ export class ConsumptionService {
       .set('indexConsumptionId', indexConsumptionId)
 
       return this.http.get(this.BaseURI+'/Consumption/GetFinalConsumption', {params});
+  }
+
+  getAllFinalCon(userName:any): any
+  {
+    const params = new HttpParams()
+      .set('userName', userName.userName)
+
+      return this.http.get(this.BaseURI+'/Consumption/GetAllFinalConsumptions', {params});
   }
 
   getEnergyLab(userName:any): any

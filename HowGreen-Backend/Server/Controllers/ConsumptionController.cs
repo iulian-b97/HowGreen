@@ -106,7 +106,6 @@ namespace Server.Controllers
             return Ok(consumption);
         }
 
-        
         [HttpPost]
         [Route("AddEnergyLabel")]
         public async Task<IActionResult> AddEnergyLabel(EnergyLabel model, string UserName, string indexConsumptionId)
@@ -147,6 +146,27 @@ namespace Server.Controllers
         }
 
         [HttpGet]
+        [Route("GetDistrictByIndex")]
+        public async Task<IActionResult> GetDistrictByIndex(string indexConsumptionId)
+        {
+            var district = _consumptionContext.IndexConsumptions.Where(x => x.IndexConsumptionId.Equals(indexConsumptionId)).Select(x => x.District);
+
+            return Ok(district);
+        }
+
+        [HttpGet]
+        [Route("GetAllDistricts")]
+        public async Task<IActionResult> GetAllDistrict(string UserName)
+        {
+            ICollection<string> allDistricts = new List<string>();
+
+            string userId = _userRepository.GetIdByName(UserName);
+            allDistricts = _consumptionContext.IndexConsumptions.Where(x => x.SmallUserId.Equals(userId)).OrderBy(x => x.Id).Select(x => x.District).ToList();
+
+            return Ok(allDistricts);
+        }
+
+        [HttpGet]
         [Route("GetAllAppliances")]
         public async Task<IActionResult> GetAllAppliances(string UserName, string indexConsumptionId)
         {
@@ -168,6 +188,18 @@ namespace Server.Controllers
             finalConsumption = _consumptionContext.FinalConsumptions.Where(x => x.SmallUserId.Equals(userId)).Where(x => x.IndexConsumptionId.Equals(indexConsumptionId)).OrderBy(x => x.Id).Last();
 
             return Ok(finalConsumption);
+        }
+
+        [HttpGet]
+        [Route("GetAllFinalConsumptions")]
+        public async Task<IActionResult> GetAllFinalConsumptions(string UserName)
+        {
+            ICollection<FinalConsumption> allFinalConsumptions = new List<FinalConsumption>();
+
+            string userId = _userRepository.GetIdByName(UserName);
+            allFinalConsumptions = _consumptionContext.FinalConsumptions.Where(x => x.SmallUserId.Equals(userId)).OrderBy(x => x.Id).ToList();
+
+            return Ok(allFinalConsumptions);
         }
 
         [HttpGet]

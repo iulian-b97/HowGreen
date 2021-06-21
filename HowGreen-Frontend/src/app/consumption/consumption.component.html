@@ -90,18 +90,18 @@
             <h1>Costul total</h1>  
             <table class="total-table">
               <tr>
+                <th>Data</th>
+                <th>Judet</th>
                 <th>Numar <br>Electrocasnice</th>
                 <th>Consum kW / Luna</th>
                 <th>Cost Lei / Luna</th>
-                <th>Data</th>
-                <th>Lista <br>Electrocasnice</th>
               </tr>
               <tr *ngIf="finalConsumption">
+                <td>{{finalConsumption.data | date: 'HH:mm:ss'}}<br> {{finalConsumption.data | date: 'dd/MM/yyyy'}}</td>
+                <td>{{district}}</td>
                 <td>{{finalConsumption.nrAppliances | json}}</td>
                 <td>{{finalConsumption.nrKw | json}} Kw</td>
                 <td>{{finalConsumption.price | json}} Lei</td>
-                <td>{{finalConsumption.data | date: 'HH:mm:ss'}}<br> {{finalConsumption.data | date: 'dd/MM/yyyy'}}</td>
-                <td><button class="hero-btn">Vezi Lista</button></td>
               </tr>
             </table>                   
       </div>
@@ -136,7 +136,7 @@
       </div>
     </div>
   </form>
-  <div class="label-box" style=" height: 80vh; margin-top: 35px;" *ngIf="energyLabel">
+  <div class="label-box" style=" height: 75vh; margin-top: 35px;" *ngIf="energyLabel">
     <h1>Eticheta Energetica</h1>
     <hr style="background-color: white; height: 4px; margin-top: 3%;">
     <label style="margin-top: 10%;">Clasa Energetica:</label>
@@ -154,47 +154,57 @@
 </section>
 
 
-<section class="list-appliances" style="margin-top: 100px;">
+<section class="list-appliances" *ngIf="isFinalCon" style="margin-top: 100px;">
   <h1>
-      Vizualizeaza lista electrocasnicelor care au un <br>consum 
-      mediu de energie electrica
+      Istoricul consumurilor lunare inregistrate
   </h1>
   <p>
-      Mai jos puteti vedea lista celor mai intalnite electrocasnice<br>
-      care au un consum mediu de energie electrica
+      Mai jos puteti vedea lista consumurilor lunare ale dvs. inregistrate,<br>
+     dar si lista electrocasnicelor inregistrate la fiecare consum
   </p>
+
+ <!-- <table class="appliances-table" *ngIf="showList">
+    <tr>
+      <th>Tip Electrocasnic</th>
+      <th>Puterea (W)</th>
+      <th>Timp Functionare / Zi</th>
+      <th>Consum kW / Luna</th>
+      <th>Cost Lei / Luna</th>
+    </tr>
+    <tr *ngFor="let item of allAppliances">
+      <td>{{item.applianceType}}</td>
+      <td>{{item.nrWatts}} W</td>
+      <td>{{item.hh}}h {{item.mm}}m</td>
+      <td>{{item.kwMonth}} kW</td>
+      <td>{{item.priceMonth}} Lei</td>
+    </tr>
+  </table>  
+  <button (click)="closeList()" *ngIf="showList" class="kwMonth-btn" style="margin-top: 20px;">Ascunde Lista</button> -->
+
   <table class="appliances-table" style="margin-top: 35px;">
       <tr>
-        <th>Tip Electrocasnic</th>
-        <th>Putere (W)</th>
-        <th>Timp Functionare (h/Zi)</th> 
-        <th>Consum Mediu (kW/Zi)</th>
+        <th>Data</th>
+        <!-- <th>Judet</th> -->
+        <th>Numar <br>Electrocasnice</th>
+        <th>Consum kW / Luna</th>
+        <th>Cost Lei / Luna</th>
+       <!-- <th>Lista <br>Electrocasnice</th> -->
       </tr>
-      <tr>
-          <td>Combina Frigorifica</td>
-          <td>150</td>
-          <td>24h</td>
-          <td>3.60</td>
+      <tr *ngFor="let finalConsumption of allFinalConsumptions let indexOfelement=index">
+        <td>{{finalConsumption.data | date: 'HH:mm:ss'}}<br> {{finalConsumption.data | date: 'dd/MM/yyyy'}}</td>
+        <!-- <td *ngFor="let district of allDistricts[indexOfelement]">{{district | json}}</td> -->
+        <td>{{finalConsumption.nrAppliances | json}}</td>
+        <td>{{finalConsumption.nrKw | json}} Kw</td>
+        <td>{{finalConsumption.price | json}} Lei</td>
+       <!-- <td>
+          <button (click)="openList()" class="hero-btn">Vezi Lista</button> <br>
+        </td> -->
       </tr>
-      <tr>
-        <td>Aer Conditionat</td>
-        <td>1000</td>
-        <td>4h</td>
-        <td>3.60</td>
-    </tr>
-    <tr>
-      <td>TV Led</td>
-      <td>45</td>
-      <td>6h</td>
-      <td>0.27</td>
-  </tr>
-  <tr>
-    <td>Aspirator</td>
-    <td>1500</td>
-    <td>1h</td>
-    <td>1.50</td>
-  </tr>
   </table>
+
+  
+  
+
 </section>
 
 
