@@ -4,13 +4,20 @@
         <p>Aceasta platforma web este o resursa bogata de informatii<br>
          legate de domeniul energetic pentru utilizatori.
         </p>
-        <a href="" class="hero-btn">Despre Noi</a>
+        <button class="hero-btn" (click)="show()" *ngIf="!status">Despre Noi</button>
+        <span *ngIf="status">
+            Scopul nostru este sa ajutam atat consumatorii de energie electrica<br>
+            cat si prosumatorii, oferindu-le informatii utile legate de domeniul energetic.<br>
+        </span>
     </div>
 </section> 
 
 <section class="services">
     <h1>Serviciile pe care le oferim noi</h1>
-    <p>Mai jos sunt enumerate principalele servicii pe care le oferim.</p>
+    <p>
+        Mai jos sunt enumerate principalele servicii pe care le oferim.<br>
+        Incearca serviciile noastre cu incredere.
+    </p>
 
     <div class="row">
         <div class="services-col">
@@ -19,27 +26,23 @@
                 Mai exact puteti folosi calculatorul nostru pentru 
                 a putea afla un consum estimativ a electrocasnicelor
                 pe care le aveti in locuinta dumneavoastra.<br>
-                De asemenea avem si o lista cu consumul mediu al 
-                celor mai intalnite electrocasnice intr-o locuinta.
             </p>
         </div>
         <div class="services-col">
             <h3>Generarea etichetei energetice a locuintei</h3>
             <p>
                 Pe baza consumului obtinut in urma folosirii calculatorului
-                nostru se poate genera la cererea clientului si o eticheta 
+                nostru se poate genera la ce-<br>rerea clientului si o eticheta 
                 energetica a locuintei.<br>
-                Avem si o clasificare a etichetelor energetice pentru a putea
-                vedea care sunt indecsii de performanta a fiecarei etichete.
             </p>
         </div>
         <div class="services-col">
             <h3>Suport Prosumator</h3>
             <p>
                 Va oferim toate informatiile de care aveti nevoie pentru
-                a putea deveni un bun prosumator cum ar fi regulamentul
+                a putea deveni un bun pro-<br>sumator cum ar fi regulamentul
                 care trebuie respectat, iar pentru cei care sunt deja 
-                prosumatori le oferim o lista cu furnizorii cu care pot
+                pro-<br>sumatori le oferim o lista cu furnizorii cu care pot
                 colabora.
             </p>
         </div>
@@ -47,7 +50,7 @@
             <h3>Stiri</h3>
             <p>
                 Daca iti place sa fii la curent tot timpul cu cele
-                mai noi tehnologii din domeniul energetic, atunci 
+                mai noi tehnologii din domeniul energetic, at-<br>unci 
                 acceseaza rubrica cu cele mai noi si mai interesante
                 stiri din domeniul energetic.
             </p>
@@ -64,8 +67,8 @@
             <h3>Contact</h3>
             <p>
                 Daca ai o problema si crezi ca noi te putem
-                ajuta, atunci nu mai sta pe ganduri si acceseaza
-                pagina contact pentru a lua legatura cu un membru
+                ajuta, atunci nu mai sta pe ganduri si acce-<br>seaza
+                pagina contact pentru a lua legatura <br>cu un membru
                 din echipa noastra.
             </p>
         </div>
@@ -74,33 +77,37 @@
 
 <section class="purpose" style="margin-top: 50px;">
     <h1>Scopul nostru</h1>
-    <p>Acestea sunt cateva dintre principalele noastre scopuri.</p>
+    <p>
+        Punem accent pe oferirea unor informatii calitative.<br>
+        Acestea sunt principalele noastre scopuri.
+    </p>
 
     <div class="row">
         <div class="purpose-col">
             <img src="./assets/images/purpose_1.jpg" height="300px">
-            <h3>Sa ajutam consumatorii</h3>
+            <h3 style="text-align: center;">Sa ajutam consumatorii</h3>
             <p>
                 Pentru noi e important ca consumatorii sa fie
                 bine informatii si sa fim un sprijin pentru ei,
-                oferind informatiile necesare.
+                oferind info-<br>rmatiile necesare.
             </p>
         </div>
         <div class="purpose-col">
             <img src="./assets/images/purpose_2.jpg" height="300px">
-            <h3>Sa ajutam prosumatorii</h3>
+            <h3 style="text-align: center;">Sa ajutam prosumatorii</h3>
             <p>
                 De asemenea si prosumatorii pentru noi sunt la
                 fel de importanti ca si consumatorii, oferindu-le
-                si acestora sprijinul necesar.
+                si ace-<br> stora sprijinul necesar.
             </p>
         </div>
         <div class="purpose-col">
             <img src="./assets/images/purpose_3.jpg" height="300px">
-            <h3>Sa oferim date precise si utile</h3>
+            <h3 style="font-size: 27px; text-align: center;">Sa oferim date precise si utile</h3>
             <p>
                 Cel mai important lucru de asemenea este acela de 
-                a furniza informatii cat mai corecte si mai precise.
+                a furniza informatii cat mai corecte si precise,
+                astfel <br> incat utilizatorii sa fie multumiti.
             </p>
         </div>
     </div>
@@ -108,7 +115,7 @@
 
 <section class="opinion" style="margin-top: 50px;">
     <h1>Ce spun clientii nostrii</h1>
-    <p>Cateva dintre cele mai recente recenzii primite de la clientii nostrii.</p>
+    <p>Cateva dintre cele mai recente recenzii<br> primite de la clientii nostrii.</p>
 
     <div class="row">
         <div class="opinion-col">
@@ -116,7 +123,8 @@
             <div>
                 <p>
                     Aceasta platforma a fost foarte utila pentru mine cand
-                    am vrut sa aflu consumul meu mediu luna de luna. Asa ca
+                    am vrut sa aflu consumul meu mediu luna de luna.
+                    <br>De asemenea platforma ofera si alte servicii interesante
                     va recomand sa incercati si celorlalti.
                 </p>
                 <h3>Ana Maria</h3>

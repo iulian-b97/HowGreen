@@ -1,3 +1,10 @@
+.logo {
+    font-family: cursive ;
+    font-size: 35px; 
+    font-weight: bold; 
+    color: rgb(255, 255, 255);
+}
+
 nav {
     display: flex;
     padding: 2% 6%;
@@ -115,6 +122,10 @@ nav #menu-bars {
 
 @media(max-width: 700px) {
 
+    .logo {
+        font-size: 20px;
+    }
+
     nav img {
         width: 100px;
     }
@@ -122,7 +133,7 @@ nav #menu-bars {
     .nav-links {
         flex: 1;
         text-align: right;   
-        margin-top: 4%;  
+        margin-top: 5%;  
     }
 
     .nav-links ul li {
@@ -133,9 +144,9 @@ nav #menu-bars {
     }
     
     .nav-links ul li a {
-        color: dimgray;
+        color: #fff;
         text-decoration: none;
-        font-size: 7.5px;
+        font-size: 9.5px;
         font-weight: bold;
     }
 

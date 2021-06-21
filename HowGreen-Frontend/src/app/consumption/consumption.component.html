@@ -7,8 +7,7 @@
             genereare a etichetei energetice aferente locuintei
             dumneavoastra.<br>
             De asemenea tot aici ve-ti gasi si rubrica cu sfaturi de
-            economisire a energiei electrice,<br> lista cu consumul mediu 
-            a electrocasnicelor si sistemul de clasificare<br> a etichetelor
+            economisire a energiei electrice,<br> si sistemul de clasificare a etichetelor
             energetice in functie de indecsii de performanta.
         </p>
     </div>
@@ -54,11 +53,7 @@
             <input class="form-control" formControlName="mm" type="text" style="margin-top: 2%; width: 30%; float: left; margin-left: 3%;" placeholder="MM">
           </div>
 
-            <div class="form-row">
-              <div class="form-group"> 
-              <button type="submit" style="margin-top: 35%; margin-left: -280%;" class="hero-btn" [disabled]="!consumptionService.applianceModel.valid">Calculeaza</button>
-            </div>
-          </div>
+              <button type="submit" class="hero-btn" [disabled]="!consumptionService.applianceModel.valid">Calculeaza</button>
       </div>
     </form> 
 
@@ -219,7 +214,7 @@
     </p>
     <br>
     <span>In aceasta imagine avem consumul unei locuinte in kW pe metru patrat anual si indexul de eficienta.</span>
-    <img src="./assets/images/energy_label_classification.png" style="border-radius: 10px; margin-top: 50px; height: 500px;">
+    <img class="consumption-img" src="./assets/images/energy_label_classification.png">
 </section>
 
 
@@ -238,7 +233,7 @@
           energiei electrice, astfel incat facturile tale sa fie vizibil mai mici, iar zambetul mult mai larg.
           Pentru ca orice schimbare trebuie sa porneasca de undeva, iata cateva idei utile cu care sa poti sa incepi.
         </span>
-        <img src="./assets/images/consumption_energy-class.jpg" style="padding: 20px;" width="100%" height="500px" style="border-radius:10px; margin-top: 50px;">
+        <img class="consumption-img" src="./assets/images/consumption_energy-class.jpg">
         <br> <br> <br>
         <h1>Instalează ferestre inteligente</h1>
         <p>Aceasta noua tehnologie folosita la fabricarea ferestrelor impiedica pierderile de caldura din locuinta ta.
@@ -308,7 +303,7 @@
         Știați că renovarea clădirilor existente în Europa cu izolația corectă, 
         ar putea economisi de două ori mai mult dioxid de carbon decât emite Franța într-un an?
       </span>
-      <img src="./assets/images/bloc.jfif" style="padding: 20px;" width="100%" height="500px" style="border-radius: 10px; margin-top: 50px;">
+      <img class="consumption-img" src="./assets/images/bloc.jfif">
       <br> <br>
       <p style="color: black; font-size: 15px;">
         Dacă ar fi să instalăm o izolație eficientă din punct de vedere energetic pentru fiecare clădire 

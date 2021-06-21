@@ -276,25 +276,26 @@ table, th, td {
     }
 
     .text-box p {
-        font-size: 9px;
+        font-size: 11px;
     }
 
 
     .prosumator h1 {
-        font-size: 14px;
+        font-size: 20px;
     }
 
     .prosumator p {
-        font-size: 10px;
+        font-size: 13px;
     }
+
 
 
     .green-energy h1 {
-        font-size: 14px;
+        font-size: 20px;
     }
 
     .green-energy p {
-        font-size: 10px;
+        font-size: 13px;
     }
 
     .green-energy img {
@@ -304,16 +305,17 @@ table, th, td {
 
 
     .provider h1 {
-        font-size: 14px;
+        font-size: 20px;
     }
 
     .provider p {
-        font-size: 10px;
+        font-size: 13px;
     }
 
     .provider-table {
-        font-size: 4px;
+        width: 100%;
         margin-left: -5%;
+        font-size: 9px;
     }
 
     .provider-table button {

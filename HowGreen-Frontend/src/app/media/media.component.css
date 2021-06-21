@@ -131,17 +131,17 @@ table, th, td {
     }
 
     .text-box p {
-        font-size: 9px;
+        font-size: 11px;
     }
 
 
     .media-list h1 {
-        font-size: 16px;
+        font-size: 20px;
     }
     
     .media-list p {
-        color: #777;
-        font-size: 12px;
+        color: black;
+        font-size: 13px;
         font-weight: 300;
         line-height: 22px;
         padding: 10px;

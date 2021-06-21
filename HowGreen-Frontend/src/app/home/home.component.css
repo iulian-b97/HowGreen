@@ -235,4 +235,16 @@ h3 {
     .text-box h1 {
         font-size: 20px;
     }
+
+    .text-box span {
+        font-size: 12px;
+    }
+
+    .cta h1 {
+        font-size: 15px;
+    }
+
+    .services p {
+        font-size: 13px;
+    }
 }
