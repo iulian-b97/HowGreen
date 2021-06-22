@@ -23,6 +23,7 @@
         pentru a putea utiliza calculatorul
     </p>
     <form [formGroup]="consumptionService.districtModel" autocomplete="off" (submit)="addDistrict()" *ngIf="!indexConsumption">
+      <h1>Fiecare regiune are un pret pe kW diferit. <br>De aceea trebuie sa introduci judetul tau.</h1 >
       <div class="district-box" style="margin-top: 35px;">
         <h1>Locatia ta</h1>
         <hr style="background-color: white; height: 4px; margin-top: -2%;">
@@ -37,6 +38,7 @@
       </div>
     </form>
     <form [formGroup]="consumptionService.applianceModel" autocomplete="off" (submit)="onSubmit()" *ngIf="indexConsumption && !isFinalCon">
+      <h1>Dupa selectarea judetului poti folosi calculatorul. <br>Introdu electrocasnicele tale in acest calculator.</h1>
       <div class="computer-box">
           <h1>Calculator</h1>
           <hr style="background-color: white; height: 4px; margin-top: -2%;">
